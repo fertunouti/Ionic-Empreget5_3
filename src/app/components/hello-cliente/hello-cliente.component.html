@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start" color="primary"></ion-menu-button>
+    <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
+  </ion-toolbar>
+</ion-header>
+
+
+  <div class="ion-text-wrap">
+    <br>
+    <h2>{{emailUserAtual}}</h2>
+    <p>Bem vindo ao app de serviço de limpeza mais amado do Brasil</p>
+  </div>
+  <br>
+
+  <ion-header>
+    <div class="Capa">
+      <img src="../../../../assets/images/home.png">
+    </div>
+    <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
+  </ion-header>
+
+  <br>
+  <div class="ion-header-search">
+    <p>Encontre prestadores próximos a você </p>
+
+    <app-busca-region (mudouRegiao)="onMudouRegion($event)"></app-busca-region>
+
+  </div>
+
+  <ion-list-header> Prestadores:</ion-list-header>
+
+  <div *ngIf="mostraTodos">
+    <app-read-prestador></app-read-prestador>
+  </div>
+
+  <div *ngIf="mostraName">
+    <app-prestador-read-by-name [prestadoresByName]="prestadoresByName"></app-prestador-read-by-name>
+  </div>
+  <div *ngIf="mostraRegion">
+    <app-prestador-read-by-region [prestadoresByRegion]="prestadoresByRegion"></app-prestador-read-by-region>
+  </div>
+
+
+
+

@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar>
+    <div class = "header">  
+        <img src="../../assets/img/logo_empreget.png" >
+        <ion-title>Prestador</ion-title>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    
+    <div align="center" style= "padding-top:20px; font-size:small;"> Ordem de Serviço n<sup>o</sup> 40 </div>
+  
+    <div class="content">
+        Empresa Responsável
+          <table border="1">
+            
+            <thead>
+              <th >Nome</th>
+              <th >Telefone</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>EmpreGet</td>
+                <td>(43) 9999-99999</td>
+              </tr>
+            </tbody>
+            
+            <thead>
+              <th>CPF/CNPJ</th>
+              <th>Endereço</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>71.881.424/0001-81</td>
+                <td>Av.Higienópolis,1125-Centro-Londrina-PR</td>
+              </tr>
+            </tbody>
+          </table>
+        
+    </div>
+    
+    <div class="content">
+        Cliente
+        <table border="1">
+          <thead>
+            <th>Nome</th>
+            <th>Telefone</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sueli Cavalcanti</td>
+              <td>(43) 9999-99999</td>
+            </tr>
+          </tbody>
+          
+            <thead>
+              <th>Email</th>
+              <th>Endereço</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sueli@gmail.com</td>
+                <td>Av. Paraná,1125 - Centro - Londrina-Pr</td>
+              </tr>
+            </tbody>
+       </table>
+    </div>
+
+
+    <div class="content">
+      Informações do serviço
+      <table border="1">
+        <thead>
+          <th>Horário de início</th>
+          <th>Horário de término</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>02/06/2023 8:00h</td>
+            <td>02/06/2023 17:30h</td>
+          </tr>
+        </tbody>
+        <thead>
+          <th>Data</th>
+          <th>Serviços</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>02/06/2023</td>
+            <td>Serviço de higiene e limpeza</td>
+          </tr>
+        </tbody>
+        
+          
+     </table>
+  </div>
+        
+    <div class="content">
+      Valor dos serviços
+      <table border ="1">
+        <thead>
+            <th>Serviço</th>
+            <th >Valor</th>
+            <th >Subtotal</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Serviço de limpeza e higiene</td>
+            <td>R$ 150,00</td>
+            <td>R$ 150,00</td>
+          </tr>
+        </tbody>
+        
+      </table>
+
+
+    </div>
+    
+    <p></p> 
+    <ion-item align="center" style= "padding-top:10px; font-size:small;">
+      <ion-checkbox slot="start" ></ion-checkbox>
+      <ion-label>Confirmo o recebimento do serviço prestado</ion-label>
+    </ion-item>
+    <p></p>
+    <div>
+      <ion-grid>
+        <ion-row justify-content-center>
+          
+          <ion-col  style="padding: 20px 10px;">
+            
+            <ion-button (click)="finalizar()" shape=round color=danger>Finalizar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+</ion-content>
+      
+
+     
+
+
+<ion-footer class = "footer"> 
+  <ion-toolbar> 
+    <div>
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col class="imagem" >
+            <img src="../../assets/images/home1.PNG"  routerLink="/tipo-user">
+            <!-- <img src="../../assets/images/chat.PNG"  routerLink="/home"> -->
+            <img src="../../assets/images/agenda.PNG" routerLink="/agendamentos-prestador">
+            <img src="../../assets/images/menu.PNG"  routerLink="/tela-inicial-prestador">
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+</ion-footer>

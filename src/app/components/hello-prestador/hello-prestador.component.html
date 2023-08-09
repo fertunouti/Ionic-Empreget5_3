@@ -1,0 +1,64 @@
+
+<ion-header>
+  <ion-toolbar>
+    
+      <ion-menu-button slot="start" color="primary"></ion-menu-button>
+      <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+  <div>
+    <img src="../../assets/images/prestador.PNG"  >
+  </div>
+  
+ 
+  <div align="center" style= "padding-top:10px; font-size:medium;"> 
+    <p> Bem vindo prestador! </p> 
+    <p> Bem vindo ao app de serviços</p> 
+    <p> de limpeza mais amado do Brasil</p>
+  </div>
+  
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col size="auto" >
+            <ion-button shape="round" fill="outline" routerLink="/agendamentos-prestador" class="custom-button">
+              Administrar Agenda
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-col size="auto"  style="padding: 0 10px;">
+            <ion-button shape="round" fill="outline" routerLink="/finalizar-os"class="custom-button">
+              Finalizar Ordem de Serviço
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-col size="auto"  style="padding: 0 10px;">
+            <ion-button shape="round" fill="outline" routerLink="/perfil-prestador" class="custom-button">
+              Perfil
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+ 
+
+<ion-footer class = "footer"> 
+  <ion-toolbar> 
+    <div>
+      <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col style="padding: 0 5px;">
+              <img src="../../assets/images/home1.PNG"  routerLink="/hello">
+            <!--   <img src="../../assets/images/chat.PNG"  routerLink="#"> -->
+              <img src="../../assets/images/agenda.PNG" routerLink="/agendamentos-prestador">
+              <img src="../../assets/images/menu.PNG"  routerLink="/hello">
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

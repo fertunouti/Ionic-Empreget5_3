@@ -1,0 +1,131 @@
+
+<h1> Tipo User {{tipoUserAtual}}</h1>
+
+<ion-header [translucent]="true">
+
+  <ion-toolbar color="primary">
+    <ion-title>
+      Solicitar serviço
+    </ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<!-- header -->
+<ion-content>
+  <div class="header-os">
+    <h3>Ordem se serviço nº:</h3>
+    <ion-input placeholder="40" style="font-size: x-large; justify-content: baseline;"></ion-input>
+  </div>
+
+<!-- body -->
+  <h5>Empresa responsável</h5>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Nome: EmpreGET</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Telefone: (43) 9999-9999</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>CNPJ: 00.000.000/0001-00</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Endereço: Av. Higienópolis, 1125 - Centro - Londrina/Pr</ion-label>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card-content>
+
+
+  <h5>Dados do cliente</h5>
+  <ion-card-content>
+    <ion-row>
+      <ion-col>
+        <ion-label>Nome:</ion-label>
+        <ion-input placeholder="Marlene Santos"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-label>Telefone:</ion-label>
+        <ion-input placeholder="(43) 9999-9999"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Endereço:</ion-label>
+        <ion-input placeholder="Rua dos Canários, 10"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+
+  <h5>Informações do serviço</h5>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Prestador:</ion-label>
+          <ion-input placeholder="Sueli Cavalcanti"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-label>Data:</ion-label>
+          <ion-input placeholder="15/05/2023"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Tipo de Diária:</ion-label>
+          <ion-select>
+            <ion-select-option>Diária cheia</ion-select-option>
+            <ion-select-option>Meia diária</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-label>Período:</ion-label>
+          <ion-select>
+            <ion-select-option>Matutino</ion-select-option>
+            <ion-select-option>Vespertino</ion-select-option>
+            <ion-select-option>Horário comercial</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Descrição:</ion-label>
+          <ion-input placeholder="Descrição feita pelo prestador no perfil..."></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+
+  <h5>Custos</h5>
+  <ion-card-content>
+    <ion-row>
+      <ion-col>
+        <ion-label>Serviço: Limpeza e higiene</ion-label>       
+      </ion-col>
+      <ion-col>
+        <ion-label>Total:</ion-label>
+        <ion-input placeholder="150,00"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+
+  <!-- button -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="5">
+        <ion-button  fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos">enviar</ion-button>
+      </ion-col>
+      <ion-col size="5">
+        <ion-button  fill="outline" color="primary" expand="block" routerLink="/home">Cancelar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
