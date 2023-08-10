@@ -2,13 +2,15 @@
 
   <ion-item>
   <ion-avatar slot="start">
-  <img alt="Silhouette of a person's head" src="../../../../assets/images/avatar.svg" />
+  <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline .svg" />
   </ion-avatar>
   <ion-label fill="clear" routerLink="/perfil-prestador">
-  {{prestador.nome}}
+    {{prestador.nome}}
+    <p>{{prestador.regiao}}</p>
+    <p>R$ {{prestador.servicoValor | number:'1.2-2'}}</p>
   </ion-label>
   <ion-col class="coluna-view">
-  <ion-button fill="clear" routerLink="/perfil-prestador">view</ion-button>
+  <ion-button fill="clear" routerLink="/perfil-prestador" (click)="onClick(prestador.id)">view</ion-button>
   </ion-col>
   </ion-item>
 </ul> 

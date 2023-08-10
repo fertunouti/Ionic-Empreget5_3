@@ -18,18 +18,19 @@
       <img src="../../../../assets/images/home.png">
     </div>
     <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
-  </ion-header>
+    
+  </ion-header >
 
+
+  <ion-card class="ion-text-center">
+    <ion-button  size="medium" color="primary" (click)="onMostraTodos()">Mostra Todos</ion-button>
   <br>
   <div class="ion-header-search">
     <p>Encontre prestadores próximos a você </p>
-
     <app-busca-region (mudouRegiao)="onMudouRegion($event)"></app-busca-region>
-
   </div>
 
   <ion-list-header> Prestadores:</ion-list-header>
-
   <div *ngIf="mostraTodos">
     <app-read-prestador></app-read-prestador>
   </div>
@@ -40,6 +41,7 @@
   <div *ngIf="mostraRegion">
     <app-prestador-read-by-region [prestadoresByRegion]="prestadoresByRegion"></app-prestador-read-by-region>
   </div>
+</ion-card>
 
 
 

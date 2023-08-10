@@ -13,7 +13,7 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size="4">
-        <img alt="Silhouette of a person's head" src="../../../assets/images/avatar1.png" />
+        <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg">
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -27,30 +27,29 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            Nome: <ion-input type="text" clearInput ></ion-input>  
+            Nome: <p>{{perfilPrestador?.nome}} </p>
           </ion-col>
           <ion-col size="auto">
-           <div style="width: 150px">Região de residência: <ion-input type="text" clearInput ></ion-input>
+           <div style="width: 150px">Região de residência: <p>{{perfilPrestador?.regiao}} </p>
           </div>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>Disponibilidade de horário: <ion-input type="text" clearInput ></ion-input></ion-col>
+          <ion-col>Disponibilidade de horário: <p>{{perfilPrestador?.disponibilidade}}</p></ion-col>
           <ion-col size="auto">
-            <div style="width: 150px">Cidade: 
-              <ion-input type="text" clearInput ></ion-input></div>
+            <div style="width: 150px">Cidade: <p>{{perfilPrestador?.endereco.cidade}}</p> </div>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>Valor da diária: <ion-input type="text" clearInput ></ion-input>
+          <ion-col>Valor da diária: <p>{{perfilPrestador?.servico.valor}}</p>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="auto">Descrição do serviço: <ion-input type="text" clearInput ></ion-input>
+          <ion-col size="auto">Descrição do serviço: <p>{{perfilPrestador?.servico.descricao}}</p> 
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="auto">Observação: <ion-input type="text" clearInput ></ion-input>
+          <ion-col size="auto"> Observação: <p>{{perfilPrestador?.observacao}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

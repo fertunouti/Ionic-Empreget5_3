@@ -28,5 +28,8 @@ export class ReadPrestadorComponent  implements OnInit {
       }
      );
    }
+   onClick(prestadorId:number){
+    this.apiService.addId(prestadorId)
+   }
 
 }

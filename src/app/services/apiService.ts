@@ -10,11 +10,13 @@ export class ApiService {
   private baseUrlByName = "http://localhost:8080/prestadores/nome-contem/"
   private baseUrlByRegion = "http://localhost:8080/prestadores/regiao/"
 
+
   private authToken: string = '';
   private tipoUserLogado!: string
   private email: string = '';
   private termoProcurado = '';
   private regionProcurado = '';
+  private idProcurado! : number
   
 
   constructor(private http: HttpClient) { }
@@ -72,6 +74,12 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/prestadores/perfis`, { headers });
   }
+  
+  // GET PERFIS PRESTADORES
+  getPerfisPrestadoresById(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/prestadores/${this.idProcurado}`, { headers });
+  }
   // GET USUARIOS CADASTRADOS
   getDataUsuarios(): Observable<any> {
     const headers = this.getAuthHeader();
@@ -81,9 +89,10 @@ export class ApiService {
   addEmail(valorEmail: string) {
     this.email = valorEmail
   }
-  readEmail() {
-    return this.email
+  addId(valorId:number){
+    this.idProcurado = valorId
   }
+ 
 
   addTermo(valorTermo: string) {
     if (valorTermo == ""){
@@ -95,6 +104,12 @@ export class ApiService {
   addRegion(valorTermo: string) {
     this.regionProcurado = valorTermo
   }
+  readEmail() {
+    return this.email
+  }
+  readId(){
+  return this.idProcurado
+}
 
   readTermo() {
     return this.termoProcurado
@@ -113,8 +128,6 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(this.baseUrlByRegion + this.regionProcurado, {headers})
   }
-
-
 
 }
 

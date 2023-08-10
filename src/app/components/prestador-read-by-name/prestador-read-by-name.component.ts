@@ -1,20 +1,24 @@
-import { Component, OnInit,OnChanges,Input } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { prestadorFilter } from '../../services/prestadorFilter.model';
+import { ApiService } from 'src/app/services/apiService';
 
 @Component({
   selector: 'app-prestador-read-by-name',
   templateUrl: './prestador-read-by-name.component.html',
   styleUrls: ['./prestador-read-by-name.component.scss'],
 })
-export class PrestadorReadByNameComponent  implements OnInit, OnChanges  {
+export class PrestadorReadByNameComponent  implements OnInit  {
 
   
     
   @Input() prestadoresByName!: prestadorFilter[]
-  constructor() { }
+  constructor(private apiService:ApiService) { }
    
   ngOnInit() {    }
 
-  ngOnChanges() { console.log('acionado')   }
+  onClick(prestadorId:any){
+    this.apiService.addId(prestadorId)
+   }
+   
 
 }
