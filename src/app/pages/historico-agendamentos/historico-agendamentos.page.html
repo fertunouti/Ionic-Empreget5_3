@@ -8,33 +8,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-card>
 
   <h3>Histórico de agendamentos:</h3>
-  <ion-list>
+  <ion-list *ngFor="let pedido of pedidos">
     <ion-card>
       <ion-grid>
         <!-- HEADER DO CARD -->
         <div class="header-card">
           <h3>
-            <ion-input type="text" placeholder="Nome...bd"></ion-input>
+            {{pedido?.nome}}
           </h3>
           <ion-avatar class="avatar-card">
-            <img src="../../../../assets/images/avatar1.png">
+            <img src="../../../assets/icon/person-outline.svg">
           </ion-avatar>
         </div>
         <!-- CORPO DO CARD -->
         <ion-row>          
           <ion-item>
             <ion-label>Data:</ion-label>
-            <ion-input placeholder="imput do BD"></ion-input>
+            <p>{{pedido?.dataServico}}</p>
           </ion-item>
           <ion-row>
               <ion-item>
                 <ion-label> Status:</ion-label>
-              <ion-input type="text" placeholder="Status"></ion-input>
+              <p>- {{pedido?.statusOrdemServico}} - </p>
               <ion-label> Pedido:</ion-label>
-              <ion-input type="text" placeholder="Nº OS"></ion-input>
+              <p>Nº {{pedido?.id}}</p>
             </ion-item>
             </ion-row>          
         </ion-row>
@@ -43,4 +43,4 @@
   </ion-list>
 
  
-</ion-content>
+</ion-card>

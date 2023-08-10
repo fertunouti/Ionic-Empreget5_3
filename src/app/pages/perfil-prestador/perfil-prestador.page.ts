@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/apiService';
+import { osPedido } from 'src/app/services/osPedido.model';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -7,6 +8,9 @@ import { ApiService } from 'src/app/services/apiService';
   styleUrls: ['./perfil-prestador.page.scss'],
 })
 export class PerfilPrestadorPage implements OnInit {
+ 
+  
+
 
   constructor(private apiService:ApiService) { }
   perfilPrestador: any
@@ -22,4 +26,5 @@ export class PerfilPrestadorPage implements OnInit {
       );
   }
 
+ 
 }

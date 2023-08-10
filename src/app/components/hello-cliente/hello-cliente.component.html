@@ -17,17 +17,16 @@
     <div class="Capa">
       <img src="../../../../assets/images/home.png">
     </div>
-    <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
+    <ion-button  size="medium" color="primary" routerLink="/historico-agendamentos">Seus Pedidos</ion-button> 
     
   </ion-header >
-
-
   <ion-card class="ion-text-center">
-    <ion-button  size="medium" color="primary" (click)="onMostraTodos()">Mostra Todos</ion-button>
-  <br>
+   
   <div class="ion-header-search">
     <p>Encontre prestadores próximos a você </p>
+    <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
     <app-busca-region (mudouRegiao)="onMudouRegion($event)"></app-busca-region>
+    <ion-button  fill="clear" color="primary" (click)="onMostraTodos()">Ver Todos os Prestadores</ion-button>
   </div>
 
   <ion-list-header> Prestadores:</ion-list-header>

@@ -1,8 +1,4 @@
-
-<h1> Tipo User {{tipoUserAtual}}</h1>
-
 <ion-header [translucent]="true">
-
   <ion-toolbar color="primary">
     <ion-title>
       Solicitar serviço
@@ -11,121 +7,97 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- header -->
-<ion-content>
-  <div class="header-os">
-    <h3>Ordem se serviço nº:</h3>
-    <ion-input placeholder="40" style="font-size: x-large; justify-content: baseline;"></ion-input>
+<ion-card>
+  <div *ngFor="let cliente of perfilCliente">
+
+    <!-- body -->
+    <ion-card-title>
+      <h5>Informações do cliente</h5>
+    </ion-card-title>
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Endereço:</ion-label>
+          <p>{{cliente?.endereco.logradouro}}, {{cliente?.endereco.numero}}, {{cliente?.endereco.bairro}}</p>
+          <p>{{cliente?.endereco.cidade}}, {{cliente?.endereco.estado}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
   </div>
-
-<!-- body -->
-  <h5>Empresa responsável</h5>
-  <ion-card-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-label>Nome: EmpreGET</ion-label>
-        </ion-col>
-        <ion-col>
-          <ion-label>Telefone: (43) 9999-9999</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label>CNPJ: 00.000.000/0001-00</ion-label>
-        </ion-col>
-        <ion-col>
-          <ion-label>Endereço: Av. Higienópolis, 1125 - Centro - Londrina/Pr</ion-label>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
-  </ion-card-content>
-
-
-  <h5>Dados do cliente</h5>
-  <ion-card-content>
-    <ion-row>
-      <ion-col>
-        <ion-label>Nome:</ion-label>
-        <ion-input placeholder="Marlene Santos"></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-label>Telefone:</ion-label>
-        <ion-input placeholder="(43) 9999-9999"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-label>Endereço:</ion-label>
-        <ion-input placeholder="Rua dos Canários, 10"></ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-card-content>
-
-  <h5>Informações do serviço</h5>
-  <ion-card-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-label>Prestador:</ion-label>
-          <ion-input placeholder="Sueli Cavalcanti"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-label>Data:</ion-label>
-          <ion-input placeholder="15/05/2023"></ion-input>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <ion-label>Tipo de Diária:</ion-label>
-          <ion-select>
-            <ion-select-option>Diária cheia</ion-select-option>
-            <ion-select-option>Meia diária</ion-select-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-label>Período:</ion-label>
-          <ion-select>
-            <ion-select-option>Matutino</ion-select-option>
-            <ion-select-option>Vespertino</ion-select-option>
-            <ion-select-option>Horário comercial</ion-select-option>
-          </ion-select>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label>Descrição:</ion-label>
-          <ion-input placeholder="Descrição feita pelo prestador no perfil..."></ion-input>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-
-  <h5>Custos</h5>
-  <ion-card-content>
-    <ion-row>
-      <ion-col>
-        <ion-label>Serviço: Limpeza e higiene</ion-label>       
-      </ion-col>
-      <ion-col>
-        <ion-label>Total:</ion-label>
-        <ion-input placeholder="150,00"></ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-card-content>
-
-  <!-- button -->
+</ion-card>
+<ion-card>
+  <ion-card-title>
+<h5>Informações do prestador</h5>
+</ion-card-title>
+<ion-card-content>
   <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="5">
-        <ion-button  fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos">enviar</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-card-subtitle>
+        <p>{{perfilPrestador?.nome}}</p>
+        </ion-card-subtitle>
       </ion-col>
-      <ion-col size="5">
-        <ion-button  fill="outline" color="primary" expand="block" routerLink="/home">Cancelar</ion-button>
+      <ion-col>
+        <ion-label>Data agendada:</ion-label>
+        <ion-input placeholder="15/05/2023" [(ngModel)]="osPedido.dataServico"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>Tipo de Diária:</ion-label>
+        <ion-select [(ngModel)]="osPedido.tipoDeDiaria">
+          <ion-select-option value="DIARIA_CHEIA">Diária cheia</ion-select-option>
+          <ion-select-option value="MEIA_DIARIA">Meia diária</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-label>Período:</ion-label>
+        <ion-select [(ngModel)]="osPedido.periodo">
+          <ion-select-option value="MATUTINO">Matutino</ion-select-option>
+          <ion-select-option value="VESPERTINO">Vespertino</ion-select-option>
+          <ion-select-option value="COMERCIAL">Horário comercial</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Observação:</ion-label>
+        <p>{{perfilPrestador?.observacao}}</p>
+
+        <p>{{perfilPrestador?.descricao}}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-title>
+<h5>Custos</h5>
+</ion-card-title>
+<ion-card-content>
+  <ion-row>
+    <ion-col>
+      <ion-label>Serviço: </ion-label>
+      <p>{{perfilPrestador?.servico.descricao}}</p>
+    </ion-col>
+    <ion-col>
+      <ion-label>Total:</ion-label>
+      <p>R$ {{perfilPrestador?.servico.valor | number: "1.2-2"}}</p>
+    </ion-col>
+  </ion-row>
+</ion-card-content>
+</ion-card>
 
-</ion-content>
+<!-- button -->
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="5">
+      <ion-button fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos" (click)="onClick()">enviar</ion-button>
+    </ion-col>
+    <ion-col size="5">
+      <ion-button fill="outline" color="primary" expand="block" routerLink="/perfil-prestador">Cancelar</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -68,17 +68,32 @@ export class ApiService {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
     return this.http.post<any>(`${this.baseUrl}/auth/login`, data, { headers });
   }
+  // POST PEDIDO
+  postPedido(data: any): Observable<any> {
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    return this.http.post<any>(`${this.baseUrl}/os`, data, { headers });
+  }
 
+  // GET PERFIS CLIENTES
+  getDataPerfisClientes(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/clientes`, { headers });
+  }
   // GET PERFIS PRESTADORES
   getDataPerfisPrestadores(): Observable<any> {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/prestadores/perfis`, { headers });
   }
   
-  // GET PERFIS PRESTADORES
+  // GET PERFIS PRESTADORES by id
   getPerfisPrestadoresById(): Observable<any> {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/prestadores/${this.idProcurado}`, { headers });
+  }
+  // GET PEDIDOS
+  getPedidos(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/os`, { headers });
   }
   // GET USUARIOS CADASTRADOS
   getDataUsuarios(): Observable<any> {

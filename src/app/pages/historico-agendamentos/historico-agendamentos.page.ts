@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/apiService';
 
 @Component({
   selector: 'app-historico-agendamentos',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoricoAgendamentosPage implements OnInit {
 
-  constructor() { }
-
+  constructor(private apiService:ApiService) { }
+ 
+ pedidos!: any
   ngOnInit() {
+
+ 
+    this.apiService.getPedidos().subscribe(
+      (data) => {
+         this.pedidos = data;
+        console.log('Pedidos: no historico pedidos', this.pedidos);
+       },
+      (error) => {
+         console.error('Erro ao obter dados dos prestadores:', error);
+       }
+      );
   }
 
 }
