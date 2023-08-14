@@ -28,73 +28,94 @@
 </ion-card>
 <ion-card>
   <ion-card-title>
-<h5>Informações do prestador</h5>
-</ion-card-title>
-<ion-card-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card-subtitle>
-        <p>{{perfilPrestador?.nome}}</p>
-        </ion-card-subtitle>
-      </ion-col>
-      <ion-col>
-        <ion-label>Data agendada:</ion-label>
-        <ion-input placeholder="15/05/2023" [(ngModel)]="osPedido.dataServico"></ion-input>
-      </ion-col>
-    </ion-row>
+    <h5>Informações do prestador</h5>
+  </ion-card-title>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card-subtitle>
+            <p>{{perfilPrestador?.nome}}</p>
+          </ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+          <ion-label>Data agendada:</ion-label>
+          <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
+          <!-- Campo para mostrar a data escolhida -->
+          <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
+          <!-- <ion-input placeholder="15/05/2023" [(ngModel)]="osPedido.dataServico"></ion-input> -->
+          <ion-icon name="calendar" (click)="toggleDatePicker()"></ion-icon>
+          <!-- Exibe ion-datetime apenas se showDatePicker for true -->
+          <ion-datetime *ngIf="mostraCalendarioOnClick" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY"
+            [(ngModel)]="osPedido.dataServico" (ionChange)="onDateSelected($event)">
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-grid>
+      <ion-row>
+        <ion-col>
+          <!-- Botão para fechar o calendário -->
+          <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
+          <!-- Campo para mostrar a data escolhida -->
+          <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <ion-label>Tipo de Diária:</ion-label>
-        <ion-select [(ngModel)]="osPedido.tipoDeDiaria">
-          <ion-select-option value="DIARIA_CHEIA">Diária cheia</ion-select-option>
-          <ion-select-option value="MEIA_DIARIA">Meia diária</ion-select-option>
-        </ion-select>
-      </ion-col>
-      <ion-col>
-        <ion-label>Período:</ion-label>
-        <ion-select [(ngModel)]="osPedido.periodo">
-          <ion-select-option value="MATUTINO">Matutino</ion-select-option>
-          <ion-select-option value="VESPERTINO">Vespertino</ion-select-option>
-          <ion-select-option value="COMERCIAL">Horário comercial</ion-select-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-label>Observação:</ion-label>
-        <p>{{perfilPrestador?.observacao}}</p>
+      <ion-row>
+        <ion-col>
+          <ion-label>Tipo de Diária:</ion-label>
+          <ion-select [(ngModel)]="osPedido.tipoDeDiaria">
+            <ion-select-option value="DIARIA_CHEIA">Diária cheia</ion-select-option>
+            <ion-select-option value="MEIA_DIARIA">Meia diária</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-label>Período:</ion-label>
+          <ion-select [(ngModel)]="osPedido.periodo">
+            <ion-select-option value="MATUTINO">Matutino</ion-select-option>
+            <ion-select-option value="VESPERTINO">Vespertino</ion-select-option>
+            <ion-select-option value="COMERCIAL">Horário comercial</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Observação:</ion-label>
+          <p>{{perfilPrestador?.observacao}}</p>
 
-        <p>{{perfilPrestador?.descricao}}</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card-content>
+          <p>{{perfilPrestador?.descricao}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
 </ion-card>
 <ion-card>
   <ion-card-title>
-<h5>Custos</h5>
-</ion-card-title>
-<ion-card-content>
-  <ion-row>
-    <ion-col>
-      <ion-label>Serviço: </ion-label>
-      <p>{{perfilPrestador?.servico.descricao}}</p>
-    </ion-col>
-    <ion-col>
-      <ion-label>Total:</ion-label>
-      <p>R$ {{perfilPrestador?.servico.valor | number: "1.2-2"}}</p>
-    </ion-col>
-  </ion-row>
-</ion-card-content>
+    <h5>Custos</h5>
+  </ion-card-title>
+  <ion-card-content>
+    <ion-row>
+      <ion-col>
+        <ion-label>Serviço: </ion-label>
+        <p>{{perfilPrestador?.servico.descricao}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-label>Total:</ion-label>
+        <p>R$ {{perfilPrestador?.servico.valor | number: "1.2-2"}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
 </ion-card>
 
 <!-- button -->
 <ion-grid>
   <ion-row class="ion-justify-content-center">
     <ion-col size="5">
-      <ion-button fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos" (click)="onClick()">enviar</ion-button>
+      <ion-button fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos"
+        (click)="onClick()">enviar</ion-button>
     </ion-col>
     <ion-col size="5">
       <ion-button fill="outline" color="primary" expand="block" routerLink="/perfil-prestador">Cancelar</ion-button>

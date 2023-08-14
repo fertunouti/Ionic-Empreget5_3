@@ -1,11 +1,12 @@
 export interface Prestadores {
-    id: number,
-    imgUrl: string,
+    id?: number,
     nome: string,
+    imgUrl: null,
     endereco: {
         logradouro: string,
         numero: number,
         complemento: string,
+        cep: string,
         bairro: string,
         cidade: string,
         estado: string,
@@ -15,13 +16,17 @@ export interface Prestadores {
     rg: string,
     cpf: string,
     telefone: string,
-    email: string,
+    usuario : {
+           email: string,
+           senha: string,
+           role: string
+    }
     servico: {
         descricao: string,
-        valor: number,
-    };
-    disponibilidade: string,
+        valor: number
+    },
     observacao: string,
-    dataDoCadastro: string,
-    dataDaAtualizacao: string,
+    disponibilidade: string,
+    dataDoCadastro?: string,
+    dataDaAtualizacao?: string,
 }

@@ -21,6 +21,7 @@ import { HelloClienteComponent } from 'src/app/components/hello-cliente/hello-cl
 import { BuscaNomeComponent } from 'src/app/components/busca-nome/busca-nome.component';
 import { BuscaRegionComponent } from 'src/app/components/busca-region/busca-region.component';
 import { HelloPage } from '../hello/hello.page';
+import { CadastroPage } from '../cadastro/cadastro.page';
 
 
 @NgModule({

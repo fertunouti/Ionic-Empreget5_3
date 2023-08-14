@@ -73,6 +73,10 @@ export class ApiService {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
     return this.http.post<any>(`${this.baseUrl}/os`, data, { headers });
   }
+  // POST CADASTRO CLIENTES
+  postCadastrarCliente(data: any): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/clientes`, data);
+  }
 
   // GET PERFIS CLIENTES
   getDataPerfisClientes(): Observable<any> {
@@ -107,6 +111,7 @@ export class ApiService {
   addId(valorId:number){
     this.idProcurado = valorId
   }
+ 
  
 
   addTermo(valorTermo: string) {
