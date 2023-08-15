@@ -30,7 +30,7 @@ export class OsViewPage implements OnInit {
   }
 
   private getPedidosAndRefresh() {
-    this.apiService.getPedidos().subscribe(
+    this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
         console.log('Pedidos no histórico de pedidos:', this.pedido);
