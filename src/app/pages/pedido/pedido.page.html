@@ -39,7 +39,8 @@
           </ion-card-subtitle>
         </ion-col>
         <ion-col>
-          <ion-label>Data agendada:</ion-label>
+          <ion-label></ion-label>
+          
           <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
           <!-- Campo para mostrar a data escolhida -->
           <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
@@ -55,15 +56,6 @@
     </ion-card-content>
     <ion-card-content>
       <ion-grid>
-      <ion-row>
-        <ion-col>
-          <!-- Botão para fechar o calendário -->
-          <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
-          <!-- Campo para mostrar a data escolhida -->
-          <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
-        </ion-col>
-      </ion-row>
-
       <ion-row>
         <ion-col>
           <ion-label>Tipo de Diária:</ion-label>

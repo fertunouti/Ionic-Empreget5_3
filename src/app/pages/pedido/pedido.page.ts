@@ -54,23 +54,23 @@ export class PedidoPage implements OnInit {
     console.log("data do Serviço = " + this.osPedido.dataServico)
     console.log("Periodo = " + this.osPedido.periodo)
     console.log("tipo Diaria= " + this.osPedido.tipoDeDiaria)
-    this.apiService.postPedido(this.osPedido).subscribe(
-      (response: any) => {
-        console.log("pedido cadastrado com sucesso!!!");
-        // Após cadastrar com sucesso, emita o evento
-        this.eventService.emitPedidoCadastrado();
-      },
+     this.apiService.postPedido(this.osPedido).subscribe(
+       (response: any) => {
+         console.log("pedido cadastrado com sucesso!!!");
+         // Após cadastrar com sucesso, emita o evento
+         this.eventService.emitPedidoCadastrado();
+       },
 
-      (error: any) => {
-        console.error("Erro ao cadastrar pedido:", error);
-        if (error && error.error && error.error.userMessage) {
-          // Exibir mensagem de erro
-          this.exibirAlertaErro(error.error.userMessage);
-        } else {
-          this.exibirAlertaErro("Ocorreu um erro ao cadastrar o pedido.");
-        }
-      }
-    )
+       (error: any) => {
+         console.error("Erro ao cadastrar pedido:", error);
+         if (error && error.error && error.error.userMessage) {
+           // Exibir mensagem de erro
+           this.exibirAlertaErro(error.error.userMessage);
+         } else {
+           this.exibirAlertaErro("Ocorreu um erro ao cadastrar o pedido.");
+         }
+       }
+     )
 
 
 
@@ -91,7 +91,9 @@ toggleDatePicker() {
 
  // Método para definir a data escolhida
  onDateSelected(event:any) {
-  this.selectedDate = event.detail.value;
+  const selectedDateTime = new Date(event.detail.value);
+  const selectedDate = selectedDateTime.toISOString().split('T')[0]; // Captura a parte da data
+  this.osPedido.dataServico = selectedDate;
 }
 
 // Método para fechar o calendário
