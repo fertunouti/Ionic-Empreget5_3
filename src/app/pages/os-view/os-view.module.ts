@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { OsViewPageRoutingModule } from './os-view-routing.module';
 
-import { OsViewPage } from './os-view.page';
+
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { OsViewPage } from './os-view.page';
     IonicModule,
     OsViewPageRoutingModule
   ],
-  declarations: [OsViewPage]
+  declarations: []
 })
 export class OsViewPageModule {}

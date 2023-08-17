@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HistoricoAgendamentosPageRoutingModule } from './historico-agendamentos-routing.module';
 
-import { HistoricoAgendamentosPage } from './historico-agendamentos.page';
+
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { HistoricoAgendamentosPage } from './historico-agendamentos.page';
     IonicModule,
     HistoricoAgendamentosPageRoutingModule
   ],
-  declarations: [HistoricoAgendamentosPage]
+  declarations: []
 })
 export class HistoricoAgendamentosPageModule {}

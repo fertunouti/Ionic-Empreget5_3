@@ -1,7 +1,7 @@
-import { Component, OnInit ,OnDestroy} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/apiService';
-import { EventService } from 'src/app/services/event.service';
+
 
 @Component({
   selector: 'app-os-view',
@@ -9,12 +9,10 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./os-view.page.scss'],
 })
 export class OsViewPage implements OnInit {
-  private pedidoCanceladoSubscription: Subscription;
+  
 
-  constructor(private apiService:ApiService, private eventService: EventService) { 
-    this.pedidoCanceladoSubscription = this.eventService.pedidoCancelado$.subscribe(() => {
-      this.getPedidosAndRefresh();
-    });
+  constructor(private apiService:ApiService) { 
+    
   }
   tipoUser!: string
   idPedido!: number
@@ -22,11 +20,23 @@ export class OsViewPage implements OnInit {
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
-    this.getPedidosAndRefresh();
+    this.getPedidosAndRefresh()
+ 
  
   }
-  ngOnDestroy(): void {
-    this.pedidoCanceladoSubscription.unsubscribe();
+  dado!: any
+  onClickCancelarOS(){
+    this.apiService.addId(this.idPedido)
+    
+    
+     this.apiService.putCancelarOS().subscribe(
+      (data) => {
+         console.log('Cacelado',data);
+       },
+      (error) => {
+        console.error('Erro CANCELAR OS', error);
+      }
+    );
   }
 
   private getPedidosAndRefresh() {
@@ -40,7 +50,18 @@ export class OsViewPage implements OnInit {
       }
     );
   }
+  // private getCancelAndRefresh() {
+  //   this.apiService.putCancelarOS().subscribe(
+  //      (data) => {
+  //        this.pedido = data;
+  //        console.log('Pedidos no histórico de pedidos:', this.pedido);
+  //      },
+  //     (error) => {
+  //       console.error('Erro CANCELAR OS', error);
+  //     }
+  //   );
+  }
 
 
 
-}
+

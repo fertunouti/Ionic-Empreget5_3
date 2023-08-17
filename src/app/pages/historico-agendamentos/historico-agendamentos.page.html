@@ -23,7 +23,7 @@
         <p>{{pedido.statusOrdemServico }}</p>
       </ion-label>
       <ion-col class="coluna-view">
-        <ion-button fill="clear" >view</ion-button>
+        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido.id)">view</ion-button>
       </ion-col>
     </ion-item>
   </ul>

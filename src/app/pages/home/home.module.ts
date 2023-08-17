@@ -22,6 +22,8 @@ import { BuscaNomeComponent } from 'src/app/components/busca-nome/busca-nome.com
 import { BuscaRegionComponent } from 'src/app/components/busca-region/busca-region.component';
 import { HelloPage } from '../hello/hello.page';
 import { CadastroPage } from '../cadastro/cadastro.page';
+import { HistoricoAgendamentosPage } from '../historico-agendamentos/historico-agendamentos.page';
+import { OsViewPage } from '../os-view/os-view.page';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { CadastroPage } from '../cadastro/cadastro.page';
   BuscaNomeComponent,
   BuscaRegionComponent,
   PrestadorReadByRegionComponent,
-  HelloPage
+  HelloPage,
+  HistoricoAgendamentosPage,
+  OsViewPage
 
  
 

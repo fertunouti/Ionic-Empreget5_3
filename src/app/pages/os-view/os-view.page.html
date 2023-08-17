@@ -1,130 +1,92 @@
 <ion-header>
   <ion-toolbar>
-    <div class = "header">  
-      <img src="../../../../assets/images/logo_empreget.png" >
-      <ion-title>Prestador</ion-title>
+
+    <div class="header"><img src="../../../../assets/images/logo_empreget.png">
+      <ion-title>{{tipoUser}}</ion-title>
     </div>
-    
+    <ion-menu-button slot="start"></ion-menu-button>
+
   </ion-toolbar>
 </ion-header>
-
+<br>
 <ion-content>
-    <div align="center" style= "padding-top:20px; font-size:small;"> Ordem de Serviço n<sup>o</sup> 40 </div>
-  
-    <div class="content">
-        Empresa Responsável
-          <table border="1">
-            
-            <thead>
-              <th >Nome</th>
-              <th >Telefone</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>EmpreGet</td>
-                <td>(43) 9999-99999</td>
-              </tr>
-            </tbody>
-            
-            <thead>
-              <th>CPF/CNPJ</th>
-              <th>Endereço</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>71.881.424/0001-81</td>
-                <td>Av.Higienópolis,1125-Centro-Londrina-PR</td>
-              </tr>
-            </tbody>
-          </table>
-        
-    </div>
-    
-    <div class="content">
-        Cliente
-        <table border="1">
-          <thead>
-            <th>Nome</th>
-            <th>Telefone</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Sueli Cavalcanti</td>
-              <td>(43) 9999-99999</td>
-            </tr>
-          </tbody>
-          
-            <thead>
-              <th>Email</th>
-              <th>Endereço</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>sueli@gmail.com</td>
-                <td>Av. Paraná,1125 - Centro - Londrina-Pr</td>
-              </tr>
-            </tbody>
-       </table>
-    </div>
-        
-    <div class="content">
-      Valor dos serviços
-      <table border ="1">
-        <thead>
-            <th>Serviço</th>
-            <th >Valor</th>
-            <th >Subtotal</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Serviço de limpeza e higiene</td>
-            <td>R$ 150,00</td>
-            <td>R$ 150,00</td>
-          </tr>
-        </tbody>
-        
-      </table>
-
-
-    </div>
-      
-     
-    <div>
+  <div align="center" style="padding-top:20px; font-size:large;"> Ordem de Serviço n<sup>o</sup> {{idPedido}} </div>
+  <br><br>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg" />
+    </ion-avatar>
+    <ion-label fill="clear">
       <ion-grid>
-        <ion-row justify-content-center>
-          <ion-col  style="padding: 20px 20px;">
-            <ion-button shape="round" color="success" routerLink="/finalizar-os">
-              Aceitar
-            </ion-button>
+        <ion-row class="ion-align-items-start"> <!-- Adicione a classe para alinhar o conteúdo ao topo -->
+          <ion-col >
+            <p class="texto ion-text-left">Prestador:</p>
+            <div style="font-weight: bold; font-size: medium;" class="ion-text-left">{{pedido?.nomePrestador}}</div>
           </ion-col>
-          <ion-col  style="padding: 20px 10px;">
-            <ion-button shape="round" color="danger" routerLink="/tela-inicial-prestador">
-              Rejeitar
-            </ion-button>
+          <ion-col > 
+            <p class="texto ion-text-left">Data agendada:</p>
+            <p class="ion-text-left">{{pedido?.dataServico}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </div>
+      <br><br><br>
+      <p class="texto">Endereço do Serviço: </p>
+      <p>{{pedido?.localDoServico.logradouro}},
+        {{pedido?.localDoServico.numero}},
+        {{pedido?.localDoServico.complemento}}</p>
+      <p>{{pedido?.localDoServico.bairro}}</p>
+      <p>{{pedido?.localDoServico.cidade}}-
+        {{pedido?.localDoServico.estado}}</p>
+      <p class="texto">Período solicitado: </p>
+      <p>{{pedido?.periodo}}/{{pedido?.tipoDeDiaria}}</p>
+      <br>
+      <p class="texto">Serviço contratado:</p>
+      <p> {{pedido?.servico.descricao}}</p>
+      <br>
+      <p class="texto">Valor contratado:</p>
+      <p>R$ {{pedido?.servico.valor | number: '1.2-2'}}</p>
+      <br><br>
+      <p>Status da O.S.</p>
+      <div style="font-weight: bold; font-size: medium;">{{pedido?.statusOrdemServico }}</div>
+      <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaFinalizacao}}</p>
+      <p *ngIf="!pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaSolicitacao}}</p>
+
+    </ion-label>
+
+  </ion-item>
+
+
+
+  <div>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col style="padding: 20px 20px;">
+          <ion-button shape="round" color="danger" (click)="onClickCancelarOS()">
+            Cancelar OS
+          </ion-button>
+        </ion-col>
+        <ion-col style="padding: 20px 10px;">
+          <ion-button shape="round" color="primary" routerLink="/historico-agendamentos">
+            Voltar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col style="padding: 20px 20px;">
+          <ion-button shape="round" color="success" routerLink="/finalizar-os">
+            Aceitar
+          </ion-button>
+        </ion-col>
+        <ion-col style="padding: 20px 10px;">
+          <ion-button shape="round" color="danger" routerLink="/tela-inicial-prestador">
+            Rejeitar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
-      
-
-     
-
-
-<ion-footer class = "footer"> 
-  <ion-toolbar> 
-    <div>
-      <ion-grid>
-        <ion-row justify-content-center>
-            <ion-col  style="padding: 0 5px;">
-              
-              <img src="../../assets/images/home1.PNG"  routerLink="/tipo-user">
-              <!-- <img src="../../assets/images/chat.PNG"  routerLink="/home"> -->
-              <img src="../../assets/images/agenda.PNG" routerLink="/agendamentos-prestador">
-              <img src="../../assets/images/menu.PNG"  routerLink="/tela-inicial-prestador">
-            </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-toolbar>
-</ion-footer>

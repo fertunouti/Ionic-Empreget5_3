@@ -60,6 +60,13 @@ export class ApiService {
     }
     return '';
   }
+  addEmail(valorEmail: string) {
+    this.email = valorEmail
+  }
+  addId(valorId:number){
+    this.idProcurado = valorId
+  }
+ 
 
   //ENDPOINTS
 
@@ -99,18 +106,27 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/os`, { headers });
   }
+    // GET by Id PEDIDOS
+    getByIdPedido(): Observable<any> {
+      const headers = this.getAuthHeader();
+      return this.http.get<any>(`${this.baseUrl}/os/${this.idProcurado}`, { headers });
+    }
+
+
+
   // GET USUARIOS CADASTRADOS
   getDataUsuarios(): Observable<any> {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/usuarios`, { headers });
   }
+  //PUT CANCELAR OS
+  putCancelarOS(): Observable<any> {
+    //const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    const headers = this.getAuthHeader()
+    
+    return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}`, { headers });
+    }
 
-  addEmail(valorEmail: string) {
-    this.email = valorEmail
-  }
-  addId(valorId:number){
-    this.idProcurado = valorId
-  }
  
  
 

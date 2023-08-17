@@ -39,6 +39,8 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
       }
     );
   }
+  onClick(id:number){
+    this.apiService.addId(id) }
 
  
       

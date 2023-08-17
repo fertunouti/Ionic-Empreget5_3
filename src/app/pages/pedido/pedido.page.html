@@ -15,7 +15,6 @@
       <h5>Informações do cliente</h5>
     </ion-card-title>
     <ion-card-content>
-
       <ion-row>
         <ion-col>
           <ion-label>Endereço:</ion-label>
@@ -40,8 +39,7 @@
         </ion-col>
         <ion-col>
           <ion-label></ion-label>
-          
-          <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
+           <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
           <!-- Campo para mostrar a data escolhida -->
           <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
           <!-- <ion-input placeholder="15/05/2023" [(ngModel)]="osPedido.dataServico"></ion-input> -->
