@@ -26,6 +26,7 @@ import { HistoricoAgendamentosPage } from '../historico-agendamentos/historico-a
 import { OsViewPage } from '../os-view/os-view.page';
 import { CalendarioComponent } from './../../components/calendario/calendario.component';
 import { PrestadorReadByRegionComponent } from './../../components/prestador-read-by-region/prestador-read-by-region.component';
+import { PedidoPage } from '../pedido/pedido.page';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { PrestadorReadByRegionComponent } from './../../components/prestador-rea
   HistoricoAgendamentosPage,
   OsViewPage,
   CalendarioComponent,
-  CadastroPage
+  CadastroPage,
+  PedidoPage
 
  
 

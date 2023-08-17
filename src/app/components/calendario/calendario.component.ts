@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calendario',
@@ -11,4 +11,20 @@ export class CalendarioComponent  implements OnInit {
 
   ngOnInit() {}
 
+  selectedDate!: string;
+
+  @Output() dateSelected = new EventEmitter<string>();
+  @Output() closeCalendar = new EventEmitter<void>();
+
+  onDateSelected() {
+    if (this.selectedDate) {
+      this.dateSelected.emit(this.selectedDate);
+    }
+    this.closeCalendar.emit();
+  }
+
 }
+// calendario.component.ts
+
+
+

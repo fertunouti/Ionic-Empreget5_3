@@ -29,21 +29,27 @@
   <ion-card-title>
     <h5>Informações do prestador</h5>
   </ion-card-title>
+
   <ion-card-content>
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-card-subtitle>
-            <p>{{perfilPrestador?.nome}}</p>
-          </ion-card-subtitle>
+
+          <p>{{perfilPrestador?.nome}}</p>
+
         </ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col>
-          <ion-label></ion-label>
-           <ion-button *ngIf="mostraCalendarioOnClick" fill="clear" (click)="closeDatePicker()">Fechar Calendário</ion-button>
+          DATA DO SERVIÇO
+          <p><ion-icon name="calendar" (click)="toggleDatePicker()"></ion-icon>
+          <ion-button *ngIf="mostraCalendarioOnClick" (click)="closeDatePicker()" class="medium-button"> 
+          OK
+          </ion-button>
+          </p>
           <!-- Campo para mostrar a data escolhida -->
-          <p *ngIf="selectedDate">Data escolhida: {{ selectedDate }}</p>
-          <!-- <ion-input placeholder="15/05/2023" [(ngModel)]="osPedido.dataServico"></ion-input> -->
-          <ion-icon name="calendar" (click)="toggleDatePicker()"></ion-icon>
+          <p *ngIf="selectedDate"> Data AGENDADA: {{ selectedDate }}</p>
+          <ion-input placeholder="CLIQUE NO CALENDÁRIO" [(ngModel)]="osPedido.dataServico"></ion-input>
           <!-- Exibe ion-datetime apenas se showDatePicker for true -->
           <ion-datetime *ngIf="mostraCalendarioOnClick" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY"
             [(ngModel)]="osPedido.dataServico" (ionChange)="onDateSelected($event)">
@@ -51,20 +57,21 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    </ion-card-content>
-    <ion-card-content>
-      <ion-grid>
+  </ion-card-content>
+
+  <ion-card-content>
+    <ion-grid>
       <ion-row>
         <ion-col>
           <ion-label>Tipo de Diária:</ion-label>
-          <ion-select [(ngModel)]="osPedido.tipoDeDiaria">
+          <ion-select [(ngModel)]="osPedido.tipoDeDiaria" placeholder="ESCOLHA A DIÁRIA">
             <ion-select-option value="DIARIA_CHEIA">Diária cheia</ion-select-option>
             <ion-select-option value="MEIA_DIARIA">Meia diária</ion-select-option>
           </ion-select>
         </ion-col>
         <ion-col>
           <ion-label>Período:</ion-label>
-          <ion-select [(ngModel)]="osPedido.periodo">
+          <ion-select [(ngModel)]="osPedido.periodo" placeholder="ESCOLHA O PERÍODO">
             <ion-select-option value="MATUTINO">Matutino</ion-select-option>
             <ion-select-option value="VESPERTINO">Vespertino</ion-select-option>
             <ion-select-option value="COMERCIAL">Horário comercial</ion-select-option>

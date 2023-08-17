@@ -63,7 +63,14 @@ ion-col[size="5"] {
         margin-left: 5px; 
       
     }
-  
+    ion-icon[name="calendar"] {
+      font-size: 2rem; /* Aumenta o tamanho do ícone */
+      margin: 20 auto; /* Centraliza o ícone horizontalmente */
+    }
+    .medium-button {
+      width: 50%; /* Defina o tamanho desejado */
+      margin: 20 auto; /* Centralize o botão horizontalmente */
+    }
   
   
   

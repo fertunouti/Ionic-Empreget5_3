@@ -1,3 +1,4 @@
-<p>
-  calendario works!
-</p>
+<!-- calendario.component.html -->
+<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY"
+              [(ngModel)]="selectedDate"></ion-datetime>
+<ion-button (click)="onDateSelected()">OK</ion-button>

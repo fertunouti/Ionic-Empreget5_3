@@ -15,6 +15,6 @@ import { PedidoPage } from './pedido.page';
     IonicModule,
     PedidoPageRoutingModule
   ],
-  declarations: [PedidoPage]
+  declarations: []
 })
 export class PedidoPageModule {}
