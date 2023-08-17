@@ -2,9 +2,7 @@
   <ion-toolbar color="primary">
     <ion-menu-button slot="start"></ion-menu-button>
     <ion-title>Histórico de Agendamentos</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button default-href="/home"></ion-back-button>
-    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -27,5 +25,15 @@
       </ion-col>
     </ion-item>
   </ul>
-
+  <div>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col style="padding: 20px 20px;">
+          <ion-button shape="round" color="primary" routerLink="/hello">
+            Início
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -61,9 +61,11 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
+          <div *ngIf="pedido?.statusOrdemServico != 'CANCELADO'">
           <ion-button shape="round" color="danger" (click)="onClickCancelarOS()">
             Cancelar OS
           </ion-button>
+          </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
           <ion-button shape="round" color="primary" routerLink="/historico-agendamentos">
@@ -73,7 +75,10 @@
       </ion-row>
     </ion-grid>
   </div>
-  <div>
+
+
+  <!-- ****BOTOES PARA O PRESTADOR  FALTA IMPLEMENTAR*** -->
+  <!-- <div >
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
@@ -88,5 +93,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
 </ion-content>

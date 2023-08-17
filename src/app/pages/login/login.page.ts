@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
         const userEmail = role[0];
         const userRole = role[1]
         this.apiService.setUserRole(userRole);
+        this.apiService.addEmail(userEmail)
 
 
         //Aciona envento onLogin() na HomePage html

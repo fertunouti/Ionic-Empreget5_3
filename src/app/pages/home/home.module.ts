@@ -1,4 +1,4 @@
-import { PrestadorReadByRegionComponent } from './../../components/prestador-read-by-region/prestador-read-by-region.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,8 @@ import { HelloPage } from '../hello/hello.page';
 import { CadastroPage } from '../cadastro/cadastro.page';
 import { HistoricoAgendamentosPage } from '../historico-agendamentos/historico-agendamentos.page';
 import { OsViewPage } from '../os-view/os-view.page';
+import { CalendarioComponent } from './../../components/calendario/calendario.component';
+import { PrestadorReadByRegionComponent } from './../../components/prestador-read-by-region/prestador-read-by-region.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { OsViewPage } from '../os-view/os-view.page';
   PrestadorReadByRegionComponent,
   HelloPage,
   HistoricoAgendamentosPage,
-  OsViewPage
+  OsViewPage,
+  CalendarioComponent,
+  CadastroPage
 
  
 

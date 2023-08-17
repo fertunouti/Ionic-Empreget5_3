@@ -16,8 +16,8 @@ export class ApiService {
   private email: string = '';
   private termoProcurado = '';
   private regionProcurado = '';
-  private idProcurado! : number
-  
+  private idProcurado!: number
+
 
   constructor(private http: HttpClient) { }
   //Método para definir o tipo do User
@@ -26,12 +26,16 @@ export class ApiService {
   }
 
   //Método para obter tipo user logado
-  getUserRole(){
+  getUserRole() {
     return this.tipoUserLogado
   }
   // Método para definir o token JWT após a autenticação
   setAuthToken(token: string): void {
     this.authToken = token;
+  }
+  //Método para verificar testar se token esta ativo( pode excluir)
+  getToken(){
+    return this.authToken;
   }
 
   // Método para obter o cabeçalho com o token JWT incluído
@@ -44,29 +48,23 @@ export class ApiService {
     }
   }
 
-  // Método para obter o token JWT do cookie
-  private getTokenCookie(): string {
-    const name = 'jwt_token=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-      let cookie = cookieArray[i];
-      while (cookie.charAt(0) === ' ') {
-        cookie = cookie.substring(1);
-      }
-      if (cookie.indexOf(name) === 0) {
-        return cookie.substring(name.length, cookie.length);
-      }
-    }
-    return '';
-  }
-  addEmail(valorEmail: string) {
-    this.email = valorEmail
-  }
-  addId(valorId:number){
-    this.idProcurado = valorId
-  }
- 
+  // // Método para obter o token JWT do cookie
+  // private getTokenCookie(): string {
+  //   const name = 'jwt_token=';
+  //   const decodedCookie = decodeURIComponent(document.cookie);
+  //   const cookieArray = decodedCookie.split(';');
+  //   for (let i = 0; i < cookieArray.length; i++) {
+  //     let cookie = cookieArray[i];
+  //     while (cookie.charAt(0) === ' ') {
+  //       cookie = cookie.substring(1);
+  //     }
+  //     if (cookie.indexOf(name) === 0) {
+  //       return cookie.substring(name.length, cookie.length);
+  //     }
+  //   }
+  //   return '';
+  // }
+
 
   //ENDPOINTS
 
@@ -78,11 +76,12 @@ export class ApiService {
   // POST PEDIDO
   postPedido(data: any): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    console.log(headers)
     return this.http.post<any>(`${this.baseUrl}/os`, data, { headers });
   }
-  // POST CADASTRO CLIENTES
+  //POST CADASTRO CLIENTES
   postCadastrarCliente(data: any): Observable<any> {
-  return this.http.post<any>(`${this.baseUrl}/clientes`, data);
+    return this.http.post<any>(`${this.baseUrl}/clientes`, data);
   }
 
   // GET PERFIS CLIENTES
@@ -95,7 +94,7 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/prestadores/perfis`, { headers });
   }
-  
+
   // GET PERFIS PRESTADORES by id
   getPerfisPrestadoresById(): Observable<any> {
     const headers = this.getAuthHeader();
@@ -106,13 +105,11 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/os`, { headers });
   }
-    // GET by Id PEDIDOS
-    getByIdPedido(): Observable<any> {
-      const headers = this.getAuthHeader();
-      return this.http.get<any>(`${this.baseUrl}/os/${this.idProcurado}`, { headers });
-    }
-
-
+  // GET by Id PEDIDOS
+  getByIdPedido(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/os/${this.idProcurado}`, { headers });
+  }
 
   // GET USUARIOS CADASTRADOS
   getDataUsuarios(): Observable<any> {
@@ -121,48 +118,56 @@ export class ApiService {
   }
   //PUT CANCELAR OS
   putCancelarOS(): Observable<any> {
-    //const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    const headers = this.getAuthHeader()
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    console.log(headers)
+    return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}`, {}, { headers });
     
-    return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}`, { headers });
-    }
+  }
 
- 
- 
 
+  //MÉTODOS SET AUXILIARES
+  addEmail(valorEmail: string) {
+    this.email = valorEmail
+  }
+  addId(valorId: number) {
+    this.idProcurado = valorId
+  }
   addTermo(valorTermo: string) {
-    if (valorTermo == ""){
-      this.termoProcurado="a"
-    }else{
-    this.termoProcurado = valorTermo
+    if (valorTermo == "") {
+      this.termoProcurado = "a"
+    } else {
+      this.termoProcurado = valorTermo
     }
   }
   addRegion(valorTermo: string) {
     this.regionProcurado = valorTermo
   }
+
+  //MÉTODOS GET AUXILIARES
   readEmail() {
     return this.email
   }
-  readId(){
-  return this.idProcurado
-}
-
+  readId() {
+    return this.idProcurado
+  }
   readTermo() {
     return this.termoProcurado
   }
-
   read(): Observable<any> {
     return this.http.get<any>(this.baseUrl)
   }
 
+
+  //METODO PARA O COMPONENTE BUSCA POR NOME
   readByName(): Observable<any> {
-      const headers = this.getAuthHeader();
-      return this.http.get<any>(this.baseUrlByName + this.termoProcurado, {headers})
-    
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(this.baseUrlByName + this.termoProcurado, { headers })
   }
+
+  //MÉTODO PARA O COMPONENTE BUSCA POR REGIÃO
   readByRegion(): Observable<any> {
     const headers = this.getAuthHeader();
-    return this.http.get<any>(this.baseUrlByRegion + this.regionProcurado, {headers})
+    return this.http.get<any>(this.baseUrlByRegion + this.regionProcurado, { headers })
   }
 
 }
