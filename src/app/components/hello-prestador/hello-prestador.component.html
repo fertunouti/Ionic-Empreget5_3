@@ -13,9 +13,11 @@
     <img src="../../assets/images/prestador.PNG"  >
   </div>
   
- 
-  <div align="center" style= "padding-top:10px; font-size:medium;"> 
-    <p> Bem vindo prestador! </p> 
+   <div align="center" style= "padding-top:10px; font-size:medium;"> 
+    <p> Olá prestador! </p> 
+    <div *ngFor="let prestador of prestadores?.conteudo">
+    <h3>{{ prestador?.nome}}</h3>
+    </div>
     <p> Bem vindo ao app de serviços</p> 
     <p> de limpeza mais amado do Brasil</p>
   </div>
@@ -23,7 +25,7 @@
       <ion-grid>
         <ion-row justify-content-center>
           <ion-col size="auto" >
-            <ion-button shape="round" fill="outline" routerLink="/agendamentos-prestador" class="custom-button">
+            <ion-button shape="round" fill="outline" routerLink="/historico-agendamentos" class="custom-button">
               Administrar Agenda
             </ion-button>
           </ion-col>
@@ -45,20 +47,5 @@
       </ion-grid>
  
 
-<ion-footer class = "footer"> 
-  <ion-toolbar> 
-    <div>
-      <ion-grid>
-        <ion-row justify-content-center>
-            <ion-col style="padding: 0 5px;">
-              <img src="../../assets/images/home1.PNG"  routerLink="/hello">
-            <!--   <img src="../../assets/images/chat.PNG"  routerLink="#"> -->
-              <img src="../../assets/images/agenda.PNG" routerLink="/agendamentos-prestador">
-              <img src="../../assets/images/menu.PNG"  routerLink="/hello">
-            </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-toolbar>
-</ion-footer>
+
 

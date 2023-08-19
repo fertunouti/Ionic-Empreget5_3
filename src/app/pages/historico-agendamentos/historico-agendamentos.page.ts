@@ -22,8 +22,10 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
   }
  
  pedidos!: any
+ tipoUser!: string
 
   ngOnInit() {
+    this.tipoUser = this.apiService.getUserRole()
     this.getPedidosAndRefresh();
 
     

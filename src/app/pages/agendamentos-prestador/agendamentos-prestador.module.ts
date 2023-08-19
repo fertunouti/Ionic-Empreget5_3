@@ -15,6 +15,6 @@ import { AgendamentosPrestadorPage } from './agendamentos-prestador.page';
     IonicModule,
     AgendamentosPrestadorPageRoutingModule
   ],
-  declarations: [AgendamentosPrestadorPage]
+  declarations: []
 })
 export class AgendamentosPrestadorPageModule {}

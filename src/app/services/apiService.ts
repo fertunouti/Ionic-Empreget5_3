@@ -92,7 +92,7 @@ export class ApiService {
   // GET PERFIS PRESTADORES
   getDataPerfisPrestadores(): Observable<any> {
     const headers = this.getAuthHeader();
-    return this.http.get<any>(`${this.baseUrl}/prestadores/perfis`, { headers });
+    return this.http.get<any>(`${this.baseUrl}/prestadores/filtro`, { headers });
   }
 
   // GET PERFIS PRESTADORES by id

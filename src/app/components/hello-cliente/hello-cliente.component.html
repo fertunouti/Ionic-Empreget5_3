@@ -1,3 +1,5 @@
+
+
 <ion-header>
   <ion-toolbar>
     <ion-menu-button slot="start" color="primary"></ion-menu-button>
@@ -8,7 +10,10 @@
 
   <div class="ion-text-wrap">
     <br>
-    <h2>{{emailUserAtual}}</h2>
+    <p>Olá</p>
+    <div *ngFor="let cliente of clientes">
+      <h3>{{ cliente?.nome}}</h3>
+      </div>
     <p>Bem vindo ao app de serviço de limpeza mais amado do Brasil</p>
   </div>
   <br>
@@ -17,30 +22,13 @@
     <div class="Capa">
       <img src="../../../../assets/images/home.png">
     </div>
-    <ion-button  size="medium" color="primary" routerLink="/historico-agendamentos">Seus Pedidos</ion-button> 
-    
+        
   </ion-header >
-  <ion-card class="ion-text-center">
-   
-  <div class="ion-header-search">
-    <p>Encontre prestadores próximos a você </p>
-    <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
-    <app-busca-region (mudouRegiao)="onMudouRegion($event)"></app-busca-region>
-    <ion-button  fill="clear" color="primary" (click)="onMostraTodos()">Ver Todos os Prestadores</ion-button>
-  </div>
-
-  <ion-list-header> Prestadores:</ion-list-header>
-  <div *ngIf="mostraTodos">
-    <app-read-prestador></app-read-prestador>
-  </div>
-
-  <div *ngIf="mostraName">
-    <app-prestador-read-by-name [prestadoresByName]="prestadoresByName"></app-prestador-read-by-name>
-  </div>
-  <div *ngIf="mostraRegion">
-    <app-prestador-read-by-region [prestadoresByRegion]="prestadoresByRegion"></app-prestador-read-by-region>
-  </div>
-</ion-card>
+   <br><br><br>
+  
+    <ion-button  size="medium" color="primary" routerLink="/historico-agendamentos">Seus Pedidos</ion-button> 
+    <ion-button  size="medium" color="primary" routerLink="/pesquisa-prestador">Busque Prestadores</ion-button> 
+  
 
 
 

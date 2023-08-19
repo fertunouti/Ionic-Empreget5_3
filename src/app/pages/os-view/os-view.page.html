@@ -57,7 +57,7 @@
 
 
 
-  <div>
+  <div *ngIf="tipoUser=='CLIENTE'">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
@@ -78,7 +78,7 @@
 
 
   <!-- ****BOTOES PARA O PRESTADOR  FALTA IMPLEMENTAR*** -->
-  <!-- <div >
+   <div *ngIf="tipoUser=='PRESTADOR'">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
@@ -91,7 +91,12 @@
             Rejeitar
           </ion-button>
         </ion-col>
+        <ion-col style="padding: 20px 10px;">
+          <ion-button shape="round" color="primary" routerLink="/historico-agendamentos">
+            Voltar
+          </ion-button>
+        </ion-col>
       </ion-row>
     </ion-grid>
-  </div> -->
+  </div>
 </ion-content>

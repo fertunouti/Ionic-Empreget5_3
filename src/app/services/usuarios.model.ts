@@ -1,5 +1,11 @@
 export interface Usuarios {
-    id?: number,
-    email: string ,
-    sou_cliente: boolean
+    conteudo: [{
+        id?: number,
+        email: string,
+        sou_cliente: boolean
+    }],
+    paginação: number,
+    totalElementos: number,
+    totalPages: number,
+    pageAtual: number
 }

@@ -11,7 +11,7 @@ export class PrestadorReadByNameComponent  implements OnInit  {
 
   
     
-  @Input() prestadoresByName!: prestadorFilter[]
+  @Input() prestadoresByName!: any
   constructor(private apiService:ApiService) { }
    
   ngOnInit() {    }

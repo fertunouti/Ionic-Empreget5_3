@@ -13,19 +13,25 @@ export class HelloPage implements OnInit {
 
  isLoggedIn!: boolean;
  tipoUser: string =""
+ prestadores: any
+
+ ngOnInit() {
+  this.isLoggedIn = false
+ 
+  }
 
  onLogin(event: any): void {
       this.isLoggedIn = true;
       this.tipoUser = this.apiService.getUserRole()
+     
     }
 
  onLogout(event:any):void{
    this.isLoggedIn = false
  }
 
-  ngOnInit() {
-  this.isLoggedIn = false
 
-  }
+
+  
 
 }

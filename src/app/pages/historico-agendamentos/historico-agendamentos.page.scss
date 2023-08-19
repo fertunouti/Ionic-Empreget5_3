@@ -1,68 +1,73 @@
-// ion-content {
-//     --padding-start: 1rem;
-//     --padding-end: 1rem;
-// }
 
+ion-content{
+  font-family: 'inter', sans-serif;
+  font-size: 17px;
+}
 
-// h3 {
-//     display: flex;
-//     justify-content: center;
+.Capa{
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5%;
 
-// }
+}
+.ion-text-wrap{
+  text-align: center;
+  margin: 20px 20px;
+  font-family: 'inter', sans-serif;
+  font-style: italic;
+}
 
-// .header-card {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-bottom: 1rem;
-//     margin-top: 1rem;
-//     margin-left: 1rem;
-// }
+.ion-header-search{
+  margin: 20px 20px;
+  text-align: initial;
+}
+.text1{
+  justify-content: center;
+  margin-top: 10%;
+  text-align: center;
+  margin: 20px 20px;
+  padding-bottom: 3%;
+  height: 100%;
+  font-family: 'inter', sans-serif;
+  font-style: italic;
+}
 
-// .avatar-card {
-//     width: 50px;
-//     height: 50px;
-//     border-radius: 50%;
-//     display: flex;
-//     align-items: flex-start;
-//     justify-content: center;
-//     overflow: hidden;
-// }
-
-// h4 {
-//     font-size: 3rem;
-//     font-weight: 700;
-//     margin: 0;
-//     color: #515151;
-
-// }
-
-// img {
-//     padding-block: 10%;
-// }
-
-
-.avatar-left img {
-    float: left;
+ion-list{
+  ion-item{
+    ion-grid{
+      ion-row{
+      ion-col{
+          .coluna-view{
+              display: flex;
+              justify-content: end;
+          }
+        }
+      }
+    }    
   }
-  
-  /* Alinhar o botão ao final da coluna */
-  .coluna-view {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 0 0 20%;  /* Definir o tamanho da coluna para 4 colunas */
-  }
-  
+}
+
  
- 
-  
-  /* Ajustar o espaçamento */
-  ion-item {
-    padding: 10px; /* Ajuste conforme necessário */
-  }
+.content{
+  font-family: 'Roboto', sans-serif;
+  margin-top : 15px;
+  margin-left: 5px; 
+  font-size: 60%;
+}
 
-  .texto {
-    color: black;
+.header {
+  display: flex;
+  align-items: flex-end;
+  text-align: right;
+  max-width:50%;
+}
+
+table{
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  width: 95%;
+  margin-left: 5px;
     
-  }
- 
+}

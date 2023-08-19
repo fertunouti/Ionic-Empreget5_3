@@ -2,56 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/apiService';
 import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
 
-
-
-
 @Component({
-  selector: 'app-hello-cliente',
-  templateUrl: './hello-cliente.component.html',
-  styleUrls: ['./hello-cliente.component.scss'],
+  selector: 'app-pesquisa-prestador',
+  templateUrl: './pesquisa-prestador.page.html',
+  styleUrls: ['./pesquisa-prestador.page.scss'],
 })
+export class PesquisaPrestadorPage implements OnInit {
 
+  constructor(private prestadorByName: ApiService, private prestadorByRegion:ApiService) { }
 
-   
-
-
-export class HelloClienteComponent  implements OnInit {
-  constructor(private apiService: ApiService) { }
+ 
 
   emailUserAtual: string = '';
   nomePrestadorProcurado!: any
 
-  prestadoresByName!: any
-  prestadoresByRegion!: any
+  prestadoresByName!: prestadorFilter[]
+  prestadoresByRegion!: prestadorFilter[]
   mostraTodos!: boolean
   mostraName!: boolean
   mostraRegion!: boolean
-  clientes: any
 
   ngOnInit() {
-    this.readCliente()
+
     this.mostraTodos = true
     this.mostraName = false
     this.mostraRegion = false
-    
   }
-  readCliente(): void {
-    this.apiService.getDataPerfisClientes().subscribe(
-    (data) => {
-       this.clientes = data;
-      console.log('Dados dos Clientes:', this.clientes);
-     },
-    (error) => {
-       console.error('Erro ao obter dados dos Clientes:', error);
-     }
-    );
-}
   
 
   onMudouTermo(evento: any) {
     console.log(evento.novoTermo)
-    this.apiService.addTermo(evento.novoTermo)
-    this.apiService.readByName().subscribe(prestadores => {
+    this.prestadorByName.addTermo(evento.novoTermo)
+    this.prestadorByName.readByName().subscribe(prestadores => {
       this.prestadoresByName = prestadores;
       this.mostraTodos = false
       this.mostraName = true
@@ -62,8 +44,8 @@ export class HelloClienteComponent  implements OnInit {
 
   onMudouRegion(evento: any) {
     console.log(evento.novaRegiao)
-    this.apiService.addRegion(evento.novaRegiao)
-    this.apiService.readByRegion().subscribe(prestadores => {
+    this.prestadorByRegion.addRegion(evento.novaRegiao)
+    this.prestadorByRegion.readByRegion().subscribe(prestadores => {
       this.prestadoresByRegion = prestadores;
       this.mostraTodos = false
       this.mostraRegion = true
@@ -75,5 +57,7 @@ export class HelloClienteComponent  implements OnInit {
     this.mostraRegion = false
     this.mostraName = false
   }
+
+ 
 
 }
