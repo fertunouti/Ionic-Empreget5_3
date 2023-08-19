@@ -1,4 +1,5 @@
 
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +18,7 @@ import { HelloPrestadorComponent } from 'src/app/components/hello-prestador/hell
 import { HelloAdministradorComponent } from 'src/app/components/hello-administrador/hello-administrador.component';
 import { ReadUsuariosComponent } from 'src/app/components/read-usuarios/read-usuarios.component';
 import { PrestadorReadByNameComponent } from 'src/app/components/prestador-read-by-name/prestador-read-by-name.component';
-import { HelloClienteComponent } from 'src/app/components/hello-cliente/hello-cliente.component';
+
 import { BuscaNomeComponent } from 'src/app/components/busca-nome/busca-nome.component';
 import { BuscaRegionComponent } from 'src/app/components/busca-region/busca-region.component';
 import { HelloPage } from '../hello/hello.page';
@@ -27,6 +28,12 @@ import { OsViewPage } from '../os-view/os-view.page';
 import { CalendarioComponent } from './../../components/calendario/calendario.component';
 import { PrestadorReadByRegionComponent } from './../../components/prestador-read-by-region/prestador-read-by-region.component';
 import { PedidoPage } from '../pedido/pedido.page';
+import { HelloClienteComponent } from 'src/app/components/hello-cliente/hello-cliente.component';
+import { PesquisaPrestadorPage } from '../pesquisa-prestador/pesquisa-prestador.page';
+
+
+
+
 
 
 @NgModule({
@@ -49,7 +56,7 @@ import { PedidoPage } from '../pedido/pedido.page';
   HelloAdministradorComponent,
   ReadUsuariosComponent,
   PrestadorReadByNameComponent,
-  HelloClienteComponent,
+  
   BuscaNomeComponent,
   BuscaRegionComponent,
   PrestadorReadByRegionComponent,
@@ -58,17 +65,18 @@ import { PedidoPage } from '../pedido/pedido.page';
   OsViewPage,
   CalendarioComponent,
   CadastroPage,
-  PedidoPage
-
+  PedidoPage,
+  HelloClienteComponent,
+  PesquisaPrestadorPage
  
-
+ 
   
 ],
   exports:[
     LoginPage,
     HomePage,
     LoadingPage,
-    HelloClienteComponent
+    
   ]
 
 })

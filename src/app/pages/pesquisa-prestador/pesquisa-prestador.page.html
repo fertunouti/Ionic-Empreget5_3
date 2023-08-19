@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start" color="primary"></ion-menu-button>
+    <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">pesquisa-prestador</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+  <ion-card class="ion-text-center">
+ 
+    <div class="ion-header-search">
+      <p>Encontre prestadores próximos a você </p>
+      <app-busca-nome (mudouValor)="onMudouTermo($event)"></app-busca-nome>
+      <app-busca-region (mudouRegiao)="onMudouRegion($event)"></app-busca-region>
+      <ion-button  fill="clear" color="primary" (click)="onMostraTodos()">Ver Todos os Prestadores</ion-button>
+    </div>
+    
+    <ion-list-header> Prestadores:</ion-list-header>
+    <div *ngIf="mostraTodos">
+      <app-read-prestador></app-read-prestador>
+    </div>
+    
+    <div *ngIf="mostraName">
+      <app-prestador-read-by-name [prestadoresByName]="prestadoresByName"></app-prestador-read-by-name>
+    </div>
+    <div *ngIf="mostraRegion">
+      <app-prestador-read-by-region [prestadoresByRegion]="prestadoresByRegion"></app-prestador-read-by-region>
+    </div>
+    </ion-card>
+    <div>
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col style="padding: 20px 20px;">
+            <ion-button shape="round" color="primary" routerLink="/hello">
+              Início
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    
+</ion-content>

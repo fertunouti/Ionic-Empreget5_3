@@ -93,14 +93,17 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./components/logout/logout.module').then( m => m.LogoutPageModule)
-  },  {
+  },
+  {
     path: 'hello',
     loadChildren: () => import('./pages/hello/hello.module').then( m => m.HelloPageModule)
+  },  {
+    path: 'pesquisa-prestador',
+    loadChildren: () => import('./pages/pesquisa-prestador/pesquisa-prestador.module').then( m => m.PesquisaPrestadorPageModule)
   }
 
-
-
-
+  
+   
 ];
 
 @NgModule({

@@ -1,14 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>Histórico de Agendamentos</ion-title>
-    
+  <ion-toolbar>
+    <ion-menu-button slot="start" color="primary"></ion-menu-button>
+    <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
- <ul *ngFor="let pedido of pedidos">
+
+<ion-content>
+<ion-card>
+  <ion-card-title>AGENDAMENTOS</ion-card-title>
+  <ion-card-content>
+ <ul *ngFor="let pedido of pedidos?.conteudo">
 
     <ion-item>
       <ion-avatar slot="start">
@@ -18,13 +21,14 @@
         <div class="texto">  Pedido nº {{pedido?.id}} </div>
         <p class="texto">{{pedido?.nomePrestador}}</p>
         <p class="texto">Data: {{pedido?.dataServico}}</p>
-        <p>{{pedido.statusOrdemServico }}</p>
+        <p>{{pedido?.statusOrdemServico }}</p>
       </ion-label>
       <ion-col class="coluna-view">
-        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido.id)">view</ion-button>
+        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido?.id)">view</ion-button>
       </ion-col>
     </ion-item>
   </ul>
+  </ion-card-content>
   <div>
     <ion-grid>
       <ion-row justify-content-center>
@@ -36,4 +40,5 @@
       </ion-row>
     </ion-grid>
   </div>
+  </ion-card>
 </ion-content>

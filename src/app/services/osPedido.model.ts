@@ -1,6 +1,5 @@
 export interface osPedido {
-    
-        prestador: {
+    prestador: {
             id: number | null
         },
         dataServico: string, 

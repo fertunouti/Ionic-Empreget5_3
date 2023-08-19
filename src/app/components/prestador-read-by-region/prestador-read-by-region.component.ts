@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ApiService } from 'src/app/services/apiService';
-import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
+
 
 @Component({
   selector: 'app-prestador-read-by-region',
@@ -9,7 +9,7 @@ import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
 })
 export class PrestadorReadByRegionComponent  implements OnInit {
 
-  @Input() prestadoresByRegion!: prestadorFilter[]
+  @Input() prestadoresByRegion!: any
   
   
   
@@ -19,7 +19,7 @@ export class PrestadorReadByRegionComponent  implements OnInit {
     
   }
   
-  onClick(prestadorId:any){
+  onClick(prestadorId?:any){
     this.apiService.addId(prestadorId)
    }
    

@@ -1,7 +1,6 @@
 <!-- MOSTRA PAGINA DE LOGIN CASO NÃO LOGADO -->
 <div *ngIf="!isLoggedIn">
-  
-  <app-login (mudouLogin)="onLogin($event)"></app-login>
+    <app-login (mudouLogin)="onLogin($event)"></app-login>
 </div>
 
 <!-- APÓS LOGIN DE USUÁRIO TIPO CLIENTE -->
