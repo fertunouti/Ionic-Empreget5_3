@@ -26,27 +26,7 @@ export class HelloClienteComponent  implements OnInit {
   mostraTodos!: boolean
   mostraName!: boolean
   mostraRegion!: boolean
-  clientes: any
 
-  ngOnInit() {
-    this.readCliente()
-    this.mostraTodos = true
-    this.mostraName = false
-    this.mostraRegion = false
-    
-  }
-  readCliente(): void {
-    this.apiService.getDataPerfisClientes().subscribe(
-    (data) => {
-       this.clientes = data;
-      console.log('Dados dos Clientes:', this.clientes);
-     },
-    (error) => {
-       console.error('Erro ao obter dados dos Clientes:', error);
-     }
-    );
-}
-  
 
   onMudouTermo(evento: any) {
     console.log(evento.novoTermo)
