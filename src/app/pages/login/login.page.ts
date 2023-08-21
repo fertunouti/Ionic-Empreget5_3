@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
 
   email: string = '';
   senha: string = '';
+  
   @Output() mudouLogin = new EventEmitter()
 
   constructor(private authService: AuthService, private apiService: ApiService, private router: Router) { }
@@ -26,15 +27,18 @@ export class LoginPage implements OnInit {
 
         const role = decodedToken.sub.split(';');
         const userEmail = role[0];
-        const userRole = role[1]
+        const userRole = role[1];
+        const statusLogin = true
         this.apiService.setUserRole(userRole);
         this.apiService.addEmail(userEmail)
+        this.apiService.addLoginStatus(statusLogin);
 
 
         //Aciona envento onLogin() na HomePage html
         this.mudouLogin.emit({ loginSucesso: true })
+        
 
-
+        
         // Configurar o token JWT no ApiService
         this.apiService.setAuthToken(response.token);
 
@@ -55,7 +59,7 @@ export class LoginPage implements OnInit {
     document.cookie = `jwt_token=${token}; path=/; HttpOnly`;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.apiService.addLoginStatus(false);
   }
 
 }

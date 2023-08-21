@@ -16,7 +16,7 @@ export class AppComponent {
     { title: 'Home', url: '/hello', icon: 'home' },
     { title: 'Alterar perfil', url: '/editar-cliente', icon: 'person' },
     { title: 'Favoritos', url: '#', icon: 'heart' },
-    { title: 'Pedidos', url: '/pedido', icon: 'bag' },
+    { title: 'Agendamentos', url: '/historico-agendamentos', icon: 'bag' },
     { title: 'Ajuda', url: '#', icon: 'help-circle' },
     { title: 'Sobre o app', url: '#', icon: 'warning' },
     { title: 'Sair', url: '/logout', icon: 'log-out' },

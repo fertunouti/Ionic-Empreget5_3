@@ -19,10 +19,18 @@
     <ion-label fill="clear">
       <ion-grid>
         <ion-row class="ion-align-items-start"> <!-- Adicione a classe para alinhar o conteúdo ao topo -->
+          <div *ngIf="tipoUser=='CLIENTE'">
           <ion-col >
             <p class="texto ion-text-left">Prestador:</p>
             <div style="font-weight: bold; font-size: medium;" class="ion-text-left">{{pedido?.nomePrestador}}</div>
           </ion-col>
+          </div>
+          <div *ngIf="tipoUser=='PRESTADOR'">
+          <ion-col >
+            <p class="texto ion-text-left">Cliente:</p>
+            <div style="font-weight: bold; font-size: medium;" class="ion-text-left">{{pedido?.nomeCliente}}</div>
+          </ion-col>
+          </div>
           <ion-col > 
             <p class="texto ion-text-left">Data agendada:</p>
             <p class="ion-text-left">{{pedido?.dataServico}}</p>

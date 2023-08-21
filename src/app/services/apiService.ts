@@ -17,6 +17,7 @@ export class ApiService {
   private termoProcurado = '';
   private regionProcurado = '';
   private idProcurado!: number
+  private loginStatus!: boolean
 
 
   constructor(private http: HttpClient) { }
@@ -83,6 +84,10 @@ export class ApiService {
   postCadastrarCliente(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/clientes`, data);
   }
+  //POST CADASTRO PRESTADORES
+  postCadastrarPrestador(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/prestadores`, data);
+  }
 
   // GET PERFIS CLIENTES
   getDataPerfisClientes(): Observable<any> {
@@ -132,6 +137,9 @@ export class ApiService {
   addId(valorId: number) {
     this.idProcurado = valorId
   }
+  addLoginStatus(valorLoginStatus:boolean){
+    this.loginStatus = valorLoginStatus
+  }
   addTermo(valorTermo: string) {
     if (valorTermo == "") {
       this.termoProcurado = "a"
@@ -155,6 +163,9 @@ export class ApiService {
   }
   read(): Observable<any> {
     return this.http.get<any>(this.baseUrl)
+  }
+  readLoginStatus(){
+    return this.loginStatus
   }
 
 

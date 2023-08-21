@@ -12,8 +12,6 @@ import { EventService } from 'src/app/services/event.service';
 export class OsViewPage implements OnInit, OnDestroy {
   private osCanceladaSubscription: Subscription;
   
-
-
   constructor(
     private apiService: ApiService,
     private eventService: EventService,
@@ -30,6 +28,7 @@ export class OsViewPage implements OnInit, OnDestroy {
   idPedido!: number
   pedido!: any
   pedidos!: any
+  
 
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()

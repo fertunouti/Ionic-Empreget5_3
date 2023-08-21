@@ -9,20 +9,27 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HelloPage implements OnInit {
 
-  constructor(private authService:AuthService, private apiService:ApiService) { }
+  constructor(private authService:AuthService, private apiService:ApiService) { 
+    
+   }
 
  isLoggedIn!: boolean;
  tipoUser: string =""
  prestadores: any
 
  ngOnInit() {
-  this.isLoggedIn = false
+  this.isLoggedIn = this.apiService.readLoginStatus()
+  console.log( "login status - onInit=" + this.isLoggedIn)
+  this.tipoUser = this.apiService.getUserRole()
+  console.log( "tipo User - onInit=" + this.tipoUser)
  
   }
 
  onLogin(event: any): void {
       this.isLoggedIn = true;
       this.tipoUser = this.apiService.getUserRole()
+      console.log( "login status - onLogin =" + this.isLoggedIn)
+      console.log("tipo User =" + this.tipoUser)
      
     }
 
