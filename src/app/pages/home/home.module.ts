@@ -28,13 +28,6 @@ import { OsViewPage } from '../os-view/os-view.page';
 import { CalendarioComponent } from './../../components/calendario/calendario.component';
 import { PrestadorReadByRegionComponent } from './../../components/prestador-read-by-region/prestador-read-by-region.component';
 import { PedidoPage } from '../pedido/pedido.page';
-import { HelloClienteComponent } from 'src/app/components/hello-cliente/hello-cliente.component';
-import { PesquisaPrestadorPage } from '../pesquisa-prestador/pesquisa-prestador.page';
-import { AgendamentosPrestadorPage } from '../agendamentos-prestador/agendamentos-prestador.page';
-
-
-
-
 
 
 @NgModule({
@@ -66,11 +59,8 @@ import { AgendamentosPrestadorPage } from '../agendamentos-prestador/agendamento
   OsViewPage,
   CalendarioComponent,
   CadastroPage,
-  PedidoPage,
-  HelloClienteComponent,
-  PesquisaPrestadorPage,
-  HelloPrestadorComponent,
-  AgendamentosPrestadorPage
+  PedidoPage
+
  
  
   
