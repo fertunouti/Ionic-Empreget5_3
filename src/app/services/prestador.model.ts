@@ -4,7 +4,7 @@ export interface Prestadores {
     imgUrl: null,
     endereco: {
         logradouro: string,
-        numero: number,
+        numero: number |null,
         complemento: string,
         cep: string,
         bairro: string,
@@ -23,7 +23,7 @@ export interface Prestadores {
     }
     servico: {
         descricao: string,
-        valor: number
+        valor: number|null
     },
     observacao: string,
     disponibilidade: string,

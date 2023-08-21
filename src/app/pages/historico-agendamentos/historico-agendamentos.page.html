@@ -10,7 +10,7 @@
 
 <ion-content>
 
- <ul *ngFor="let pedido of pedidos">
+ <ul *ngFor="let pedido of pedidos?.conteudo">
 
     <ion-item>
       <ion-avatar slot="start">
@@ -20,10 +20,10 @@
         <div class="texto">  Pedido nº {{pedido?.id}} </div>
         <p class="texto">{{pedido?.nomePrestador}}</p>
         <p class="texto">Data: {{pedido?.dataServico}}</p>
-        <p>{{pedido.statusOrdemServico }}</p>
+        <p>{{pedido?.statusOrdemServico }}</p>
       </ion-label>
       <ion-col class="coluna-view">
-        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido.id)">view</ion-button>
+        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido?.id)">view</ion-button>
       </ion-col>
     </ion-item>
   </ul>

@@ -26,7 +26,9 @@ export class HelloClienteComponent  implements OnInit {
   mostraTodos!: boolean
   mostraName!: boolean
   mostraRegion!: boolean
-
+ ngOnInit(): void {
+     
+ }
 
   onMudouTermo(evento: any) {
     console.log(evento.novoTermo)
