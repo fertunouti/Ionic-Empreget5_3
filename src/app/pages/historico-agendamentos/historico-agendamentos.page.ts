@@ -11,12 +11,16 @@ import { Subscription } from 'rxjs';
 export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
   private pedidoCadastradoSubscription: Subscription;
   private osCanceladaSubscription: Subscription;
+  private osAceiteSubscription: Subscription
 
   constructor(private apiService:ApiService, private eventService: EventService) { 
     this.pedidoCadastradoSubscription = this.eventService.osCancelada$.subscribe(() => {
       this.getPedidosAndRefresh();
     });
-    this.osCanceladaSubscription = this.eventService.pedidoCadastrado$.subscribe(() => {
+    this.osCanceladaSubscription = this.eventService.osCadastrado$.subscribe(() => {
+      this.getPedidosAndRefresh();
+    });
+    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
       this.getPedidosAndRefresh();
     });
   }
@@ -32,7 +36,8 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.pedidoCadastradoSubscription.unsubscribe();
-    this.osCanceladaSubscription.unsubscribe()
+    this.osCanceladaSubscription.unsubscribe();
+    this.osAceiteSubscription.unsubscribe();
       
   }
   private getPedidosAndRefresh() {

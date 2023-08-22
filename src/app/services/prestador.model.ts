@@ -23,7 +23,7 @@ export interface Prestadores {
     }
     servico: {
         descricao: string,
-        valor: number|null
+        valor: string
     },
     observacao: string,
     disponibilidade: string,

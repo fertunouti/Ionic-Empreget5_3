@@ -11,12 +11,18 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class OsViewPage implements OnInit, OnDestroy {
   private osCanceladaSubscription: Subscription;
+  private osAceiteSubscription: Subscription;
   
   constructor(
     private apiService: ApiService,
     private eventService: EventService,
   ) {
     this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosAndRefresh();
+    });
+   
+    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
     });
@@ -38,7 +44,10 @@ export class OsViewPage implements OnInit, OnDestroy {
     this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
-
+    });
+    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosAndRefresh();
     });
 
 
@@ -46,10 +55,15 @@ export class OsViewPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     // Cancelar a inscrição no observável para evitar vazamentos de memória
     this.osCanceladaSubscription.unsubscribe();
-  }
+    this.osAceiteSubscription.unsubscribe();
+   }
   onClickCancelarOS() {
     this.cancelaOSAndRefresh()
     this.eventService.emitOSCancelada();
+  }
+  onClickAceitarOS() {
+    this.aceitaOSAndRefresh()
+    this.eventService.emitOSAceite();
   }
 
   private cancelaOSAndRefresh() {
@@ -69,6 +83,26 @@ export class OsViewPage implements OnInit, OnDestroy {
       },
       (error) => {
         console.error('Erro CANCELAR OS', error);
+      }
+    );
+  }
+  private aceitaOSAndRefresh() {
+
+    console.log("email = " + this.apiService.readEmail())
+    console.log("Id = " + this.apiService.readId())
+    console.log("token =" + this.apiService.getToken())
+
+
+    this.apiService.putAceiteOS().subscribe(
+      (data) => {
+        console.log('Aceito pedido ' +data);
+        this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+          this.getPedidosByIdAndRefresh();
+          this.getPedidosAndRefresh();
+        });
+      },
+      (error) => {
+        console.error('Erro ACEITE OS', error);
       }
     );
   }

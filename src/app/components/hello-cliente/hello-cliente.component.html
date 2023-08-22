@@ -7,16 +7,21 @@
   </ion-toolbar>
 </ion-header>
 
-
-  <div class="ion-text-wrap">
-    <br>
-    <h2>{{emailUserAtual}}</h2>
-    <p>Bem vindo ao app de serviço de limpeza mais amado do Brasil</p>
-  </div>
-  <br>
+<div class="ion-text-wrap">
+  <div *ngFor="let cliente of clientes">
+    <h3>{{ cliente?.nome}}</h3>
+    </div>
+  <p>Bem vindo ao app de serviço de limpeza mais amado do Brasil</p>
+</div>
+ 
 
   <ion-header>
     <div class="Capa">
+
+     
+      <br>
+
+
       <img src="../../../../assets/images/home.png">
     </div>
         

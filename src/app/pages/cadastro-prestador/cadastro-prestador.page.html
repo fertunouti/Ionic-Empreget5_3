@@ -182,7 +182,8 @@
             <ion-col>
               <ion-item>
                 <ion-label position="floating">Valor (R$):</ion-label>
-                <ion-input type="text" [(ngModel)]="prestador.servico.valor"></ion-input>
+                <ion-input type="text" [(ngModel)]="prestador.servico.valor" ></ion-input>
+                
               </ion-item>
             </ion-col>
           </ion-row>
@@ -259,9 +260,9 @@
           <ion-row>
             <ion-col>
               <ion-item>
-                <ion-label position="floating">Confirme a sua senha:</ion-label>
-                <ion-input type="password" [(ngModel)]="prestador.usuario.senha"></ion-input>
-                <ion-note slot="error">senhas incompatíveis, digite novamente.</ion-note>
+                <ion-label position="floating">Repita a senha:</ion-label>
+                <ion-input type="password" [(ngModel)]="senhaRepetida" name="senhaRepetida"></ion-input>
+                <ion-note slot="error">As senhas não coincidem</ion-note>
               </ion-item>
             </ion-col>
           </ion-row>
