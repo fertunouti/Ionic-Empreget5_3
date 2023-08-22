@@ -7,22 +7,27 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class EventService {
-  private osCadastrado = new Subject<void>();
+  private osCadastrada = new Subject<void>();
   private osCancelada = new Subject<void>();
   private osAceite = new Subject<void>();
+  private osRecusada = new Subject<void>();
 
-  osCadastrado$ = this.osCadastrado.asObservable();
+  osCadastrado$ = this.osCadastrada.asObservable();
   osCancelada$ = this.osCancelada.asObservable();
   osAceite$=this.osAceite.asObservable();
+  osRecusada$=this.osRecusada.asObservable();
 
   emitPedidoCadastrado() {
-    this.osCadastrado.next();
+    this.osCadastrada.next();
   }
   emitOSCancelada() {
     this.osCancelada.next();
   }
   emitOSAceite() {
     this.osAceite.next();
+  }
+  emitOSRecusada() {
+    this.osRecusada.next();
   }
 }
 

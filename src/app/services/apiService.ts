@@ -134,6 +134,12 @@ export class ApiService {
     console.log(headers)
     return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}/aceite`, {}, { headers });
   }
+   // PUT ACEITAR OS
+  putRecusarOS(): Observable<any> {
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    console.log(headers)
+    return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}/recusa`, {}, { headers });
+  }
 
 
   //MÉTODOS SET AUXILIARES

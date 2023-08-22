@@ -12,6 +12,7 @@ import { EventService } from 'src/app/services/event.service';
 export class OsViewPage implements OnInit, OnDestroy {
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription;
+  private osRecusadaSubscription: Subscription;
   
   constructor(
     private apiService: ApiService,
@@ -23,6 +24,10 @@ export class OsViewPage implements OnInit, OnDestroy {
     });
    
     this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosAndRefresh();
+    });
+    this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
     });
@@ -49,6 +54,10 @@ export class OsViewPage implements OnInit, OnDestroy {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
     });
+    this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosAndRefresh();
+    });
 
 
   }
@@ -56,6 +65,7 @@ export class OsViewPage implements OnInit, OnDestroy {
     // Cancelar a inscrição no observável para evitar vazamentos de memória
     this.osCanceladaSubscription.unsubscribe();
     this.osAceiteSubscription.unsubscribe();
+    this.osRecusadaSubscription.unsubscribe();
    }
   onClickCancelarOS() {
     this.cancelaOSAndRefresh()
@@ -64,6 +74,10 @@ export class OsViewPage implements OnInit, OnDestroy {
   onClickAceitarOS() {
     this.aceitaOSAndRefresh()
     this.eventService.emitOSAceite();
+  }
+  onClickRecusarOS() {
+    this.recusaOSAndRefresh()
+    this.eventService.emitOSRecusada();
   }
 
   private cancelaOSAndRefresh() {
@@ -97,6 +111,26 @@ export class OsViewPage implements OnInit, OnDestroy {
       (data) => {
         console.log('Aceito pedido ' +data);
         this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+          this.getPedidosByIdAndRefresh();
+          this.getPedidosAndRefresh();
+        });
+      },
+      (error) => {
+        console.error('Erro ACEITE OS', error);
+      }
+    );
+  }
+  private recusaOSAndRefresh() {
+
+    console.log("email = " + this.apiService.readEmail())
+    console.log("Id = " + this.apiService.readId())
+    console.log("token =" + this.apiService.getToken())
+
+
+    this.apiService.putRecusarOS().subscribe(
+      (data) => {
+        console.log('Recusa OS ' +data);
+        this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
           this.getPedidosByIdAndRefresh();
           this.getPedidosAndRefresh();
         });
