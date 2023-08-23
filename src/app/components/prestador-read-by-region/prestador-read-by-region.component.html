@@ -6,11 +6,11 @@
   </ion-avatar>
   <ion-label fill="clear" routerLink="/perfil-prestador">
     {{prestador?.nome}}
-    <p>{{prestador?.regiao}}</p>
+    <p>Atende região: {{prestador?.regiao}}</p>
     <p>R$ {{prestador?.servicoValor | number:'1.2-2' }}</p>
   </ion-label>
   <ion-col class="coluna-view">
-  <ion-button fill="clear" routerLink="/perfil-prestador" (click)="onClick(prestador?.id)">view</ion-button>
+  <ion-button fill="clear" routerLink="/perfil-prestador" (click)="onClick(prestador?.id)">ver Perfil</ion-button>
   </ion-col>
   </ion-item>
 </ul> 

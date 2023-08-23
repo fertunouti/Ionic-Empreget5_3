@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/apiService';
 import { EventService } from 'src/app/services/event.service';
@@ -9,7 +9,7 @@ import { EventService } from 'src/app/services/event.service';
   templateUrl: './os-view.page.html',
   styleUrls: ['./os-view.page.scss'],
 })
-export class OsViewPage implements OnInit, OnDestroy {
+export class OsViewPage implements OnInit, OnDestroy , OnChanges{
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription;
   private osRecusadaSubscription: Subscription;
@@ -67,6 +67,13 @@ export class OsViewPage implements OnInit, OnDestroy {
     this.osAceiteSubscription.unsubscribe();
     this.osRecusadaSubscription.unsubscribe();
    }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.osCanceladaSubscription.unsubscribe();
+    this.osAceiteSubscription.unsubscribe();
+    this.osRecusadaSubscription.unsubscribe();
+  }
+
   onClickCancelarOS() {
     this.cancelaOSAndRefresh()
     this.eventService.emitOSCancelada();

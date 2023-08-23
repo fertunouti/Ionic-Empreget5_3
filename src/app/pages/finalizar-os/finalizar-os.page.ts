@@ -15,8 +15,9 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class FinalizarOsPage implements OnInit {
 
-  private osCanceladaSubscription: Subscription;
-  private osAceiteSubscription: Subscription;
+  private osFinalizadaSubscription: Subscription;
+  
+ 
 
   constructor(
     private router: Router,
@@ -24,18 +25,12 @@ export class FinalizarOsPage implements OnInit {
     private apiService: ApiService,
     private eventService: EventService,
   ) {
-    this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+    this.osFinalizadaSubscription = this.eventService.osFinalizada$.subscribe(() => {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
     });
 
-    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-
-
-  }
+   }
   tipoUser!: string
   idPedido!: number
   pedido!: any
@@ -47,42 +42,34 @@ export class FinalizarOsPage implements OnInit {
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
     this.getPedidosAndRefresh();
-    this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+    this.osFinalizadaSubscription = this.eventService.osCancelada$.subscribe(() => {
       this.getPedidosByIdAndRefresh();
       this.getPedidosAndRefresh();
     });
-    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-
-
+   
   }
   ngOnDestroy() {
     // Cancelar a inscrição no observável para evitar vazamentos de memória
-    this.osCanceladaSubscription.unsubscribe();
-    this.osAceiteSubscription.unsubscribe();
+    this.osFinalizadaSubscription.unsubscribe();
+    
   }
-  onClickCancelarOS() {
-    this.cancelaOSAndRefresh()
-    this.eventService.emitOSCancelada();
-  }
-  onClickAceitarOS() {
-    this.aceitaOSAndRefresh()
-    this.eventService.emitOSAceite();
+  onClickFinalizarOS() {
+    this.finalizaOSAndRefresh()
+    this.eventService.emitOSFinalizada();
   }
 
-  private cancelaOSAndRefresh() {
+
+  private finalizaOSAndRefresh() {
 
     console.log("email = " + this.apiService.readEmail())
     console.log("Id = " + this.apiService.readId())
     console.log("token =" + this.apiService.getToken())
 
 
-    this.apiService.putCancelarOS().subscribe(
+    this.apiService.putFinalizarOS().subscribe(
       (data) => {
         console.log('Cancelado', data);
-        this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+        this.osFinalizadaSubscription = this.eventService.osCancelada$.subscribe(() => {
           this.getPedidosByIdAndRefresh();
           this.getPedidosAndRefresh();
         });
@@ -92,26 +79,7 @@ export class FinalizarOsPage implements OnInit {
       }
     );
   }
-  private aceitaOSAndRefresh() {
-
-    console.log("email = " + this.apiService.readEmail())
-    console.log("Id = " + this.apiService.readId())
-    console.log("token =" + this.apiService.getToken())
-
-
-    this.apiService.putAceiteOS().subscribe(
-      (data) => {
-        console.log('Aceito pedido ' + data);
-        this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-          this.getPedidosByIdAndRefresh();
-          this.getPedidosAndRefresh();
-        });
-      },
-      (error) => {
-        console.error('Erro ACEITE OS', error);
-      }
-    );
-  }
+  
 
   private getPedidosByIdAndRefresh() {
     this.apiService.getByIdPedido().subscribe(
@@ -135,29 +103,6 @@ export class FinalizarOsPage implements OnInit {
         console.error('Erro ao obter dados dos pedidos:', error);
       }
     );
-  }
-
-
-
-
-
-
-
-  async finalizar() {
-    const alert = await this.alertController.create({
-      header: 'Serviço finalizado!',
-      message: 'Obrigado!',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            this.router.navigate(['/tela-inicial-prestador']);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
   }
 
 }

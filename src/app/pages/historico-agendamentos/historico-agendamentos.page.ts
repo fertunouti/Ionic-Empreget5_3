@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ApiService } from 'src/app/services/apiService';
 import { EventService } from 'src/app/services/event.service';
 import { Subscription } from 'rxjs';
@@ -8,10 +8,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './historico-agendamentos.page.html',
   styleUrls: ['./historico-agendamentos.page.scss'],
 })
-export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
+export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
   private pedidoCadastradoSubscription: Subscription;
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription
+private osRecusadaSubscription:Subscription
+
 
   constructor(private apiService:ApiService, private eventService: EventService) { 
     this.pedidoCadastradoSubscription = this.eventService.osCancelada$.subscribe(() => {
@@ -23,6 +25,10 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
     this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
       this.getPedidosAndRefresh();
     });
+      this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
+         this.getPedidosAndRefresh();
+    });
+    
   }
  
  pedidos!: any
@@ -38,8 +44,16 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy {
     this.pedidoCadastradoSubscription.unsubscribe();
     this.osCanceladaSubscription.unsubscribe();
     this.osAceiteSubscription.unsubscribe();
-      
+    this.osRecusadaSubscription.unsubscribe();
+   
   }
+  ngOnChanges(): void {
+    this.pedidoCadastradoSubscription.unsubscribe();
+    this.osCanceladaSubscription.unsubscribe();
+    this.osAceiteSubscription.unsubscribe();
+    this.osRecusadaSubscription.unsubscribe();
+     }
+
   private getPedidosAndRefresh() {
     this.apiService.getPedidos().subscribe(
       (data) => {

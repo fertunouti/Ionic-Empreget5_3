@@ -18,12 +18,20 @@
       </ion-avatar>
       <ion-label fill="clear" >
         <div class="texto">  Pedido nº {{pedido?.id}} </div>
+
+      <div *ngIf="tipoUser=='CLIENTE'">
         <p class="texto">{{pedido?.nomePrestador}}</p>
+        </div>
+      <div *ngIf="tipoUser=='PRESTADOR'"> 
+        <p class="texto">{{pedido?.nomeCliente}}</p>
+      </div>
+
+
         <p class="texto">Data: {{pedido?.dataServico}}</p>
         <p>{{pedido?.statusOrdemServico }}</p>
       </ion-label>
       <ion-col class="coluna-view">
-        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido?.id)">view</ion-button>
+        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido?.id)">+Info</ion-button>
       </ion-col>
     </ion-item>
   </ul>
