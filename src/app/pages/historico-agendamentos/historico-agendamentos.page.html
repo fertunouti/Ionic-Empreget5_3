@@ -10,7 +10,7 @@
 
 <ion-content>
 
- <ul *ngFor="let pedido of pedidos?.conteudo">
+ <ul *ngFor="let pedido of listaPedidosPorPagina[currentPage]">
 
     <ion-item>
       <ion-avatar slot="start">
@@ -47,3 +47,8 @@
     </ion-grid>
   </div>
 </ion-content>
+<app-paginacao
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (pageChange)="changePage($event)"
+></app-paginacao>
