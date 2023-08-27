@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-paginacao',
@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 
-export class PaginacaoComponent {
+export class PaginacaoComponent implements OnInit {
   @Input() currentPage!: number;
   @Input() totalPages!: number;
 
@@ -20,6 +20,14 @@ export class PaginacaoComponent {
 
     this.generatePages();
   }
+
+  ngOnInit(): void {
+  
+    
+  }
+
+
+
   generatePages() {
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i);
   }

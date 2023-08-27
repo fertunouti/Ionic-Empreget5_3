@@ -58,7 +58,7 @@ export class PedidoPage implements OnInit {
       (response: any) => {
         console.log("pedido cadastrado com sucesso!!!");
         // Após cadastrar com sucesso, emita o evento
-        this.eventService.emitPedidoCadastrado();
+        this.eventService.emitOSCadastrada();
       },
 
       (error: any) => {

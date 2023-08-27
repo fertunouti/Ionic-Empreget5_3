@@ -10,7 +10,7 @@
 
 <ion-content>
 
- <ul *ngFor="let pedido of listaPedidosPorPagina[currentPage]">
+ <ul *ngFor="let pedido of pedidos?.conteudo">
 
     <ion-item>
       <ion-avatar slot="start">
@@ -39,8 +39,8 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
-          <ion-button shape="round" color="primary" routerLink="/hello">
-            Início
+          <ion-button shape="round" color="primary" (click)="onClickInicio()">
+           Ir para Home
           </ion-button>
         </ion-col>
       </ion-row>

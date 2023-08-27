@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/apiService';
 import { EventService } from 'src/app/services/event.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,32 +10,29 @@ import { EventService } from 'src/app/services/event.service';
   templateUrl: './os-view.page.html',
   styleUrls: ['./os-view.page.scss'],
 })
-export class OsViewPage implements OnInit, OnDestroy , OnChanges{
+export class OsViewPage implements OnInit, OnDestroy , OnChanges {
+  
+  private osCadastradaSubscription: Subscription;
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription;
   private osRecusadaSubscription: Subscription;
   
+  
   constructor(
     private apiService: ApiService,
     private eventService: EventService,
+    private router: Router
   ) {
+    this.osCadastradaSubscription = this.eventService.osCadastrada$.subscribe(() => {
+         });
     this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-   
+         });
     this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
+         });
     this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-   
-      
-   
+        });
   }
+
   tipoUser!: string
   idPedido!: number
   pedido!: any
@@ -45,62 +43,46 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges{
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
-    this.getPedidosAndRefresh();
-    this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-    this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-    this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
+    }
 
+ ngOnChanges(changes: SimpleChanges): void {
+  this.getPedidosPageAndRefresh()
+ }
 
-  }
   ngOnDestroy() {
     // Cancelar a inscrição no observável para evitar vazamentos de memória
-    this.osCanceladaSubscription.unsubscribe();
-    this.osAceiteSubscription.unsubscribe();
-    this.osRecusadaSubscription.unsubscribe();
-   }
-  
-  ngOnChanges(changes: SimpleChanges): void {
+    this.osCadastradaSubscription.unsubscribe();
     this.osCanceladaSubscription.unsubscribe();
     this.osAceiteSubscription.unsubscribe();
     this.osRecusadaSubscription.unsubscribe();
   }
-
+  
+  //botão voltar
+  onClickVoltar(){
+    this.apiService.addCurrentPage(0) // reinicializa pagina atual para 0
+    this.getPedidosPageAndRefresh() //atualiza página
+  }
+  //botão cancelarOS
   onClickCancelarOS() {
     this.cancelaOSAndRefresh()
-    this.eventService.emitOSCancelada();
   }
+  //botão aceitarOS
   onClickAceitarOS() {
-    this.aceitaOSAndRefresh()
-    this.eventService.emitOSAceite();
+     this.aceitaOSAndRefresh()
   }
+  //botão RecusarOS
   onClickRecusarOS() {
-    this.recusaOSAndRefresh()
-    this.eventService.emitOSRecusada();
+     this.recusaOSAndRefresh()
   }
 
   private cancelaOSAndRefresh() {
-
-    console.log("email = " + this.apiService.readEmail())
-    console.log("Id = " + this.apiService.readId())
-    console.log("token =" + this.apiService.getToken())
-
-
     this.apiService.putCancelarOS().subscribe(
       (data) => {
         console.log('Cancelado', data);
-        this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-          this.getPedidosByIdAndRefresh();
-          this.getPedidosAndRefresh();
-        });
+        this.getPedidosByIdAndRefresh()
+        this.getPedidosPageAndRefresh();
+        //Emite sinal de cancelado
+        this.eventService.emitOSCancelada();
       },
       (error) => {
         console.error('Erro CANCELAR OS', error);
@@ -108,19 +90,14 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges{
     );
   }
   private aceitaOSAndRefresh() {
-
-    console.log("email = " + this.apiService.readEmail())
-    console.log("Id = " + this.apiService.readId())
-    console.log("token =" + this.apiService.getToken())
-
-
     this.apiService.putAceiteOS().subscribe(
       (data) => {
         console.log('Aceito pedido ' +data);
-        this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-          this.getPedidosByIdAndRefresh();
-          this.getPedidosAndRefresh();
-        });
+       
+        this.getPedidosByIdAndRefresh();
+        this.getPedidosPageAndRefresh();
+        //Emite sinal de aceito
+        this.eventService.emitOSAceite();
       },
       (error) => {
         console.error('Erro ACEITE OS', error);
@@ -128,20 +105,17 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges{
     );
   }
   private recusaOSAndRefresh() {
-
-    console.log("email = " + this.apiService.readEmail())
-    console.log("Id = " + this.apiService.readId())
-    console.log("token =" + this.apiService.getToken())
-
-
     this.apiService.putRecusarOS().subscribe(
       (data) => {
         console.log('Recusa OS ' +data);
-        this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
-          this.getPedidosByIdAndRefresh();
-          this.getPedidosAndRefresh();
-        });
+        
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosPageAndRefresh();
+      //Emite sinal de cancelado
+      this.eventService.emitOSRecusada();
+
       },
+      
       (error) => {
         console.error('Erro ACEITE OS', error);
       }
@@ -152,7 +126,7 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges{
     this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
-        console.log('Pedidos no histórico de pedidos:', this.pedido);
+        console.log('////getPedidosByIdAndRefresh:', this.pedido);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -160,11 +134,11 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges{
     );
   }
 
-  private getPedidosAndRefresh() {
-    this.apiService.getPedidos().subscribe(
+private getPedidosPageAndRefresh() {
+    this.apiService.getPedidosPage().subscribe(
       (data) => {
         this.pedidos = data;
-        console.log('Pedidos no histórico de pedidos:', this.pedidos);
+        console.log('///getPedidosPageAndRefresh:', this.pedidos);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);

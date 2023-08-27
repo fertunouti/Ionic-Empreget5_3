@@ -8,12 +8,6 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <!-- <ion-item>
-      <ion-label>Ir para Página:</ion-label>
-      <ion-select [(ngModel)]="selectedPage" (ionChange)="goToSelectedPage()">
-        <ion-select-option *ngFor="let page of pages">{{ page + 1 }}</ion-select-option>
-      </ion-select>
-    </ion-item> -->
     <ion-title>{{ currentPage + 1 }}/{{ totalPages }}</ion-title>
     <ion-buttons slot="end">
       <ion-button [disabled]="currentPage === totalPages - 1" (click)="nextPage()">

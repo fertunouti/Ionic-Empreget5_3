@@ -78,7 +78,7 @@
           </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" color="primary" routerLink="/historico-agendamentos">
+          <ion-button shape="round" color="primary" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
             Voltar
           </ion-button>
         </ion-col>
@@ -92,7 +92,10 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 10px;">
-          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'PENDENTE'">
+          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
+           pedido?.statusOrdemServico !== 'PENDENTE' &&
+           pedido?.statusOrdemServico !== 'RECUSADO'
+           ">
             <ion-button shape="round" color="success" (click)="onClickAceitarOS()">
               Aceitar
             </ion-button>
@@ -100,9 +103,12 @@
         </ion-col>
 
         <ion-col style="padding: 20px 10px;">
-          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'PENDENTE'">
+          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
+           pedido?.statusOrdemServico !== 'PENDENTE' &&
+           pedido?.statusOrdemServico !== 'RECUSADO' 
+           ">
             <ion-button shape="round" color="warning" (click)="onClickRecusarOS()">
-              Recusar
+              Recusar OS
             </ion-button>
           </div>
         </ion-col>
@@ -117,7 +123,7 @@
           </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" color="primary" routerLink="/historico-agendamentos">
+          <ion-button shape="round" color="primary" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
             Voltar
           </ion-button>
         </ion-col>

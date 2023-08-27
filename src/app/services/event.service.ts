@@ -12,14 +12,16 @@ export class EventService {
   private osAceite = new Subject<void>();
   private osRecusada = new Subject<void>();
   private osFinalizada = new Subject<void>();
+  
 
-  osCadastrado$ = this.osCadastrada.asObservable();
+  osCadastrada$ = this.osCadastrada.asObservable();
   osCancelada$ = this.osCancelada.asObservable();
   osAceite$=this.osAceite.asObservable();
   osRecusada$=this.osRecusada.asObservable();
   osFinalizada$=this.osFinalizada.asObservable();
+ 
 
-  emitPedidoCadastrado() {
+  emitOSCadastrada() {
     this.osCadastrada.next();
   }
   emitOSCancelada() {
@@ -34,5 +36,6 @@ export class EventService {
   emitOSFinalizada() {
     this.osFinalizada.next();
   }
+  
 }
 

@@ -18,6 +18,8 @@ export class ApiService {
   private regionProcurado = '';
   private idProcurado!: number
   private loginStatus!: boolean
+  private totalPages!: number
+  private currentPage!: number
 
 
   constructor(private http: HttpClient) { }
@@ -111,6 +113,12 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/os`, { headers });
   }
+  // GET PEDIDOS por PAGINA
+  getPedidosPage(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/os?page=${this.currentPage}`, { headers });
+  }
+
   // GET by Id PEDIDOS
   getByIdPedido(): Observable<any> {
     const headers = this.getAuthHeader();
@@ -167,6 +175,12 @@ export class ApiService {
   }
   addRegion(valorTermo: string) {
     this.regionProcurado = valorTermo
+  }
+  addTotalPages(totalPages:number){
+    this.totalPages = totalPages
+  }
+  addCurrentPage(currentPage:number){
+    this.currentPage = currentPage
   }
 
   //MÉTODOS GET AUXILIARES
