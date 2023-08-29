@@ -16,6 +16,7 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription;
   private osRecusadaSubscription: Subscription;
+  private osFinalizadaSubscription: Subscription;
   
   
   constructor(
@@ -24,12 +25,24 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
     private router: Router
   ) {
     this.osCadastradaSubscription = this.eventService.osCadastrada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosPageAndRefresh()
          });
     this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosPageAndRefresh()
          });
     this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
          });
     this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosPageAndRefresh()
+        });
+    this.osFinalizadaSubscription = this.eventService.osFinalizada$.subscribe(() => {
+      this.getPedidosByIdAndRefresh();
+      this.getPedidosPageAndRefresh()
         });
   }
 
@@ -55,6 +68,7 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
     this.osCanceladaSubscription.unsubscribe();
     this.osAceiteSubscription.unsubscribe();
     this.osRecusadaSubscription.unsubscribe();
+    this.osFinalizadaSubscription.unsubscribe();
   }
   
   //botão voltar

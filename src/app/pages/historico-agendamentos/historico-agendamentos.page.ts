@@ -15,27 +15,35 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
   private osCanceladaSubscription: Subscription;
   private osAceiteSubscription: Subscription
   private osRecusadaSubscription: Subscription
+  private osFinalizadaSubscription: Subscription
   //PAGINADOR
   currentPage: number = 0;
   totalPages!: number
 
 
   constructor(private apiService: ApiService, private eventService: EventService, private navCtrl: NavController,private router: Router) {
-    this.osCadastradaSubscription = this.eventService.osCancelada$.subscribe(() => {
-      this.getPedidosPageAndRefresh();
-    });
+    this.osCadastradaSubscription = this.eventService.osCadastrada$.subscribe(() => {
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
+          });
     this.osCanceladaSubscription = this.eventService.osCancelada$.subscribe(() => {
-      this.getPedidosPageAndRefresh();
-    });
-    
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
+         });
     this.osAceiteSubscription = this.eventService.osAceite$.subscribe(() => {
-      this.getPedidosPageAndRefresh();
-    });
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
+         });
     this.osRecusadaSubscription = this.eventService.osRecusada$.subscribe(() => {
-      this.getPedidosPageAndRefresh();
-    });
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
+         });
+    this.osFinalizadaSubscription = this.eventService.osFinalizada$.subscribe(() => {
+      this.getPedidosPageAndRefresh()
+      this.getPedidosByIdAndRefresh();
+          });
   }
-
+  pedido!:any
   pedidos!: any
   tipoUser!: string
 
@@ -55,6 +63,7 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
     this.osCanceladaSubscription.unsubscribe();
     this.osAceiteSubscription.unsubscribe();
     this.osRecusadaSubscription.unsubscribe();
+    this.osFinalizadaSubscription.unsubscribe();
   }
 
   ngOnChanges(): void {
@@ -75,6 +84,18 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
       }
     );
   }
+  private getPedidosByIdAndRefresh() {
+    this.apiService.getByIdPedido().subscribe(
+      (data) => {
+        this.pedido = data;
+        console.log('////getPedidosByIdAndRefresh:', this.pedido);
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos pedidos:', error);
+      }
+    );
+  }
+
 
   onClick(id: number) {
     this.apiService.addId(id)

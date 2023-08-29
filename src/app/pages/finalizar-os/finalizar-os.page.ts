@@ -16,8 +16,6 @@ import { EventService } from 'src/app/services/event.service';
 export class FinalizarOsPage implements OnInit {
 
   private osFinalizadaSubscription: Subscription;
-  
- 
 
   constructor(
     private router: Router,
@@ -30,7 +28,7 @@ export class FinalizarOsPage implements OnInit {
       this.getPedidosAndRefresh();
     });
 
-   }
+  }
   tipoUser!: string
   idPedido!: number
   pedido!: any
@@ -42,44 +40,59 @@ export class FinalizarOsPage implements OnInit {
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
     this.getPedidosAndRefresh();
-    this.osFinalizadaSubscription = this.eventService.osCancelada$.subscribe(() => {
-      this.getPedidosByIdAndRefresh();
-      this.getPedidosAndRefresh();
-    });
-   
+    this.osFinalizadaSubscription = this.eventService.osFinalizada$.subscribe(() => {
+       this.getPedidosByIdAndRefresh();
+       this.getPedidosAndRefresh();
+     });
+
   }
   ngOnDestroy() {
     // Cancelar a inscrição no observável para evitar vazamentos de memória
     this.osFinalizadaSubscription.unsubscribe();
-    
+
   }
-  onClickFinalizarOS() {
+  async onClickFinalizarOS() {
+
     this.finalizaOSAndRefresh()
-    this.eventService.emitOSFinalizada();
+    const alert = await this.alertController.create({
+      header: `Ordem de Serviço ${this.idPedido}`,
+      message: 'Serviço Concluído. Obrigado!',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.eventService.emitOSFinalizada();
+            this.router.navigate(['/os-view']);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+
+    
   }
 
 
   private finalizaOSAndRefresh() {
 
-    console.log("email = " + this.apiService.readEmail())
-    console.log("Id = " + this.apiService.readId())
-    console.log("token =" + this.apiService.getToken())
-
-
     this.apiService.putFinalizarOS().subscribe(
       (data) => {
-        console.log('Cancelado', data);
-        this.osFinalizadaSubscription = this.eventService.osCancelada$.subscribe(() => {
+        console.log('Finalizado', data);
+        
           this.getPedidosByIdAndRefresh();
           this.getPedidosAndRefresh();
-        });
+          //Emite sinal de finalizado
+         this.eventService.emitOSFinalizada();
+       
+        
       },
       (error) => {
-        console.error('Erro CANCELAR OS', error);
+        console.error('Erro FINALIZAR OS', error);
       }
     );
   }
-  
+
 
   private getPedidosByIdAndRefresh() {
     this.apiService.getByIdPedido().subscribe(

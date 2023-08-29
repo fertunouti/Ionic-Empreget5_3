@@ -16,6 +16,7 @@ export class PedidoPage implements OnInit {
   selectedDate!: string; // Armazena a data escolhida
   perfilPrestador!: any
   perfilCliente!: any
+  pedidos!:any
 
   dataPedido!: string
   osPedido: osPedido = {
@@ -49,30 +50,32 @@ export class PedidoPage implements OnInit {
   }
   onClick() {
     this.osPedido.prestador.id = this.apiService.readId()
-    this.osPedido.dataServico = this.osPedido.dataServico.split('/').reverse().join('-')
+    this.osPedido.dataServico = this.dataPedido.toString().split('T')[0]
     console.log("Id Prestador = " + this.osPedido.prestador.id)
     console.log("data do Serviço = " + this.osPedido.dataServico)
+    console.log(typeof this.osPedido.dataServico)
     console.log("Periodo = " + this.osPedido.periodo)
     console.log("tipo Diaria= " + this.osPedido.tipoDeDiaria)
-    this.apiService.postPedido(this.osPedido).subscribe(
-      (response: any) => {
-        console.log("pedido cadastrado com sucesso!!!");
-        // Após cadastrar com sucesso, emita o evento
-        this.eventService.emitOSCadastrada();
-      },
+     this.apiService.postPedido(this.osPedido).subscribe(
+       (response: any) => {
+         console.log("pedido cadastrado com sucesso!!!");
+         this.getPedidosPageAndRefresh()
+         // Após cadastrar com sucesso, emita o evento
+         this.eventService.emitOSCadastrada();
+       },
 
-      (error: any) => {
-        console.error("Erro ao cadastrar pedido:", error);
-        if (error && error.error && error.error.userMessage) {
-          // Exibir mensagem de erro
-          this.exibirAlertaErro(error.error.userMessage);
-        } else {
-          this.exibirAlertaErro("Ocorreu um erro ao cadastrar o pedido.");
-        }
-      }
-    )
+       (error: any) => {
+         console.error("Erro ao cadastrar pedido:", error);
+         if (error && error.error && error.error.userMessage) {
+           // Exibir mensagem de erro
+           this.exibirAlertaErro(error.error.userMessage);
+         } else {
+           this.exibirAlertaErro("Ocorreu um erro ao cadastrar o pedido.");
+         }
+       }
+     )
 
-
+    //.split('/').reverse().join('-')
 
   }
   async exibirAlertaErro(mensagem: string) {
@@ -85,20 +88,33 @@ export class PedidoPage implements OnInit {
     await alert.present();
   }
   //  // Método chamado ao clicar no ícone de calendário
-  toggleDatePicker() {
+  mostraCalendario() {
     this.mostraCalendarioOnClick = !this.mostraCalendarioOnClick;
   }
 
-  // Método para definir a data escolhida
-  onDateSelected(event: any) {
-    const selectedDateTime = new Date(event.detail.value);
-    const selectedDate = selectedDateTime.toISOString().split('T')[0]; // Captura a parte da data
-    this.osPedido.dataServico = selectedDate;
-  }
+  // // Método para definir a data escolhida
+   onDateSelected(event: any) {
+    
+    this.dataPedido = event.dataEscolhida
+    //.toISOString().split('T')[0]; // Captura a parte da data
+    console.log(typeof this.dataPedido)
+   
+   }
 
   // Método para fechar o calendário
-  closeDatePicker() {
+  fechaCalendario() {
     this.mostraCalendarioOnClick = false;
+  }
+  private getPedidosPageAndRefresh() {
+    this.apiService.getPedidosPage().subscribe(
+      (data) => {
+        this.pedidos = data;
+        console.log('///getPedidosPageAndRefresh:', this.pedidos);
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos pedidos:', error);
+      }
+    );
   }
 }
 

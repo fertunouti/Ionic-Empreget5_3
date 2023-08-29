@@ -51,23 +51,7 @@ export class ApiService {
     }
   }
 
-  // // Método para obter o token JWT do cookie
-  // private getTokenCookie(): string {
-  //   const name = 'jwt_token=';
-  //   const decodedCookie = decodeURIComponent(document.cookie);
-  //   const cookieArray = decodedCookie.split(';');
-  //   for (let i = 0; i < cookieArray.length; i++) {
-  //     let cookie = cookieArray[i];
-  //     while (cookie.charAt(0) === ' ') {
-  //       cookie = cookie.substring(1);
-  //     }
-  //     if (cookie.indexOf(name) === 0) {
-  //       return cookie.substring(name.length, cookie.length);
-  //     }
-  //   }
-  //   return '';
-  // }
-
+  
 
   //ENDPOINTS
 

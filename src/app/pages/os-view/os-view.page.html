@@ -94,7 +94,8 @@
         <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
            pedido?.statusOrdemServico !== 'PENDENTE' &&
-           pedido?.statusOrdemServico !== 'RECUSADO'
+           pedido?.statusOrdemServico !== 'RECUSADO'&& 
+           pedido?.statusOrdemServico !== 'FINALIZADO'
            ">
             <ion-button shape="round" color="success" (click)="onClickAceitarOS()">
               Aceitar
@@ -105,7 +106,8 @@
         <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
            pedido?.statusOrdemServico !== 'PENDENTE' &&
-           pedido?.statusOrdemServico !== 'RECUSADO' 
+           pedido?.statusOrdemServico !== 'RECUSADO' && 
+           pedido?.statusOrdemServico !== 'FINALIZADO'
            ">
             <ion-button shape="round" color="warning" (click)="onClickRecusarOS()">
               Recusar OS
@@ -114,7 +116,8 @@
         </ion-col>
         
         <ion-col style="padding: 20px 10px;">
-          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'">
+          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&& 
+          pedido?.statusOrdemServico !== 'FINALIZADO'">
             <div *ngIf="pedido?.statusOrdemServico === 'PENDENTE'">
               <ion-button shape="round" color="success" routerLink="/finalizar-os">
                 Finalizar OS

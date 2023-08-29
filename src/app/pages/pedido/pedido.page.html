@@ -6,59 +6,30 @@
 </ion-header>
 
 <ion-card>
-  <ion-card-title>Faça um agendamento</ion-card-title>
+  <ion-card-title>{{perfilPrestador?.nome}}</ion-card-title>
   <div *ngFor="let cliente of perfilCliente">
-
-    <!-- body -->
-    <ion-card-title>
-      <h5>Informações do cliente</h5>
-    </ion-card-title>
     <ion-card-content>
-      <ion-row>
-        <ion-col>
-          <ion-label>Endereço:</ion-label>
-          <p>{{cliente?.endereco.logradouro}}, {{cliente?.endereco.numero}}, {{cliente?.endereco.bairro}}</p>
-          <p>{{cliente?.endereco.cidade}}, {{cliente?.endereco.estado}}</p>
-        </ion-col>
-      </ion-row>
+      <p><ion-label>Serviços: {{perfilPrestador?.servico.descricao}}</ion-label> </p>
+      <p><ion-label>Valor: R$ {{perfilPrestador?.servico.valor | number: "1.2-2"}}</ion-label> </p>
+      <p><ion-label>Observação: {{perfilPrestador?.observacao}} {{perfilPrestador?.descricao}}</ion-label> </p>
+
+    
     </ion-card-content>
   </div>
 </ion-card>
 <ion-card>
-  <ion-card-title>
-    <h5>Informações do prestador</h5>
-  </ion-card-title>
-
   <ion-card-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-
-          <p>{{perfilPrestador?.nome}}</p>
-
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          DATA DO SERVIÇO
-          <p><ion-icon name="calendar" (click)="toggleDatePicker()"></ion-icon>
-          <ion-button *ngIf="mostraCalendarioOnClick" (click)="closeDatePicker()" class="medium-button"> 
-          OK
-          </ion-button>
-          </p>
-          <!-- Campo para mostrar a data escolhida -->
-          <p *ngIf="selectedDate"> Data AGENDADA: {{ selectedDate }}</p>
-          <ion-input placeholder="CLIQUE NO CALENDÁRIO" [(ngModel)]="osPedido.dataServico"></ion-input>
-          <!-- Exibe ion-datetime apenas se showDatePicker for true -->
-          <ion-datetime *ngIf="mostraCalendarioOnClick" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY"
-            [(ngModel)]="osPedido.dataServico" (ionChange)="onDateSelected($event)">
-          </ion-datetime>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-
-  <ion-card-content>
+    <ion-label>Local do serviço:</ion-label>
+    <div *ngFor="let cliente of perfilCliente">
+      <p>{{cliente?.endereco.logradouro}}, {{cliente?.endereco.numero}}, {{cliente?.endereco.bairro}}</p>
+      <p>{{cliente?.endereco.cidade}}, {{cliente?.endereco.estado}}</p>
+    </div>
+    <!-- <p *ngIf="!mostraCalendarioOnClick">Escolha a data
+      <ion-icon  name="calendar" (click)="mostraCalendario()"></ion-icon>
+    </p> -->
+    <!-- Exibe ion-datetime apenas se mostraCalendario for true -->
+    <calendario  (dateSelected)="onDateSelected($event)"></calendario>
+    <!-- *ngIf="mostraCalendarioOnClick" -->
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -77,44 +48,17 @@
           </ion-select>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label>Observação:</ion-label>
-          <p>{{perfilPrestador?.observacao}}</p>
-
-          <p>{{perfilPrestador?.descricao}}</p>
+      
+      <!-- <ion-row class="ion-justify-content-center"> -->
+        <ion-row>
+        <ion-col size="5">
+          <ion-button fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos"
+            (click)="onClick()">Agendar</ion-button>
+        </ion-col>
+        <ion-col size="5">
+          <ion-button fill="outline" color="primary" expand="block" routerLink="/perfil-prestador">Cancelar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card-content>
 </ion-card>
-<ion-card>
-  <ion-card-title>
-    <h5>Custos</h5>
-  </ion-card-title>
-  <ion-card-content>
-    <ion-row>
-      <ion-col>
-        <ion-label>Serviço: </ion-label>
-        <p>{{perfilPrestador?.servico.descricao}}</p>
-      </ion-col>
-      <ion-col>
-        <ion-label>Total:</ion-label>
-        <p>R$ {{perfilPrestador?.servico.valor | number: "1.2-2"}}</p>
-      </ion-col>
-    </ion-row>
-  </ion-card-content>
-</ion-card>
-
-<!-- button -->
-<ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="5">
-      <ion-button fill="solid" color="primary" expand="block" routerLink="/historico-agendamentos"
-        (click)="onClick()">enviar</ion-button>
-    </ion-col>
-    <ion-col size="5">
-      <ion-button fill="outline" color="primary" expand="block" routerLink="/perfil-prestador">Cancelar</ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
