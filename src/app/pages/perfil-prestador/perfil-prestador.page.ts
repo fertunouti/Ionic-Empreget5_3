@@ -8,13 +8,15 @@ import { osPedido } from 'src/app/services/osPedido.model';
   styleUrls: ['./perfil-prestador.page.scss'],
 })
 export class PerfilPrestadorPage implements OnInit {
- 
+ avaliacoes:any
+ mediaAvaliacao!: number
   
 
 
   constructor(private apiService:ApiService) { }
   perfilPrestador: any
   ngOnInit() {
+    this.getAvaliacoesByIdPrestadoresAndRefresh()
     this.apiService.getPerfisPrestadoresById().subscribe(
       (data) => {
          this.perfilPrestador = data;
@@ -26,5 +28,18 @@ export class PerfilPrestadorPage implements OnInit {
       );
   }
 
+
+  private getAvaliacoesByIdPrestadoresAndRefresh() {
+    this.apiService.getAvaliacoesByIdPrestadores().subscribe(
+      (data) => {
+        this.avaliacoes = data;
+        console.log('///getAvaliacoesAndRefresh:', this.avaliacoes);
+        this.mediaAvaliacao = this.avaliacoes
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos avaliacoes:', error);
+      }
+    );
+  }
  
 }

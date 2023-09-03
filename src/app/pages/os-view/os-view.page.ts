@@ -50,12 +50,15 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   idPedido!: number
   pedido!: any
   pedidos!: any
-  
+  avaliacao: any
+  estrelas: number | null  = null
+  comentarios: string = ""
 
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
+    this.getAvaliacaoByIdOSAndRefresh()
     }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -87,6 +90,10 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   //botão RecusarOS
   onClickRecusarOS() {
      this.recusaOSAndRefresh()
+  }
+  //botão avaliar
+  onClickAvaliarOS(id: number) {
+    this.apiService.addId(id)
   }
 
   private cancelaOSAndRefresh() {
@@ -157,6 +164,19 @@ private getPedidosPageAndRefresh() {
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
       }
+    );
+  }
+  private getAvaliacaoByIdOSAndRefresh() {
+    this.apiService.getAvaliacoesByIdOS().subscribe(
+      (data) => {
+        this.avaliacao = data;
+        this.estrelas = this.avaliacao.conteudo[0].estrelas;
+        this.comentarios = this.avaliacao.conteudo[0].comentario;
+
+      },
+      // (error) => {
+      //   console.error('Erro ao obter dados dos avaliacoes:', error);
+      // }
     );
   }
 }

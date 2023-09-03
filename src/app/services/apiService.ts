@@ -75,7 +75,21 @@ export class ApiService {
   postCadastrarPrestador(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/prestadores`, data);
   }
+  //POST AVALIAÇÕES
+  postAvaliacao(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/avaliacoes/${this.idProcurado}`, data);
+  }
 
+  // GET PERFIS AVALIAÇÔES
+  getAvaliacoesByIdOS(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/avaliacoes/os/${this.idProcurado}`, { headers });
+  }
+  // GET AVALIAÇÔES prestadores nota média
+  getAvaliacoesByIdPrestadores(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/avaliacoes/media/${this.idProcurado}`, { headers });
+  }
   // GET PERFIS CLIENTES
   getDataPerfisClientes(): Observable<any> {
     const headers = this.getAuthHeader();
@@ -84,7 +98,7 @@ export class ApiService {
   // GET PERFIS PRESTADORES
   getDataPerfisPrestadores(): Observable<any> {
     const headers = this.getAuthHeader();
-    return this.http.get<any>(`${this.baseUrl}/prestadores/filtro`, { headers });
+    return this.http.get<any>(`${this.baseUrl}/prestadores/`, { headers });
   }
 
   // GET PERFIS PRESTADORES by id

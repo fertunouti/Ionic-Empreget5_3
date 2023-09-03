@@ -1,33 +1,33 @@
 ion-content{
     font-family: 'inter', sans-serif;
     font-size: 17px;
-}
-ion-img{
+  }
+  ion-img{
     padding-left: 30%;
     width
     : 60%;
     
-}
-.Capa{
+  }
+  .Capa{
     justify-content: center;
     height: 100%;
     display: flex;
     align-items: center;
     padding-bottom: 5%;
-
-}
-.ion-text-wrap{
+  
+  }
+  .ion-text-wrap{
     text-align: center;
     margin: 20px 20px;
     font-family: 'inter', sans-serif;
     font-style: italic;
-}
-
-.ion-header-search{
+  }
+  
+  .ion-header-search{
     margin: 20px 20px;
     text-align: initial;
-}
-.text1{
+  }
+  .text1{
     justify-content: center;
     margin-top: 10%;
     text-align: center;
@@ -36,9 +36,9 @@ ion-img{
     height: 100%;
     font-family: 'inter', sans-serif;
     font-style: italic;
-}
-
-ion-list{
+  }
+  
+  ion-list{
     ion-item{
         ion-col{
             .coluna-view{
@@ -47,31 +47,5 @@ ion-list{
             }
         }
     }
-}
-
-
-.avatar-left img {
-    float: left;
   }
   
-  /* Alinhar o botão ao final da coluna */
-  .coluna-view {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 0 0 20%;  /* Definir o tamanho da coluna para 4 colunas */
-  }
-  
- 
- 
-  
-  /* Ajustar o espaçamento */
-  ion-item {
-    padding: 10px; /* Ajuste conforme necessário */
-  }
-
-  .texto {
-    color: black;
-    
-  }
- 

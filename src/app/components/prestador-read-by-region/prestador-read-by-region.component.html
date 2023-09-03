@@ -1,28 +1,19 @@
 <ul *ngFor="let prestador of prestadoresByRegion?.conteudo">
 
   <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col name="col1">
-
-          <ion-avatar>
+          <ion-avatar slot="start">
             <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg" />
           </ion-avatar>
-          
-        </ion-col>
-        <ion-col name="col2">
-          <ion-label fill="clear" routerLink="/perfil-prestador">
+        <ion-col>
+          <ion-label>
             {{prestador?.nome}}
             <p>Atende região: {{prestador?.regiao}}</p>
-            <p>R$ {{prestador?.servicoValor}}</p>
+            <p>R$ {{prestador?.servicoValor | number: '1.2-2'}}</p>
           </ion-label>
         </ion-col>
         <ion-col>
           <ion-button fill="clear" routerLink="/perfil-prestador" (click)="onClick(prestador?.id)">ver
             Perfil</ion-button>
         </ion-col>
-
-      </ion-row>
-    </ion-grid>
   </ion-item>
 </ul> 

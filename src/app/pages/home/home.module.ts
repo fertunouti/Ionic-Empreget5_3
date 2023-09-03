@@ -32,6 +32,9 @@ import { AgendamentosPrestadorPage } from '../agendamentos-prestador/agendamento
 import { HelloClienteComponent } from 'src/app/components/hello-cliente/hello-cliente.component';
 import { PesquisaPrestadorPage } from '../pesquisa-prestador/pesquisa-prestador.page';
 import { PaginacaoComponent } from 'src/app/components/paginacao/paginacao.component';
+import { StarRatingComponent } from 'src/app/components/star-rating/star-rating.component';
+import { AvaliacaoPage } from '../avaliacao/avaliacao.page';
+import { PerfilPrestadorPage } from '../perfil-prestador/perfil-prestador.page';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import { PaginacaoComponent } from 'src/app/components/paginacao/paginacao.compo
   AgendamentosPrestadorPage,
   HelloClienteComponent,
   PesquisaPrestadorPage,
-  PaginacaoComponent
+  PaginacaoComponent,
+  StarRatingComponent,
+  AvaliacaoPage,
+  PerfilPrestadorPage
 
 
  

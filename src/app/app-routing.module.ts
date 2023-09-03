@@ -100,6 +100,10 @@ const routes: Routes = [
   },  {
     path: 'pesquisa-prestador',
     loadChildren: () => import('./pages/pesquisa-prestador/pesquisa-prestador.module').then( m => m.PesquisaPrestadorPageModule)
+  },
+  {
+    path: 'avaliacao',
+    loadChildren: () => import('./pages/avaliacao/avaliacao.module').then( m => m.AvaliacaoPageModule)
   }
 
   

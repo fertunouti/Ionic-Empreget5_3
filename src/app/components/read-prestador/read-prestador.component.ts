@@ -21,7 +21,7 @@ export class ReadPrestadorComponent  implements OnInit {
      this.apiService.getDataPerfisPrestadores().subscribe(
      (data) => {
         this.prestadores = data;
-       console.log('Dados dos prestadores:', this.prestadores);
+       console.log('Dados de todos os prestadores:', this.prestadores);
       },
      (error) => {
         console.error('Erro ao obter dados dos prestadores:', error);

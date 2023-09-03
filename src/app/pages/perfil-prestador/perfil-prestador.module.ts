@@ -15,6 +15,6 @@ import { PerfilPrestadorPage } from './perfil-prestador.page';
     IonicModule,
     PerfilPrestadorPageRoutingModule
   ],
-  declarations: [PerfilPrestadorPage]
+  declarations: []
 })
 export class PerfilPrestadorPageModule {}

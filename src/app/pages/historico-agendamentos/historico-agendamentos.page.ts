@@ -45,11 +45,14 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
   }
   pedido!:any
   pedidos!: any
+  avaliacoes: any
   tipoUser!: string
 
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()
+    
     this.getPedidosPageAndRefresh();
+    
   }
 
   changePage(newPage: number) {
@@ -95,6 +98,8 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
       }
     );
   }
+ 
+  
 
 
   onClick(id: number) {

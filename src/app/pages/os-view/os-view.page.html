@@ -37,7 +37,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <br><br><br>
+      <br>
       <p class="texto">Endereço do Serviço: </p>
       <p>{{pedido?.localDoServico.logradouro}},
         {{pedido?.localDoServico.numero}},
@@ -56,9 +56,16 @@
       <br><br>
       <p>Status da O.S.</p>
       <div style="font-weight: bold; font-size: medium;">{{pedido?.statusOrdemServico }}</div>
+      <br>
+      <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO'&&pedido?.statusOrdemServico !== 'RECUSADO'&&pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&&pedido?.statusOrdemServico !== 'PENDENTE'" ><p>Avaliação recebida</p></div>
+      <div *ngIf="estrelas==null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">SEM AVALIAÇÃO</div>
+      <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">Nota: {{estrelas}}</div>
+      <div *ngIf="comentarios && pedido?.statusOrdemServico === 'FINALIZADO'" style="font-weight: bold; font-size: medium;">Comentários: {{comentarios}}</div>
+
       <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaFinalizacao}}</p>
       <p *ngIf="!pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaSolicitacao}}</p>
-
+      
+      
     </ion-label>
 
   </ion-item>
@@ -71,9 +78,17 @@
         <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
               pedido?.statusOrdemServico !== 'PENDENTE' && 
+              pedido?.statusOrdemServico !== 'RECUSADO' && 
               pedido?.statusOrdemServico !== 'FINALIZADO'">
             <ion-button shape="round" color="danger" (click)="onClickCancelarOS()">
               Cancelar OS
+            </ion-button>
+          </div>
+        </ion-col>
+        <ion-col style="padding: 20px 10px;">
+          <div *ngIf="pedido?.statusOrdemServico == 'FINALIZADO'&& avaliacao === undefined">
+            <ion-button shape="round" color="danger" (click)="onClickAvaliarOS(pedido?.id)" routerLink="/avaliacao">
+              Avaliar Prestador
             </ion-button>
           </div>
         </ion-col>
