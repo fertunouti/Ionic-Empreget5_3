@@ -68,18 +68,27 @@ ion-button {
 ion-icon[name="calendar"] {
   font-size: 2rem;
   /* Aumenta o tamanho do ícone */
-  margin: 20 auto;
+  margin: 0 auto;
   /* Centraliza o ícone horizontalmente */
 }
 
 .medium-button {
   width: 50%;
   /* Defina o tamanho desejado */
-  margin: 20 auto;
+  margin:0 auto;
   /* Centralize o botão horizontalmente */
 }
 
 ion-img {
   height: 50px;
   padding: 1px 30px;
+}
+/* Adicione uma margem inferior à classe calendario-row para separá-la dos botões */
+.calendario-row {
+  margin-bottom: 10px; /* Ajuste o valor conforme necessário */
+}
+
+/* Adicione uma margem superior à classe button-row para separar os botões */
+.button-row {
+  margin-top: 10px; /* Ajuste o valor conforme necessário */
 }
