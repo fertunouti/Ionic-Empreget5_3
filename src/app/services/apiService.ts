@@ -76,8 +76,9 @@ export class ApiService {
     return this.http.post<any>(`${this.baseUrl}/prestadores`, data);
   }
   //POST AVALIAÇÕES
-  postAvaliacao(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/avaliacoes/${this.idProcurado}`, data);
+  postAvaliacaoByIdOS(data: any): Observable<any> {
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    return this.http.post<any>(`${this.baseUrl}/avaliacoes/os/${this.idProcurado}`, data, { headers });
   }
 
   // GET PERFIS AVALIAÇÔES

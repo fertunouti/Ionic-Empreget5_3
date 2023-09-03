@@ -22,7 +22,7 @@ export class AvaliacaoPage implements OnInit {
       estrelas : null,
       comentario: ''
   }
-
+token!:string
 
 
 
@@ -30,12 +30,19 @@ export class AvaliacaoPage implements OnInit {
     this.valorAvaliacao = 0
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
+    this.token = this.apiService.getToken()
+    console.log(this.token)
     console.log ("idPedido=" + this.idPedido)
     this.getPedidosByIdAndRefresh()
     this.getAvaliacoesByIdOSAndRefresh()
   }
 
  
+
+
+
+
+
 
   mudouAvaliacao(event: number) {
     this.valorAvaliacao = event
@@ -51,7 +58,7 @@ export class AvaliacaoPage implements OnInit {
     this.avaliacao.estrelas=this.valorAvaliacao
     console.log ("avaliação para OS "+this.idPedido+" =" + this.avaliacao.comentario + this.avaliacao.estrelas)
 
-     this.apiService.postAvaliacao(this.avaliacao).subscribe(
+     this.apiService.postAvaliacaoByIdOS(this.avaliacao).subscribe(
        (response: any) => { console.log("AVALIACAO cadastrado com sucesso!!!")})
   }
 

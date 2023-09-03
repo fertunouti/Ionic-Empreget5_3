@@ -59,7 +59,7 @@
       <br>
       <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO'&&pedido?.statusOrdemServico !== 'RECUSADO'&&pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&&pedido?.statusOrdemServico !== 'PENDENTE'" ><p>Avaliação recebida</p></div>
       <div *ngIf="estrelas==null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">SEM AVALIAÇÃO</div>
-      <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">Nota: {{estrelas}}</div>
+      <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">Nota: {{estrelas| number: "1.1-2"}}</div>
       <div *ngIf="comentarios && pedido?.statusOrdemServico === 'FINALIZADO'" style="font-weight: bold; font-size: medium;">Comentários: {{comentarios}}</div>
 
       <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaFinalizacao}}</p>
