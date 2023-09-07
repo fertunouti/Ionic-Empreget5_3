@@ -36,14 +36,13 @@ export class LoginPage implements OnInit {
 
         //Aciona envento onLogin() na HomePage html
         this.mudouLogin.emit({ loginSucesso: true })
-        
-
-        
         // Configurar o token JWT no ApiService
         this.apiService.setAuthToken(response.token);
-
         // Defina o token JWT como um cookie
         this.setTokenCookie(response.token);
+
+
+        console.log(userRole,userEmail,statusLogin,response.token)
 
       },
       (error: any) => {

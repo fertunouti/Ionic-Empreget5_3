@@ -15,6 +15,6 @@ import { CadastroPrestadorPage } from './cadastro-prestador.page';
     IonicModule,
     CadastroPrestadorPageRoutingModule
   ],
-  declarations: [CadastroPrestadorPage]
+  declarations: []
 })
 export class CadastroPrestadorPageModule {}

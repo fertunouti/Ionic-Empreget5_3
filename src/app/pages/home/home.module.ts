@@ -39,6 +39,7 @@ import { AtualizarFotoComponent } from 'src/app/components/atualizar-foto/atuali
 import { EsqueciSenhaPage } from '../esqueci-senha/esqueci-senha.page';
 import { EditarPrestadorPage } from '../editar-prestador/editar-prestador.page';
 import { GerenciarFotoPage } from '../gerenciar-foto/gerenciar-foto.page';
+import { CadastroPrestadorPage } from '../cadastro-prestador/cadastro-prestador.page';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { GerenciarFotoPage } from '../gerenciar-foto/gerenciar-foto.page';
   OsViewPage,
   CalendarioComponent,
   CadastroPage,
+  CadastroPrestadorPage,
   PedidoPage,
   AgendamentosPrestadorPage,
   HelloClienteComponent,

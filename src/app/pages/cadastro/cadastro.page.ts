@@ -11,12 +11,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(private apiService: ApiService, private alertController: AlertController) {
+  constructor(
+    private apiService: ApiService, 
+    private alertController: AlertController,
+    private navCtrl: NavController
+    ) {
   }
   @ViewChild('senhaInput') senhaInput: any; // Referência ao campo de senha
 
   prefixo: string = ''
   senhaRepetida: string = '';
+  isLoggedIn! : boolean
 
   cliente: Clientes = {
     nome: '',
@@ -43,8 +48,13 @@ export class CadastroPage implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.apiService.readLoginStatus()
+  }
 
-
+  onClickCancelar(){
+    //this.apiService.setUserRole(' ');
+    console.log (this.isLoggedIn)
+    this.navCtrl.navigateBack('/loading');
   }
   onClick() {
     if (this.validarSenhas()) {

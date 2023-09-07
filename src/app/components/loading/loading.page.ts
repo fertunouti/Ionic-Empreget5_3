@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/apiService';
 
 @Component({
   selector: 'app-loading',
@@ -8,11 +9,13 @@ import { Router } from '@angular/router';
 })
 export class LoadingPage implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(
+    private apiService:ApiService,
+    private router : Router) { }
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigateByUrl('hello')
+      this.router.navigateByUrl('/hello')
       
     },3000);
   }

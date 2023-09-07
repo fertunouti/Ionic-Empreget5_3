@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/apiService';
 import { Prestadores } from 'src/app/services/prestador.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +13,8 @@ export class CadastroPrestadorPage implements OnInit {
    
  prefixo: string = ''
  senhaRepetida: string = '';
+
+ isLoggedIn!: boolean;
  prestador: Prestadores = {
     nome: '',
     imgUrl: null,
@@ -43,26 +45,42 @@ export class CadastroPrestadorPage implements OnInit {
   disponibilidade: '',
   observacao: ''
   }
-  constructor(private apiService:ApiService,private alertController: AlertController) {
-    
+  constructor(
+    private apiService:ApiService,
+    private alertController: AlertController,
+    private navCtrl: NavController) {  
   }
   
   ngOnInit() {
-
+    this.isLoggedIn = this.apiService.readLoginStatus()
 
   }
+  onClickCancelar(){
+   // this.apiService.setUserRole('');
+   console.log(this.isLoggedIn)
+    this.navCtrl.navigateBack('/loading');
+  }
 onClick() {
-  if (this.validarSenhas()) {
+  if (!this.validarSenhas()) {
+    return; // Retorna se as senhas não forem válidas
+  }
+  
+  if (!this.validarFormatoValor()) {
+    return; // Retorna se o formato do valor não for válido
+  }
   
   this.prestador.usuario.role = this.apiService.getUserRole()
-  this.prestador.endereco.logradouro= this.prefixo +" "+ this.prestador.endereco.logradouro
-
-  
+  this.prestador.endereco.logradouro= this.prefixo +' '+ this.prestador.endereco.logradouro
   this.apiService.postCadastrarPrestador(this.prestador).subscribe(
-     (response: any) => { console.log("CLIENTE cadastrado com sucesso!!!")})
+     (response: any) => { 
+      console.log("CLIENTE cadastrado com sucesso!!!");
+      this.mostrarAlerta('Cadastro concluído com sucesso.');
+      this.navCtrl.navigateBack('/hello');
+      this.resetValoresIniciais();
+    }
+    );
+ }
  
-}
-}
 async mostrarAlerta(mensagem: string) {
   const alert = await this.alertController.create({
     header: 'Alerta',
@@ -85,6 +103,46 @@ validarSenhas() {
   }
 
   return true;
+}
+
+validarFormatoValor(): boolean {
+  const formatoValido = /^\d+\.\d{2}$/.test(this.prestador.servico.valor);
+  if (!formatoValido) {
+    this.mostrarAlerta('O valor do serviço deve estar no formato #.##');
+  }
+  return formatoValido;
+}
+
+resetValoresIniciais(){
+  this.prestador = {nome: '',
+  imgUrl: null,
+  endereco: {
+    logradouro: '',
+    numero: null,
+    complemento: '',
+    cep: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+    pais: ''
+  },
+  regiao: '',
+  rg: '',
+  cpf: '',
+  telefone: '',
+  usuario: {
+    email: '',
+    senha: '',
+    role: ''
+  },
+  servico: {
+    descricao: '',
+    valor: ''
+},
+
+disponibilidade: '',
+observacao: ''};
+this.senhaRepetida = '';
 }
 
 // Função chamada quando o formulário for submetido
