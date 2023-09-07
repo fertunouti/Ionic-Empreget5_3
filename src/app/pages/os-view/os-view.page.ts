@@ -53,12 +53,14 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   avaliacao: any
   estrelas: number | null  = null
   comentarios: string = ""
+  imagem: any
 
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
     this.getAvaliacaoByIdOSAndRefresh()
+    
     }
 
  ngOnChanges(changes: SimpleChanges): void {

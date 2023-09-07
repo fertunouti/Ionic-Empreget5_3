@@ -1,0 +1,4 @@
+<ion-label for="customFile" id="customFileLabel">Selecionar Arquivo</ion-label>
+<ion-input type="file" id="customFile" (change) = "onChange($event)" ></ion-input>
+<div style="margin-top: 10px"></div>
+<ion-button shape = "round" (click)="onUpload()" [disabled]="!selectedFiles">UpLoad</ion-button>

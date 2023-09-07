@@ -35,6 +35,10 @@ import { PaginacaoComponent } from 'src/app/components/paginacao/paginacao.compo
 import { StarRatingComponent } from 'src/app/components/star-rating/star-rating.component';
 import { AvaliacaoPage } from '../avaliacao/avaliacao.page';
 import { PerfilPrestadorPage } from '../perfil-prestador/perfil-prestador.page';
+import { AtualizarFotoComponent } from 'src/app/components/atualizar-foto/atualizar-foto.component';
+import { EsqueciSenhaPage } from '../esqueci-senha/esqueci-senha.page';
+import { EditarPrestadorPage } from '../editar-prestador/editar-prestador.page';
+import { GerenciarFotoPage } from '../gerenciar-foto/gerenciar-foto.page';
 
 
 @NgModule({
@@ -73,7 +77,11 @@ import { PerfilPrestadorPage } from '../perfil-prestador/perfil-prestador.page';
   PaginacaoComponent,
   StarRatingComponent,
   AvaliacaoPage,
-  PerfilPrestadorPage
+  PerfilPrestadorPage,
+  AtualizarFotoComponent,
+ EditarPrestadorPage,
+ EsqueciSenhaPage,
+ GerenciarFotoPage
 
 
  

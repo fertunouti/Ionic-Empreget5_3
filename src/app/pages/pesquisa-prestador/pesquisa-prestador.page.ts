@@ -9,18 +9,19 @@ import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
 })
 export class PesquisaPrestadorPage implements OnInit {
 
-  constructor(private prestadorByName: ApiService, private prestadorByRegion:ApiService) { }
+  constructor(private apiService: ApiService) { }
 
  
 
   emailUserAtual: string = '';
   nomePrestadorProcurado!: any
 
-  prestadoresByName!: prestadorFilter[]
-  prestadoresByRegion!: prestadorFilter[]
+  prestadoresByName!: any
+  prestadoresByRegion!: any
   mostraTodos!: boolean
   mostraName!: boolean
   mostraRegion!: boolean
+  foto:any
 
   ngOnInit() {
 
@@ -32,9 +33,13 @@ export class PesquisaPrestadorPage implements OnInit {
 
   onMudouTermo(evento: any) {
     console.log(evento.novoTermo)
-    this.prestadorByName.addTermo(evento.novoTermo)
-    this.prestadorByName.readByName().subscribe(prestadores => {
+    this.apiService.addTermo(evento.novoTermo)
+    this.apiService.readByName().subscribe(prestadores => {
       this.prestadoresByName = prestadores;
+       // Iterar sobre os prestadores e obter a URL da imagem para cada um
+    for (const prestador of this.prestadoresByName.conteudo) {
+      this.getImagemUrl(prestador.id);
+    }
       this.mostraTodos = false
       this.mostraName = true
       this.mostraRegion = false
@@ -44,9 +49,13 @@ export class PesquisaPrestadorPage implements OnInit {
 
   onMudouRegion(evento: any) {
     console.log(evento.novaRegiao)
-    this.prestadorByRegion.addRegion(evento.novaRegiao)
-    this.prestadorByRegion.readByRegion().subscribe(prestadores => {
+    this.apiService.addRegion(evento.novaRegiao)
+    this.apiService.readByRegion().subscribe(prestadores => {
       this.prestadoresByRegion = prestadores;
+       // Iterar sobre os prestadores e obter a URL da imagem para cada um
+    for (const prestador of this.prestadoresByRegion.conteudo) {
+      this.getImagemUrl(prestador.id);
+    }
       this.mostraTodos = false
       this.mostraRegion = true
       this.mostraName = false
@@ -58,6 +67,21 @@ export class PesquisaPrestadorPage implements OnInit {
     this.mostraName = false
   }
 
- 
+  getImagemUrl(id: number) {
+    this.apiService.getFotoByIdListaPrestadores(id).subscribe(
+      (data) => {
+        this.foto = data;
+        const imgUrl = `assets/images/${this.foto.nomeArquivo}`;
+        // Encontre o prestador com o ID correspondente e atribua a URL da imagem
+        const prestador = this.prestadoresByName.conteudo.find((p: any) => p.id === id);
+        if (prestador) {
+          prestador.imgUrl = imgUrl;
+        }
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos avaliacoes:', error);
+      }
+    );
+  }
 
 }

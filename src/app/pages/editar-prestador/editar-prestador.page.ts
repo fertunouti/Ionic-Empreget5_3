@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/apiService';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-editar-prestador',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarPrestadorPage implements OnInit {
 
-  constructor() { }
+  constructor(private apiService:ApiService, private eventService:EventService, private http: HttpClient) { }
 
   ngOnInit() {
+  }
+  onUpload(){
+    
   }
 
 }

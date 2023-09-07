@@ -15,6 +15,6 @@ import { EsqueciSenhaPage } from './esqueci-senha.page';
     IonicModule,
     EsqueciSenhaPageRoutingModule
   ],
-  declarations: [EsqueciSenhaPage]
+  declarations: []
 })
 export class EsqueciSenhaPageModule {}

@@ -27,4 +27,10 @@ export class HelloPrestadorComponent  implements OnInit {
     );
   }
 
+ onClickAtualizarFoto(){
+  console.log(this.prestadores.conteudo[0].id)
+  this.apiService.addId(this.prestadores.conteudo[0].id)
+ }
+
+
 }

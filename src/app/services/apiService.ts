@@ -16,7 +16,8 @@ export class ApiService {
   private email: string = '';
   private termoProcurado = '';
   private regionProcurado = '';
-  private idProcurado!: number
+  private idProcurado!: number;
+  private prestadorId!: number;
   private loginStatus!: boolean
   private totalPages!: number
   private currentPage!: number
@@ -89,7 +90,7 @@ export class ApiService {
   // GET AVALIAÇÔES prestadores nota média
   getAvaliacoesByIdPrestadores(): Observable<any> {
     const headers = this.getAuthHeader();
-    return this.http.get<any>(`${this.baseUrl}/avaliacoes/media/${this.idProcurado}`, { headers });
+    return this.http.get<any>(`${this.baseUrl}/avaliacoes/media/${this.prestadorId}`, { headers });
   }
   // GET PERFIS CLIENTES
   getDataPerfisClientes(): Observable<any> {
@@ -105,8 +106,20 @@ export class ApiService {
   // GET PERFIS PRESTADORES by id
   getPerfisPrestadoresById(): Observable<any> {
     const headers = this.getAuthHeader();
-    return this.http.get<any>(`${this.baseUrl}/prestadores/${this.idProcurado}`, { headers });
+    return this.http.get<any>(`${this.baseUrl}/prestadores/${this.prestadorId}`, { headers });
   }
+  // GET PERFIS FOTOS PRESTADORES by id
+  getFotoByIdPrestadores(): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/prestadores/${this.prestadorId}/foto`, { headers });
+  }
+
+  // GET PERFIS FOTOS PRESTADORES by id Lista 
+  getFotoByIdListaPrestadores(id:number): Observable<any> {
+    const headers = this.getAuthHeader();
+    return this.http.get<any>(`${this.baseUrl}/prestadores/${id}/foto`, { headers });
+  }
+
   // GET PEDIDOS
   getPedidos(): Observable<any> {
     const headers = this.getAuthHeader();
@@ -129,30 +142,35 @@ export class ApiService {
     const headers = this.getAuthHeader();
     return this.http.get<any>(`${this.baseUrl}/usuarios`, { headers });
   }
+  
+
+  
   //PUT CANCELAR OS
   putCancelarOS(): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    console.log(headers)
     return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}`, {}, { headers });
    }
    // PUT ACEITAR OS
   putAceiteOS(): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    console.log(headers)
     return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}/aceite`, {}, { headers });
   }
    // PUT ACEITAR OS
   putRecusarOS(): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    console.log(headers)
     return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}/recusa`, {}, { headers });
   }
    // PUT FINALIZAR OS
   putFinalizarOS(): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    console.log(headers)
     return this.http.put<any>(`${this.baseUrl}/os/${this.idProcurado}/finalizacao`, {}, { headers });
   }
+    //PUT FOTOS
+    putFotos (files: any): Observable<any> {
+      const headers = this.getAuthHeader()
+      return this.http.put<any>(`${this.baseUrl}/prestadores/${this.idProcurado}/foto`, files, { headers });
+    }
+  
 
 
   //MÉTODOS SET AUXILIARES
@@ -161,6 +179,9 @@ export class ApiService {
   }
   addId(valorId: number) {
     this.idProcurado = valorId
+  }
+  addPrestadorId(valorId: number) {
+    this.prestadorId = valorId
   }
   addLoginStatus(valorLoginStatus:boolean){
     this.loginStatus = valorLoginStatus

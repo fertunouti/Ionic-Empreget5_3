@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+
+    <div class="header"><img src="../../../../assets/images/logo_empreget.png">
+      <ion-title>{{tipoUser}}</ion-title>
+    </div>
+    <ion-menu-button slot="start"></ion-menu-button>
+
+  </ion-toolbar>
+</ion-header>
+<br>
+
+<ion-content [fullscreen]="true">
+
+
+
+  <ion-card color="light">
+
+    <ion-card-header>
+
+      <ion-card-subtitle class="ion-padding">
+        <h3>Atualize sua Foto:</h3>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      
+     <app-atualizar-foto></app-atualizar-foto>
+<ion-grid>
+  <ion-row>
+    <ion-col style="padding: 20px 10px;">
+      <ion-button shape="round" color="primary" routerLink="/hello">
+        Cancelar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+     
+
+   </ion-card-content>
+    

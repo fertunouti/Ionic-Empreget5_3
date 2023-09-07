@@ -15,6 +15,6 @@ import { EditarPrestadorPage } from './editar-prestador.page';
     IonicModule,
     EditarPrestadorPageRoutingModule
   ],
-  declarations: [EditarPrestadorPage]
+  declarations: []
 })
 export class EditarPrestadorPageModule {}

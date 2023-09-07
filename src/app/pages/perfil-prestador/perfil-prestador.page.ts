@@ -10,22 +10,26 @@ import { osPedido } from 'src/app/services/osPedido.model';
 export class PerfilPrestadorPage implements OnInit {
  avaliacoes:any
  mediaAvaliacao!: number
-  
+ foto: any
+ urlFotoPerfil!: string
 
 
   constructor(private apiService:ApiService) { }
   perfilPrestador: any
   ngOnInit() {
-    this.getAvaliacoesByIdPrestadoresAndRefresh()
-    this.apiService.getPerfisPrestadoresById().subscribe(
-      (data) => {
-         this.perfilPrestador = data;
-        console.log('Perfil dos prestadores:', this.perfilPrestador);
-       },
-      (error) => {
-         console.error('Erro ao obter perfil dos prestadores:', error);
-       }
-      );
+     this.getAvaliacoesByIdPrestadoresAndRefresh()
+     this. getFotoPerfilAndRefresh();
+     this.apiService.getPerfisPrestadoresById().subscribe(
+       (data) => {
+          this.perfilPrestador = data;
+          this.perfilPrestador.imgUrl = this.urlFotoPerfil     
+   
+         console.log('Perfil do prestadores:XXXXXXXX', this.perfilPrestador);
+        },
+       (error) => {
+          console.error('Erro ao obter perfil dos prestadores:', error);
+        }
+       );
   }
 
 
@@ -41,5 +45,21 @@ export class PerfilPrestadorPage implements OnInit {
       }
     );
   }
+
+  private getFotoPerfilAndRefresh() {
+    this.apiService.getFotoByIdPrestadores().subscribe(
+      (data) => {
+        this.foto = data;
+        console.log('///getFOTO:', this.foto);
+        this.urlFotoPerfil = `assets/images/${this.foto.nomeArquivo}`
+        
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos avaliacoes:', error);
+      }
+    );
+  }
+  
+  
  
 }

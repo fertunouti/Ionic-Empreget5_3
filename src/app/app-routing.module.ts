@@ -104,6 +104,10 @@ const routes: Routes = [
   {
     path: 'avaliacao',
     loadChildren: () => import('./pages/avaliacao/avaliacao.module').then( m => m.AvaliacaoPageModule)
+  },
+  {
+    path: 'gerenciar-foto',
+    loadChildren: () => import('./pages/gerenciar-foto/gerenciar-foto.module').then( m => m.GerenciarFotoPageModule)
   }
 
   

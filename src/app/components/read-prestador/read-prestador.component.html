@@ -2,11 +2,12 @@
 
   <ion-item>
     <ion-avatar slot="start">
-      <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg" />
+      <img alt="Silhouette of a person's head" src="{{prestador.imgUrl}}" />
+      
     </ion-avatar>
     <ion-col>
       <ion-label>
-        {{prestador?.nome}}
+        {{prestador?.nome}} 
         <p>Atende região: {{prestador?.regiao}}</p>
         <p>R$ {{prestador?.servico.valor | number: '1.2-2'}}</p>
       </ion-label>
