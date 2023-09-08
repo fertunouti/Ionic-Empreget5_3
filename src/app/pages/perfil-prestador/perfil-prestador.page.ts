@@ -23,8 +23,6 @@ export class PerfilPrestadorPage implements OnInit {
        (data) => {
           this.perfilPrestador = data;
           this.perfilPrestador.imgUrl = this.urlFotoPerfil     
-   
-         console.log('Perfil do prestadores:XXXXXXXX', this.perfilPrestador);
         },
        (error) => {
           console.error('Erro ao obter perfil dos prestadores:', error);
@@ -32,12 +30,15 @@ export class PerfilPrestadorPage implements OnInit {
        );
   }
 
+  onClickAgendar(){
+    this.apiService.addPrestadorId(this.perfilPrestador.id)
+  }
+
 
   private getAvaliacoesByIdPrestadoresAndRefresh() {
     this.apiService.getAvaliacoesByIdPrestadores().subscribe(
       (data) => {
         this.avaliacoes = data;
-        console.log('///getAvaliacoesAndRefresh:', this.avaliacoes);
         this.mediaAvaliacao = this.avaliacoes
       },
       (error) => {
@@ -50,7 +51,6 @@ export class PerfilPrestadorPage implements OnInit {
     this.apiService.getFotoByIdPrestadores().subscribe(
       (data) => {
         this.foto = data;
-        console.log('///getFOTO:', this.foto);
         this.urlFotoPerfil = `assets/images/${this.foto.nomeArquivo}`
         
       },

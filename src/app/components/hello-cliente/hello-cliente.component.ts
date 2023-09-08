@@ -11,10 +11,6 @@ import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
   styleUrls: ['./hello-cliente.component.scss'],
 })
 
-
-   
-
-
 export class HelloClienteComponent  implements OnInit {
   constructor(private apiService: ApiService) { }
 
@@ -32,8 +28,7 @@ export class HelloClienteComponent  implements OnInit {
     this.apiService.getDataPerfisClientes().subscribe(
       (data) => {
       this.clientes = data;
-      console.log("Clientes onInit=" + this.clientes) 
-    },
+       },
     (error) => {
        console.error('Erro ao obter dados dos prestadores:', error);
      })    

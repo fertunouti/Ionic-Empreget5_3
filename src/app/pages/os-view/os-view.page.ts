@@ -101,7 +101,6 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   private cancelaOSAndRefresh() {
     this.apiService.putCancelarOS().subscribe(
       (data) => {
-        console.log('Cancelado', data);
         this.getPedidosByIdAndRefresh()
         this.getPedidosPageAndRefresh();
         //Emite sinal de cancelado
@@ -115,8 +114,6 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   private aceitaOSAndRefresh() {
     this.apiService.putAceiteOS().subscribe(
       (data) => {
-        console.log('Aceito pedido ' +data);
-       
         this.getPedidosByIdAndRefresh();
         this.getPedidosPageAndRefresh();
         //Emite sinal de aceito
@@ -130,8 +127,6 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   private recusaOSAndRefresh() {
     this.apiService.putRecusarOS().subscribe(
       (data) => {
-        console.log('Recusa OS ' +data);
-        
       this.getPedidosByIdAndRefresh();
       this.getPedidosPageAndRefresh();
       //Emite sinal de cancelado
@@ -149,7 +144,6 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
     this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
-        console.log('////getPedidosByIdAndRefresh:', this.pedido);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -161,7 +155,6 @@ private getPedidosPageAndRefresh() {
     this.apiService.getPedidosPage().subscribe(
       (data) => {
         this.pedidos = data;
-        console.log('///getPedidosPageAndRefresh:', this.pedidos);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -174,11 +167,8 @@ private getPedidosPageAndRefresh() {
         this.avaliacao = data;
         this.estrelas = this.avaliacao.conteudo[0].estrelas;
         this.comentarios = this.avaliacao.conteudo[0].comentario;
-
-      },
-      // (error) => {
-      //   console.error('Erro ao obter dados dos avaliacoes:', error);
-      // }
+      }
+   
     );
   }
 }

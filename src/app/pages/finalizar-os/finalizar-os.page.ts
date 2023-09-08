@@ -78,14 +78,10 @@ export class FinalizarOsPage implements OnInit {
 
     this.apiService.putFinalizarOS().subscribe(
       (data) => {
-        console.log('Finalizado', data);
-        
           this.getPedidosByIdAndRefresh();
           this.getPedidosAndRefresh();
           //Emite sinal de finalizado
          this.eventService.emitOSFinalizada();
-       
-        
       },
       (error) => {
         console.error('Erro FINALIZAR OS', error);
@@ -98,7 +94,6 @@ export class FinalizarOsPage implements OnInit {
     this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
-        console.log('Pedidos no histórico de pedidos:', this.pedido);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -110,7 +105,6 @@ export class FinalizarOsPage implements OnInit {
     this.apiService.getPedidos().subscribe(
       (data) => {
         this.pedidos = data;
-        console.log('Pedidos no histórico de pedidos:', this.pedidos);
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);

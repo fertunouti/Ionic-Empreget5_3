@@ -13,11 +13,8 @@ export class LogoutPage implements OnInit {
   @Output() mudouLogout = new EventEmitter()
   constructor(private router : Router, private authService:AuthService) { }
 
- 
-
-  ngOnInit() {
-    //this.router.navigateByUrl('loading')
-    //this.mudouLogout.emit({logoutSucesso:true})
+   ngOnInit() {
+   
     this.authService.logout()
   }
 

@@ -19,8 +19,7 @@ export class HelloPrestadorComponent  implements OnInit {
     this.apiService.getDataPerfisPrestadores().subscribe(
     (data) => {
        this.prestadores = data;
-      console.log('Dados dos prestadores:', this.prestadores);
-     },
+       },
     (error) => {
        console.error('Erro ao obter dados dos prestadores:', error);
      }
@@ -28,8 +27,7 @@ export class HelloPrestadorComponent  implements OnInit {
   }
 
  onClickAtualizarFoto(){
-  console.log(this.prestadores.conteudo[0].id)
-  this.apiService.addId(this.prestadores.conteudo[0].id)
+    this.apiService.addPrestadorId(this.prestadores.conteudo[0].id)
  }
 
 

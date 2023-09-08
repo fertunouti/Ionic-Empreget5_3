@@ -17,7 +17,7 @@ export class CadastroPage implements OnInit {
     private navCtrl: NavController
     ) {
   }
-  @ViewChild('senhaInput') senhaInput: any; // Referência ao campo de senha
+  @ViewChild('senhaInput') senhaInput: any; 
 
   prefixo: string = ''
   senhaRepetida: string = '';
@@ -52,9 +52,7 @@ export class CadastroPage implements OnInit {
   }
 
   onClickCancelar(){
-    //this.apiService.setUserRole(' ');
-    console.log (this.isLoggedIn)
-    this.navCtrl.navigateBack('/loading');
+   this.navCtrl.navigateBack('/loading');
   }
   onClick() {
     if (this.validarSenhas()) {
@@ -81,20 +79,20 @@ export class CadastroPage implements OnInit {
   validarSenhas() {
     if (this.cliente.usuario.senha.length < 6) {
       this.mostrarAlerta('A senha deve ter pelo menos 6 caracteres.');
-       // Focar no campo de senha para correção
+       
        setTimeout(() => {
         this.senhaInput.setFocus();
-      }, 500); // Um pequeno atraso para garantir que o alerta seja fechado primeiro
+      }, 500); 
 
       return false;
     }
 
     if (this.cliente.usuario.senha !== this.senhaRepetida) {
       this.mostrarAlerta('As senhas não coincidem.');
-       // Focar no campo de senha para correção
+       
        setTimeout(() => {
         this.senhaInput.setFocus();
-      }, 500); // Um pequeno atraso para garantir que o alerta seja fechado primeiro
+      }, 500); 
 
       return false;
     }

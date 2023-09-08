@@ -22,9 +22,7 @@ export class LoginPage implements OnInit {
     const { email, senha } = this;
     this.authService.login(email, senha).subscribe(
       (response: any) => {
-
         const decodedToken: any = jwt_decode(response.token);
-
         const role = decodedToken.sub.split(';');
         const userEmail = role[0];
         const userRole = role[1];
@@ -33,17 +31,12 @@ export class LoginPage implements OnInit {
         this.apiService.addEmail(userEmail)
         this.apiService.addLoginStatus(statusLogin);
 
-
         //Aciona envento onLogin() na HomePage html
         this.mudouLogin.emit({ loginSucesso: true })
         // Configurar o token JWT no ApiService
         this.apiService.setAuthToken(response.token);
         // Defina o token JWT como um cookie
         this.setTokenCookie(response.token);
-
-
-        console.log(userRole,userEmail,statusLogin,response.token)
-
       },
       (error: any) => {
         console.error('Erro no login:', error);
@@ -52,8 +45,7 @@ export class LoginPage implements OnInit {
     );
   }
 
-
-  private setTokenCookie(token: string): void {
+private setTokenCookie(token: string): void {
     // Defina o cookie com o nome "jwt_token" e o valor do token recebido
     document.cookie = `jwt_token=${token}; path=/; HttpOnly`;
   }

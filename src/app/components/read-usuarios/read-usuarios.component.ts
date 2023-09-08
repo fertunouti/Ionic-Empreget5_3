@@ -19,7 +19,7 @@ export class ReadUsuariosComponent  implements OnInit {
      this.apiService.getDataUsuarios().subscribe(
      (data) => {
         this.usuarios = data;
-       console.log('Dados dos usuarios:', this.usuarios);
+      
       },
      (error) => {
         console.error('Erro ao obter dados dos usuarios:', error);

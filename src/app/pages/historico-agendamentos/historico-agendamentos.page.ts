@@ -77,10 +77,7 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
     this.apiService.getPedidosPage().subscribe(
       (data) => {
         this.pedidos = data;
-        console.log('Pedidos no histórico de pedidos:', this.pedidos);
         this.totalPages = this.pedidos.totalPages
-        console.log('quantidade paginas XXX=' + this.pedidos.totalPages)
-        console.log("lista.pedidos.length =" + this.pedidos.conteudo.length)
          },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -91,8 +88,7 @@ export class HistoricoAgendamentosPage implements OnInit, OnDestroy, OnChanges {
     this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
-        console.log('////getPedidosByIdAndRefresh:', this.pedido);
-      },
+        },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
       }

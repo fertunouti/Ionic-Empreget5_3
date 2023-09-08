@@ -64,7 +64,6 @@ export class ApiService {
   // POST PEDIDO
   postPedido(data: any): Observable<any> {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
-    console.log(headers)
     return this.http.post<any>(`${this.baseUrl}/os`, data, { headers });
   }
   
@@ -168,11 +167,14 @@ export class ApiService {
     //PUT FOTOS
     putFotos (files: any): Observable<any> {
       const headers = this.getAuthHeader()
-      return this.http.put<any>(`${this.baseUrl}/prestadores/${this.idProcurado}/foto`, files, { headers });
+      return this.http.put<any>(`${this.baseUrl}/prestadores/${this.prestadorId}/foto`, files, { headers });
     }
-  
-
-
+    //DELETE FOTOS
+    delFotos (): Observable<any> {
+      const headers = this.getAuthHeader()
+      return this.http.delete<any>(`${this.baseUrl}/prestadores/${this.prestadorId}/foto`,{ headers });
+    }
+   
   //MÉTODOS SET AUXILIARES
   addEmail(valorEmail: string) {
     this.email = valorEmail
@@ -210,8 +212,8 @@ export class ApiService {
   readId() {
     return this.idProcurado
   }
-  readTermo() {
-    return this.termoProcurado
+  readPrestadorId() {
+    return this.prestadorId
   }
   read(): Observable<any> {
     return this.http.get<any>(this.baseUrl)

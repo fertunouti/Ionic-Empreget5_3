@@ -23,10 +23,7 @@ export class PaginacaoComponent implements OnInit {
 
   ngOnInit(): void {
   
-    
   }
-
-
 
   generatePages() {
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i);
