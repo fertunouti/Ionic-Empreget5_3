@@ -77,6 +77,12 @@ onClick() {
       this.mostrarAlerta('Cadastro concluído com sucesso.');
       this.navCtrl.navigateBack('/hello');
       this.resetValoresIniciais();
+    },
+    
+    (error) => {
+      console.error("Erro ao cadastrar: ", error);
+      this.mostrarAlerta('Erro ao cadastrar. Verifique os dados e tente novamente.');
+      // Você pode adicionar mais tratamento de erro conforme necessário, como reverter as alterações, etc.
     }
     );
  }
@@ -106,9 +112,17 @@ validarSenhas() {
 }
 
 validarFormatoValor(): boolean {
-  const formatoValido = /^\d+\.\d{2}$/.test(this.prestador.servico.valor);
+  const formatoValido = /^\d+(\.\d{1,2})?$/.test(this.prestador.servico.valor);
   if (!formatoValido) {
-    this.mostrarAlerta('O valor do serviço deve estar no formato #.##');
+    this.mostrarAlerta('O valor do serviço deve estar no formato ###.##');
+  }
+  return formatoValido;
+}
+
+validarFormatoRG(): boolean {
+  const formatoValido = /^\d{1,9}$/.test(this.prestador.rg);
+  if (!formatoValido) {
+    this.mostrarAlerta('O valor do RG deve ter até 9 digitos');
   }
   return formatoValido;
 }

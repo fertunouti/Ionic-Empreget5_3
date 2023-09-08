@@ -15,11 +15,11 @@ export class BuscaRegionComponent implements OnInit,OnChanges {
     this.mudouRegiao.emit({ novaRegiao: this.termoProcurado })
   }
 
-  logs: string[] = [];
+   logs: string[] = [];
 
-  pushLog(msg:string) {
-    this.logs.unshift(msg);
-  }
+   pushLog(msg:string) {
+     this.logs.unshift(msg);
+   }
   constructor() { }
 
   ngOnInit() { }

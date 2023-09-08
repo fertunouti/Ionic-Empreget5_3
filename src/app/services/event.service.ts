@@ -12,6 +12,7 @@ export class EventService {
   private osAceite = new Subject<void>();
   private osRecusada = new Subject<void>();
   private osFinalizada = new Subject<void>();
+  private fotoAtualizada = new Subject<void>();
   
 
   osCadastrada$ = this.osCadastrada.asObservable();
@@ -19,6 +20,7 @@ export class EventService {
   osAceite$=this.osAceite.asObservable();
   osRecusada$=this.osRecusada.asObservable();
   osFinalizada$=this.osFinalizada.asObservable();
+  fotoAtualizada$=this.fotoAtualizada.asObservable();
  
 
   emitOSCadastrada() {
@@ -35,6 +37,9 @@ export class EventService {
   }
   emitOSFinalizada() {
     this.osFinalizada.next();
+  }
+  emitFotoAtualizada() {
+    this.fotoAtualizada.next();
   }
   
 }

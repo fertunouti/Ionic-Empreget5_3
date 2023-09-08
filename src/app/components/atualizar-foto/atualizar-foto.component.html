@@ -2,3 +2,12 @@
 <ion-input type="file" id="customFile" (change) = "onChange($event)" ></ion-input>
 <div style="margin-top: 10px"></div>
 <ion-button shape = "round" (click)="onUpload()" [disabled]="!selectedFiles">UpLoad</ion-button>
+
+<p>Preview</p>
+<ul *ngFor="let prestador of prestadores?.conteudo">
+
+   <ion-avatar slot="start">
+     <img alt="Silhouette of a person's head" src="{{prestador.imgUrl}}" />
+   </ion-avatar>
+  
+ </ul>
