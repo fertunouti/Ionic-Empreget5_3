@@ -142,7 +142,11 @@ export class ApiService {
     return this.http.get<any>(`${this.baseUrl}/usuarios`, { headers });
   }
   
-
+  //PUT EDITAR PRESTADOR
+  putEditarPrestador(data: any): Observable<any> {
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    return this.http.put<any>(`${this.baseUrl}/prestadores/${this.prestadorId}`, data, { headers });
+  }
   
   //PUT CANCELAR OS
   putCancelarOS(): Observable<any> {

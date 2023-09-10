@@ -10,7 +10,6 @@ export class BuscaRegionComponent implements OnInit,OnChanges {
 
   termoProcurado: any
   onEscolheRegiao(termo: any) {
-    console.log (termo.detail.value)
     this.termoProcurado = termo.detail.value
     this.mudouRegiao.emit({ novaRegiao: this.termoProcurado })
   }

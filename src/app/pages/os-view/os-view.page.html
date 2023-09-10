@@ -87,13 +87,13 @@
         </ion-col>
         <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico == 'FINALIZADO'&& avaliacao === undefined">
-            <ion-button shape="round" color="danger" (click)="onClickAvaliarOS(pedido?.id)" routerLink="/avaliacao">
+            <ion-button shape="round" fill="outline" class="custom-button" (click)="onClickAvaliarOS(pedido?.id)" routerLink="/avaliacao">
               Avaliar Prestador
             </ion-button>
           </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" color="primary" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
+          <ion-button shape="round" fill="outline" custom="custom-button" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
             Voltar
           </ion-button>
         </ion-col>
@@ -112,7 +112,7 @@
            pedido?.statusOrdemServico !== 'RECUSADO'&& 
            pedido?.statusOrdemServico !== 'FINALIZADO'
            ">
-            <ion-button shape="round" color="success" (click)="onClickAceitarOS()">
+            <ion-button shape="round" fill="outline" color="success" class="custom-button" (click)="onClickAceitarOS()">
               Aceitar
             </ion-button>
           </div>
@@ -124,7 +124,7 @@
            pedido?.statusOrdemServico !== 'RECUSADO' && 
            pedido?.statusOrdemServico !== 'FINALIZADO'
            ">
-            <ion-button shape="round" color="warning" (click)="onClickRecusarOS()">
+            <ion-button shape="round" fill="outline" color="warning" class="custom-button" (click)="onClickRecusarOS()">
               Recusar OS
             </ion-button>
           </div>
@@ -134,14 +134,14 @@
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&& 
           pedido?.statusOrdemServico !== 'FINALIZADO'">
             <div *ngIf="pedido?.statusOrdemServico === 'PENDENTE'">
-              <ion-button shape="round" color="success" routerLink="/finalizar-os">
+              <ion-button shape="round" fill="outline" color="success" class="custom-button" routerLink="/finalizar-os">
                 Finalizar OS
               </ion-button>
             </div>
           </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" color="primary" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
+          <ion-button shape="round" fill="outline" class="custom-buton" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
             Voltar
           </ion-button>
         </ion-col>

@@ -1,39 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-menu-button slot="start" color="primary"></ion-menu-button>
-    <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="header"><img src="../../../../assets/images/logo_empreget.png"><ion-title>{{tipoUser}}</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-
-
-
 <ion-content>
-
- <ul *ngFor="let pedido of pedidos?.conteudo">
-
+  <ul *ngFor="let pedido of pedidos?.conteudo">
     <ion-item>
-      <!-- <ion-avatar slot="start">
-        <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg" />
-      </ion-avatar> -->
-      <ion-label fill="clear" >
-        <div class="texto">  Pedido nº {{pedido?.id}} </div>
+      <ion-label fill="clear">
+        <div class="texto"> Pedido nº {{pedido?.id}} </div>
 
-      <div *ngIf="tipoUser=='CLIENTE'">
-        <p class="texto">{{pedido?.nomePrestador}}</p>
+        <div *ngIf="tipoUser=='CLIENTE'">
+          <p class="texto">{{pedido?.nomePrestador}}</p>
         </div>
-      <div *ngIf="tipoUser=='PRESTADOR'"> 
-        <p class="texto">{{pedido?.nomeCliente}}</p>
-      </div>
+        <div *ngIf="tipoUser=='PRESTADOR'">
+          <p class="texto">{{pedido?.nomeCliente}}</p>
+        </div>
         <p class="texto">Data: {{pedido?.dataServico}}</p>
         <p>{{pedido?.statusOrdemServico }}</p>
-       
+
       </ion-label>
       <ion-col>
-      <ion-label>
-        <ion-button fill="clear" routerLink="/os-view"  (click)="onClick(pedido?.id)">+Info</ion-button>
-        
-      </ion-label>
+        <ion-label>
+          <ion-button fill="clear" routerLink="/os-view" (click)="onClick(pedido?.id)">+Info</ion-button>
+
+        </ion-label>
       </ion-col>
     </ion-item>
   </ul>
@@ -41,16 +34,12 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col style="padding: 20px 20px;">
-          <ion-button shape="round" color="primary" (click)="onClickInicio()">
-           Ir para Home
+          <ion-button shape="round" fill="outline" (click)="onClickInicio()" class="custom-button">
+            Ir para Home
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 </ion-content>
-<app-paginacao
-  [currentPage]="currentPage"
-  [totalPages]="totalPages"
-  (pageChange)="changePage($event)"
-></app-paginacao>
+<app-paginacao [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="changePage($event)"></app-paginacao>

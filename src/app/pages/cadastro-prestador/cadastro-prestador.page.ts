@@ -57,8 +57,7 @@ export class CadastroPrestadorPage implements OnInit {
   }
   onClickCancelar(){
    // this.apiService.setUserRole('');
-   console.log(this.isLoggedIn)
-    this.navCtrl.navigateBack('/loading');
+   this.navCtrl.navigateBack('/loading');
   }
 onClick() {
   if (!this.validarSenhas()) {

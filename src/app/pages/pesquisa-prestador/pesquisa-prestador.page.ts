@@ -47,7 +47,6 @@ export class PesquisaPrestadorPage implements OnInit {
   }
 
   onMudouRegion(evento: any) {
-    console.log(evento.novaRegiao)
     this.apiService.addRegion(evento.novaRegiao)
     this.apiService.readByRegion().subscribe(prestadores => {
       this.prestadores = prestadores;

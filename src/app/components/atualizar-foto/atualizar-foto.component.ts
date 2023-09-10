@@ -44,15 +44,12 @@ export class AtualizarFotoComponent  implements OnInit {
     this.fotoAtualizadaSubscription.unsubscribe();
   }
   onChange(event:any){
-   console.log (event)
-   this.selectedFiles = event.srcElement.files;
-   console.log(this.selectedFiles)
-   
+      this.selectedFiles = event.srcElement.files;
+    
   }
 
   onUpload() {
     const formData = new FormData();
-    console.log(this.selectedFiles[0])
     formData.append('arquivo', this.selectedFiles[0], this.selectedFiles[0].name);
     this.apiService.putFotos(formData).subscribe(
       (response: any) => {

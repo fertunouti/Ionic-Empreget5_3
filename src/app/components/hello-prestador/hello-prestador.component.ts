@@ -6,29 +6,34 @@ import { ApiService } from 'src/app/services/apiService';
   templateUrl: './hello-prestador.component.html',
   styleUrls: ['./hello-prestador.component.scss'],
 })
-export class HelloPrestadorComponent  implements OnInit {
+export class HelloPrestadorComponent implements OnInit {
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService: ApiService) { }
   prestadores: any
+  tipoUser!: string
 
-  ngOnInit() { 
+  ngOnInit() {
+    this.tipoUser = this.apiService.getUserRole()
     this.readPrestador()
-    
+
   }
   readPrestador(): void {
     this.apiService.getDataPerfisPrestadores().subscribe(
-    (data) => {
-       this.prestadores = data;
-       },
-    (error) => {
-       console.error('Erro ao obter dados dos prestadores:', error);
-     }
+      (data) => {
+        this.prestadores = data;
+      },
+      (error) => {
+        console.error('Erro ao obter dados dos prestadores:', error);
+      }
     );
   }
 
- onClickAtualizarFoto(){
+  onClickAtualizarFoto() {
     this.apiService.addPrestadorId(this.prestadores.conteudo[0].id)
- }
+  }
 
+  onClickAtualizarPrestador() {
+    this.apiService.addPrestadorId(this.prestadores.conteudo[0].id)
+  }
 
 }
