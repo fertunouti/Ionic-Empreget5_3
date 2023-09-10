@@ -22,6 +22,7 @@ constructor(
 
    ) { }
 tipoUser! : string
+dataAtualizacao!: string
 isLoggedIn!: boolean;  
 prestadores: any ={}
 prestador = {
@@ -69,7 +70,7 @@ ngOnInit() {
       (data) => {
          this.prestador = data.conteudo[0];
          console.log(this.prestador)
-        
+        this.dataAtualizacao = data.conteudo[0].dataDaAtualizacao;
        },
       (error) => {
          console.error('Erro ao obter perfil dos prestadores:', error);
@@ -155,6 +156,5 @@ ngOnInit() {
     }
     return formatoValido;
   }
-  
- 
+   
   }

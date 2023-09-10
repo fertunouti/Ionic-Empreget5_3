@@ -15,6 +15,6 @@ import { EditarClientePage } from './editar-cliente.page';
     IonicModule,
     EditarClientePageRoutingModule
   ],
-  declarations: [EditarClientePage]
+  declarations: []
 })
 export class EditarClientePageModule {}

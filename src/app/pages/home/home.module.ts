@@ -40,63 +40,61 @@ import { EsqueciSenhaPage } from '../esqueci-senha/esqueci-senha.page';
 import { EditarPrestadorPage } from '../editar-prestador/editar-prestador.page';
 import { GerenciarFotoPage } from '../gerenciar-foto/gerenciar-foto.page';
 import { CadastroPrestadorPage } from '../cadastro-prestador/cadastro-prestador.page';
+import { EditarClientePage } from '../editar-cliente/editar-cliente.page';
 
 
 @NgModule({
   imports: [
+
+
     CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    
-    
+
+
 
   ],
   declarations: [
-  HomePage,
-  ReadPrestadorComponent,
-  LoginPage,
-  LoadingPage,
-  LogoutPage,
-  HelloPrestadorComponent,
-  HelloAdministradorComponent,
-  ReadUsuariosComponent,
-  PrestadorReadByNameComponent,
-  
-  BuscaNomeComponent,
-  BuscaRegionComponent,
-  PrestadorReadByRegionComponent,
-  HelloPage,
-  HistoricoAgendamentosPage,
-  OsViewPage,
-  CalendarioComponent,
-  CadastroPage,
-  CadastroPrestadorPage,
-  PedidoPage,
-  AgendamentosPrestadorPage,
-  HelloClienteComponent,
-  PesquisaPrestadorPage,
-  PaginacaoComponent,
-  StarRatingComponent,
-  AvaliacaoPage,
-  PerfilPrestadorPage,
-  AtualizarFotoComponent,
- EditarPrestadorPage,
- EsqueciSenhaPage,
- GerenciarFotoPage
-
-
- 
- 
-  
-],
-  exports:[
+    AgendamentosPrestadorPage,
+    AtualizarFotoComponent,
+    AvaliacaoPage,
+    BuscaNomeComponent,
+    BuscaRegionComponent,
+    CalendarioComponent,
+    CadastroPage,
+    CadastroPrestadorPage,
+    EditarPrestadorPage,
+    EsqueciSenhaPage,
+    EditarClientePage,
+    GerenciarFotoPage,
+    HelloPrestadorComponent,
+    HelloAdministradorComponent,
+    HelloClienteComponent,
+    HomePage,
+    HelloPage,
+    HistoricoAgendamentosPage,
+    LoginPage,
+    LoadingPage,
+    LogoutPage,
+    OsViewPage,
+    PrestadorReadByNameComponent,
+    PrestadorReadByRegionComponent,
+    PedidoPage,
+    PesquisaPrestadorPage,
+    PaginacaoComponent,
+    PerfilPrestadorPage,
+    ReadPrestadorComponent,
+    ReadUsuariosComponent,
+    StarRatingComponent,
+  ],
+  exports: [
     LoginPage,
     HomePage,
     LoadingPage,
     PaginacaoComponent
-    
+
   ]
 
 })
-export class HomePageModule {}
+export class HomePageModule { }

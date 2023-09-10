@@ -34,4 +34,9 @@ export class HelloClienteComponent  implements OnInit {
        console.error('Erro ao obter dados dos prestadores:', error);
      })    
    }
+
+   onClickAtualizarCliente() {
+    this.apiService.addClienteId(this.clientes[0].id)
+  }
+
 }

@@ -18,6 +18,7 @@ export class ApiService {
   private regionProcurado = '';
   private idProcurado!: number;
   private prestadorId!: number;
+  private clienteId!:number;
   private loginStatus!: boolean
   private totalPages!: number
   private currentPage!: number
@@ -147,6 +148,11 @@ export class ApiService {
     const headers = this.getAuthHeader().set('Content-Type', 'application/json');
     return this.http.put<any>(`${this.baseUrl}/prestadores/${this.prestadorId}`, data, { headers });
   }
+  //PUT EDITAR CLIENTE
+  putEditarCliente(data: any): Observable<any> {
+    const headers = this.getAuthHeader().set('Content-Type', 'application/json');
+    return this.http.put<any>(`${this.baseUrl}/clientes/${this.clienteId}`, data, { headers });
+  }
   
   //PUT CANCELAR OS
   putCancelarOS(): Observable<any> {
@@ -189,6 +195,9 @@ export class ApiService {
   addPrestadorId(valorId: number) {
     this.prestadorId = valorId
   }
+  addClienteId(valorId: number) {
+    this.clienteId = valorId
+  }
   addLoginStatus(valorLoginStatus:boolean){
     this.loginStatus = valorLoginStatus
   }
@@ -218,6 +227,9 @@ export class ApiService {
   }
   readPrestadorId() {
     return this.prestadorId
+  }
+  readClienteId() {
+    return this.clienteId
   }
   read(): Observable<any> {
     return this.http.get<any>(this.baseUrl)
