@@ -17,10 +17,11 @@ export class HelloClienteComponent  implements OnInit {
   emailUserAtual: string = '';
   nomePrestadorProcurado!: any
   clientes: any
+  tipoUser!: string
  
  
   ngOnInit(): void {
-  
+    this.tipoUser = this.apiService.getUserRole()
     this.readCliente()
   }
 

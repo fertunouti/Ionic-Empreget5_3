@@ -2,10 +2,11 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-menu-button slot="start" color="primary"></ion-menu-button>
-    <ion-img src="../../../../assets/images/Logo-transparente.png"></ion-img>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class="header"><img src="../../../../assets/images/logo_empreget.png"><ion-title>{{tipoUser}}</ion-title>
+    </div>    
   </ion-toolbar>
-</ion-header>
+  </ion-header>
 
 <div class="ion-text-wrap">
   <div *ngFor="let cliente of clientes">
@@ -28,8 +29,8 @@
   </ion-header >
    <br><br><br>
   
-    <ion-button  size="medium" color="primary" routerLink="/historico-agendamentos">Seus Pedidos</ion-button> 
-    <ion-button  size="medium" color="primary" routerLink="/pesquisa-prestador">Busque Prestadores</ion-button> 
+    <ion-button  shape="round" fill="outline" class="custom-button" routerLink="/historico-agendamentos">Seus Pedidos</ion-button> 
+    <ion-button  shape="round" fill="outline" class="custom-button" routerLink="/pesquisa-prestador">Busque Prestadores</ion-button> 
   
 
 
