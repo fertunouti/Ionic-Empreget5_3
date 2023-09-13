@@ -7,16 +7,19 @@
 </ion-header>
 
 <ion-content>
+
   <ul *ngFor="let pedido of pedidos?.conteudo">
     <ion-item>
       <ion-label fill="clear">
-        <div class="texto"> Pedido nº {{pedido?.id}} </div>
+        <div class="texto_titulo"> Pedido nº {{pedido?.id}} </div>
 
         <div *ngIf="tipoUser=='CLIENTE'">
-          <p class="texto">{{pedido?.nomePrestador}}</p>
+          <p class="texto">Prestador:</p>
+          <p> {{pedido?.nomePrestador}}</p>
         </div>
         <div *ngIf="tipoUser=='PRESTADOR'">
-          <p class="texto">{{pedido?.nomeCliente}}</p>
+          <p class="texto">Cliente:<p>
+            <p>{{pedido?.nomeCliente}}</p>
         </div>
         <p class="texto">Data: {{pedido?.dataServico}}</p>
         <p>{{pedido?.statusOrdemServico }}</p>

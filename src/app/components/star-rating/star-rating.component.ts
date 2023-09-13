@@ -10,7 +10,11 @@ export class StarRatingComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-  @Input() mediaRating!: number
+  @Input() set mediaRating(value: number) {
+    this.currentRating = Math.floor(value);
+    this.ratingChange.emit(this.currentRating);
+  }
+  //@Input() mediaRating!: number
   @Input() maxRating: number = 5;
   @Output() ratingChange = new EventEmitter();
 

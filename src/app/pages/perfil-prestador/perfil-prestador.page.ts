@@ -8,17 +8,18 @@ import { osPedido } from 'src/app/services/osPedido.model';
   styleUrls: ['./perfil-prestador.page.scss'],
 })
 export class PerfilPrestadorPage implements OnInit {
- avaliacoes:any
- mediaAvaliacao!: number
- foto: any
- urlFotoPerfil!: string
-
+ avaliacoes:any;
+ mediaAvaliacao!: number;
+ foto: any;
+ urlFotoPerfil!: string;
+tipoUser!: string;
 
   constructor(private apiService:ApiService) { }
-  perfilPrestador: any
+  perfilPrestador: any;
   ngOnInit() {
-     this.getAvaliacoesByIdPrestadoresAndRefresh()
+     this.getAvaliacoesByIdPrestadoresAndRefresh();
      this. getFotoPerfilAndRefresh();
+     this.tipoUser = this.apiService.getUserRole();
      this.apiService.getPerfisPrestadoresById().subscribe(
        (data) => {
           this.perfilPrestador = data;
@@ -31,7 +32,7 @@ export class PerfilPrestadorPage implements OnInit {
   }
 
   onClickAgendar(){
-    this.apiService.addPrestadorId(this.perfilPrestador.id)
+    this.apiService.addPrestadorId(this.perfilPrestador.id);
   }
 
 
@@ -59,7 +60,5 @@ export class PerfilPrestadorPage implements OnInit {
       }
     );
   }
-  
-  
  
 }

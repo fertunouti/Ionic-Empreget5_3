@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/apiService';
 import { Avaliacao } from 'src/app/services/avaliacao.model';
 
@@ -10,7 +11,11 @@ import { Avaliacao } from 'src/app/services/avaliacao.model';
   styleUrls: ['./avaliacao.page.scss'],
 })
 export class AvaliacaoPage implements OnInit {
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(
+    private apiService: ApiService, 
+    private router: Router, 
+    private alertController:AlertController
+    ) { }
   tipoUser: any
   idPedido!: number
   pedido: any
@@ -46,8 +51,12 @@ export class AvaliacaoPage implements OnInit {
     this.avaliacao.estrelas = this.valorAvaliacao
     this.apiService.postAvaliacaoByIdOS(this.avaliacao).subscribe(
       (response: any) => { 
-        
-       })
+        this.mostrarAlerta('Avaliação concluída!! Obrigado!!!');
+          },
+          (error) => {
+            this.mostrarAlerta('Erro! Revise os dados');   
+
+          } );
   }
 
   private getPedidosByIdAndRefresh() {
@@ -80,6 +89,16 @@ export class AvaliacaoPage implements OnInit {
         console.error('Erro ao obter dados dos avaliacoes:', error);
       }
     );
+  }
+
+  async mostrarAlerta(mensagem: string) {
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 }
 

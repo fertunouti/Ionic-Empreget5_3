@@ -54,11 +54,11 @@ export class AtualizarFotoComponent  implements OnInit {
     this.apiService.putFotos(formData).subscribe(
       (response: any) => {
         this.eventService.emitFotoAtualizada();
-        this.mostrarAlerta('Foto do perfil atualizado!!!');
+        this.mostrarAlerta('Sua foto foi atualizada!');
       },
       (error) => {
         console.error("Erro ao cadastrar: ", error);
-        this.mostrarAlerta('Erro ao cadastrar. Verifique os dados e tente novamente.');
+        this.mostrarAlerta('Erro!Verifique os dados e tente novamente!');
       
       }
     );
@@ -70,11 +70,11 @@ onExcluirFoto() {
   this.apiService.delFotos().subscribe(
     (response: any) => {
       this.eventService.emitFotoAtualizada();
-      this.mostrarAlerta('Foto do perfil deletada!!!');
+      this.mostrarAlerta('Sua foto foi excluída!');
     },
     (error) => {
       console.error("Erro ao cadastrar: ", error);
-      this.mostrarAlerta('Erro ao cadastrar. Verifique os dados e tente novamente.');
+      this.mostrarAlerta('Erro! Verifique os dados e tente novamente.');
        }
   );
 }
@@ -83,7 +83,7 @@ onExcluirFoto() {
 
   async mostrarAlerta(mensagem: string) {
     const alert = await this.alertController.create({
-      header: 'Parabéns!',
+      header:'',
       message: mensagem,
       buttons: ['OK']
     });
