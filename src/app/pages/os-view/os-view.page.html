@@ -13,12 +13,10 @@
   <div align="center" style="padding-top:20px; font-size:large;"> Ordem de Serviço n<sup>o</sup> {{idPedido}} </div>
   <br><br>
   <ion-item>
-    <!-- <ion-avatar slot="start">
-      <img alt="Silhouette of a person's head" src="../../../assets/icon/person-outline.svg" />
-    </ion-avatar> -->
+   
     <ion-label fill="clear">
       <ion-grid>
-        <ion-row class="ion-align-items-start"> <!-- Adicione a classe para alinhar o conteúdo ao topo -->
+        <ion-row class="ion-align-items-start"> 
           <div *ngIf="tipoUser=='CLIENTE'">
             <ion-col>
               <p class="texto ion-text-left">Prestador:</p>
@@ -54,13 +52,13 @@
       <p class="texto">Valor contratado:</p>
       <p>R$ {{pedido?.servico.valor | number: '1.2-2'}}</p>
       <br><br>
-      <p>Status da O.S.</p>
+      <p class="texto">Status da O.S.</p>
       <div style="font-weight: bold; font-size: medium;">{{pedido?.statusOrdemServico }}</div>
       <br>
-      <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO'&&pedido?.statusOrdemServico !== 'RECUSADO'&&pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&&pedido?.statusOrdemServico !== 'PENDENTE'" ><p>Avaliação recebida</p></div>
-      <div *ngIf="estrelas==null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">SEM AVALIAÇÃO</div>
-      <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'"  style="font-weight: bold; font-size: medium;">Nota: {{estrelas| number: "1.1-2"}}</div>
-      <div *ngIf="comentarios && pedido?.statusOrdemServico === 'FINALIZADO'" style="font-weight: bold; font-size: medium;">Comentários: {{comentarios}}</div>
+      <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO'&&pedido?.statusOrdemServico !== 'RECUSADO'&&pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&&pedido?.statusOrdemServico !== 'PENDENTE'" class="texto"><p>Avaliação recebida</p></div>
+      <div *ngIf="estrelas==null && pedido?.statusOrdemServico === 'FINALIZADO'" >SEM AVALIAÇÃO</div>
+      <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'" ><div class="texto">Nota:</div> {{estrelas| number: "1.1-2"}}</div>
+      <div *ngIf="comentarios && pedido?.statusOrdemServico === 'FINALIZADO'" ><div class="texto">Comentários:</div> {{comentarios}}</div>
 
       <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaFinalizacao}}</p>
       <p *ngIf="!pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaSolicitacao}}</p>

@@ -26,7 +26,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Nome completo:</ion-label>
+              <ion-label position="floating" class="texto">Nome completo:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.nome"></ion-input>
             </ion-item>
           </ion-col>
@@ -37,7 +37,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">RG:</ion-label>
+              <ion-label position="floating" class="texto">RG:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.rg"></ion-input>
             </ion-item>
           </ion-col>
@@ -48,7 +48,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">CPF:</ion-label>
+              <ion-label position="floating" class="texto">CPF:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.cpf"></ion-input>
             </ion-item>
           </ion-col>
@@ -60,7 +60,7 @@
 
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Logradouro:</ion-label>
+              <ion-label position="floating" class="texto">Logradouro:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.endereco.logradouro"></ion-input>
             </ion-item>
           </ion-col>
@@ -68,13 +68,13 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Número:</ion-label>
+              <ion-label position="floating" class="texto">Número:</ion-label>
               <ion-input type="number" maxlength="6" [(ngModel)]="cliente.endereco.numero"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Complemento:</ion-label>
+              <ion-label position="floating" class="texto">Complemento:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.endereco.complemento"></ion-input>
             </ion-item>
           </ion-col>
@@ -85,13 +85,13 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">CEP:</ion-label>
+              <ion-label position="floating" class="texto">CEP:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.endereco.cep"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Bairro:</ion-label>
+              <ion-label position="floating" class="texto">Bairro:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.endereco.bairro"></ion-input>
             </ion-item>
           </ion-col>
@@ -102,7 +102,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Cidade:</ion-label>
+              <ion-label position="floating" class="texto">Cidade:</ion-label>
               <ion-input type="text" [(ngModel)]="cliente.endereco.cidade"></ion-input>
             </ion-item>
           </ion-col>
@@ -111,7 +111,7 @@
           <ion-col>
             <div style="width: 150px">
               <ion-item>
-                <ion-label position="floating">Estado:</ion-label>
+                <ion-label position="floating" class="texto">Estado:</ion-label>
                 <ion-input type="text" maxlength="2" [(ngModel)]="cliente.endereco.estado"></ion-input>
               </ion-item>
             </div>
@@ -119,7 +119,7 @@
           <ion-col>
             <div style="width: 150px">
               <ion-item>
-                <ion-label position="floating">País:</ion-label>
+                <ion-label position="floating" class="texto">País:</ion-label>
                 <ion-input type="text" maxlength="3" [(ngModel)]="cliente.endereco.pais"></ion-input>
               </ion-item>
             </div>
@@ -131,7 +131,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Telefone</ion-label>
+              <ion-label position="floating" class="texto">Telefone</ion-label>
               <ion-input type="tel" placeholder="0xx-9xxxx-xxxx" [(ngModel)]="cliente.telefone"></ion-input>
             </ion-item>
           </ion-col>

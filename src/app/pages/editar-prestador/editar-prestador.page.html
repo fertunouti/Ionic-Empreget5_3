@@ -38,7 +38,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Nome completo:</ion-label>
+              <ion-label position="floating" class="texto">Nome completo:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.nome"></ion-input>
             </ion-item>
           </ion-col>
@@ -49,7 +49,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">RG:</ion-label>
+              <ion-label position="floating" class="texto">RG:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.rg"></ion-input>
             </ion-item>
           </ion-col>
@@ -60,7 +60,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">CPF:</ion-label>
+              <ion-label position="floating" class="texto">CPF:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.cpf"></ion-input>
             </ion-item>
           </ion-col>
@@ -72,7 +72,7 @@
 
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Logradouro:</ion-label>
+              <ion-label position="floating" class="texto">Logradouro:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.endereco.logradouro"></ion-input>
             </ion-item>
           </ion-col>
@@ -80,13 +80,13 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Número:</ion-label>
+              <ion-label position="floating" class="texto">Número:</ion-label>
               <ion-input type="number" maxlength="6" [(ngModel)]="prestador.endereco.numero"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Complemento:</ion-label>
+              <ion-label position="floating" class="texto">Complemento:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.endereco.complemento"></ion-input>
             </ion-item>
           </ion-col>
@@ -97,13 +97,13 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">CEP:</ion-label>
+              <ion-label position="floating" class="texto">CEP:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.endereco.cep"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Bairro:</ion-label>
+              <ion-label position="floating" class="texto">Bairro:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.endereco.bairro"></ion-input>
             </ion-item>
           </ion-col>
@@ -114,7 +114,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Cidade:</ion-label>
+              <ion-label position="floating" class="texto">Cidade:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.endereco.cidade"></ion-input>
             </ion-item>
           </ion-col>
@@ -123,7 +123,7 @@
           <ion-col>
             <div style="width: 150px">
               <ion-item>
-                <ion-label position="floating">Estado:</ion-label>
+                <ion-label position="floating" class="texto">Estado:</ion-label>
                 <ion-input type="text" maxlength="2" [(ngModel)]="prestador.endereco.estado"></ion-input>
               </ion-item>
             </div>
@@ -131,7 +131,7 @@
           <ion-col>
             <div style="width: 150px">
               <ion-item>
-                <ion-label position="floating">País:</ion-label>
+                <ion-label position="floating" class="texto">País:</ion-label>
                 <ion-input type="text" maxlength="3" [(ngModel)]="prestador.endereco.pais"></ion-input>
               </ion-item>
             </div>
@@ -143,7 +143,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Telefone</ion-label>
+              <ion-label position="floating" class="texto">Telefone</ion-label>
               <ion-input type="tel" placeholder="0xx-9xxxx-xxxx" [(ngModel)]="prestador.telefone"></ion-input>
             </ion-item>
           </ion-col>
@@ -154,7 +154,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Serviço:</ion-label>
+              <ion-label position="floating" class="texto">Serviço:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.servico.descricao"></ion-input>
             </ion-item>
           </ion-col>
@@ -165,7 +165,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Valor (R$):</ion-label>
+              <ion-label position="floating" class="texto">Valor (R$):</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.servico.valor"></ion-input>
             </ion-item>
           </ion-col>
@@ -176,7 +176,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Escreva alguma observação:</ion-label>
+              <ion-label position="floating" class="texto">Escreva alguma observação:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.observacao"></ion-input>
             </ion-item>
           </ion-col>
@@ -187,7 +187,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Atende Região:</ion-label>
+              <ion-label position="floating" class="texto">Atende Região:</ion-label>
               <ion-select [(ngModel)]="prestador.regiao">
                 <ion-select-option value="CENTRO">Centro</ion-select-option>
                 <ion-select-option value="NORTE">Norte</ion-select-option>
@@ -206,7 +206,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Disponibilidade:</ion-label>
+              <ion-label position="floating" class="texto">Disponibilidade:</ion-label>
               <ion-input type="text" [(ngModel)]="prestador.disponibilidade"></ion-input>
             </ion-item>
           </ion-col>

@@ -6,8 +6,9 @@
           </ion-avatar>
         <ion-col>
           <ion-label>
-            {{prestador?.nome}}
-            <p>Atende região: {{prestador?.regiao}}</p>
+           <div class="texto_titulo"> {{prestador?.nome}}</div>
+            <p>Atende região:</p>
+            <p class="texto">{{prestador?.regiao}}</p>
             <p>R$ {{prestador?.servicoValor | number: '1.2-2'}}</p>
           </ion-label>
         </ion-col>
