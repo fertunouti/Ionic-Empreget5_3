@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EditarClientePage } from './editar-cliente.page';
+import { EditarClientePage } from './editar.page';
 
 describe('EditarClientePage', () => {
   let component: EditarClientePage;

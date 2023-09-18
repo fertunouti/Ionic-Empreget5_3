@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/services/apiService';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
-  selector: 'app-editar-prestador',
-  templateUrl: './editar-prestador.page.html',
-  styleUrls: ['./editar-prestador.page.scss'],
+  selector: 'app-editar-prest',
+  templateUrl: './editar-prest.page.html',
+  styleUrls: ['./editar-prest.page.scss'],
 })
-export class EditarPrestadorPage implements OnInit {
+export class EditarPrestPage implements OnInit {
 
 
 
@@ -55,30 +55,30 @@ foto: any
 imgUrl!: string
 prefixo!:string
 ngOnInit() {
-    console.log(this.apiService.readPrestadorId())
-    this.tipoUser = this.apiService.getUserRole();
-    this.isLoggedIn = this.apiService.readLoginStatus()
-     this.apiService.getFotoByIdListaPrestadores(this.apiService.readPrestadorId()).subscribe(
-       (data) => {  this.foto = data
-         console.log(data.nomeArquivo)
-         this.imgUrl = `assets/images/${this.foto.nomeArquivo}`
-       }
-    );
+  //   console.log(this.apiService.readPrestadorId())
+  //   this.tipoUser = this.apiService.getUserRole();
+  //   this.isLoggedIn = this.apiService.readLoginStatus()
+  //    this.apiService.getFotoByIdListaPrestadores(this.apiService.readPrestadorId()).subscribe(
+  //      (data) => {  this.foto = data
+  //        console.log(data.nomeArquivo)
+  //        this.imgUrl = `assets/images/${this.foto.nomeArquivo}`
+  //      }
+  //   );
     
 
-    this.apiService.getDataPerfisPrestadores().subscribe(
-      (data) => {
-         this.prestador = data.conteudo[0];
-         console.log(this.prestador)
-        this.dataAtualizacao = data.conteudo[0].dataDaAtualizacao;
-       },
-      (error) => {
-         console.error('Erro ao obter perfil dos prestadores:', error);
-       }
-      );
+  //   this.apiService.getDataPerfisPrestadores().subscribe(
+  //     (data) => {
+  //        this.prestador = data.conteudo[0];
+  //        console.log(this.prestador)
+  //       this.dataAtualizacao = data.conteudo[0].dataDaAtualizacao;
+  //      },
+  //     (error) => {
+  //        console.error('Erro ao obter perfil dos prestadores:', error);
+  //      }
+  //     );
 
     
-  }
+   }
   onClickSalvar(){
     const prestadorEditado = {
       nome: this.prestador.nome,

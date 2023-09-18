@@ -72,13 +72,13 @@
 
   <div *ngIf="tipoUser=='CLIENTE'">
     <ion-grid>
-      <ion-row justify-content-center>
+      <ion-row class="justify-content-center">
         <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
               pedido?.statusOrdemServico !== 'PENDENTE' && 
               pedido?.statusOrdemServico !== 'RECUSADO' && 
               pedido?.statusOrdemServico !== 'FINALIZADO'">
-            <ion-button shape="round" color="danger" (click)="onClickCancelarOS()">
+            <ion-button shape="round" fill="outline" color="danger" class="custom-button" (click)="onClickCancelarOS()">
               Cancelar OS
             </ion-button>
           </div>
@@ -103,8 +103,8 @@
   <!-- ****BOTOES PARA O PRESTADOR  *** -->
   <div *ngIf="tipoUser=='PRESTADOR'">
     <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col style="padding: 20px 10px;">
+      <ion-row >
+        <ion-col  class="justify-content-center">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
            pedido?.statusOrdemServico !== 'PENDENTE' &&
            pedido?.statusOrdemServico !== 'RECUSADO'&& 
@@ -114,35 +114,36 @@
               Aceitar
             </ion-button>
           </div>
-        </ion-col>
-
-        <ion-col style="padding: 20px 10px;">
           <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' &&
-           pedido?.statusOrdemServico !== 'PENDENTE' &&
-           pedido?.statusOrdemServico !== 'RECUSADO' && 
-           pedido?.statusOrdemServico !== 'FINALIZADO'
-           ">
-            <ion-button shape="round" fill="outline" color="warning" class="custom-button" (click)="onClickRecusarOS()">
-              Recusar OS
-            </ion-button>
-          </div>
-        </ion-col>
-        
-        <ion-col style="padding: 20px 10px;">
-          <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&& 
-          pedido?.statusOrdemServico !== 'FINALIZADO'">
-            <div *ngIf="pedido?.statusOrdemServico === 'PENDENTE'">
-              <ion-button shape="round" fill="outline" color="success" class="custom-button" routerLink="/finalizar-os">
-                Finalizar OS
-              </ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" fill="outline" class="custom-buton" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
+          pedido?.statusOrdemServico !== 'PENDENTE' &&
+          pedido?.statusOrdemServico !== 'RECUSADO' && 
+          pedido?.statusOrdemServico !== 'FINALIZADO'
+          ">
+           <ion-button shape="round" fill="outline" color="warning" class="custom-button" (click)="onClickRecusarOS()">
+             Recusar OS
+           </ion-button>
+         </div>
+         <div *ngIf="pedido?.statusOrdemServico !== 'CANCELADO' && pedido?.statusOrdemServico !== 'AGUARDANDO_ACEITE'&& 
+         pedido?.statusOrdemServico !== 'FINALIZADO'">
+           <div *ngIf="pedido?.statusOrdemServico === 'PENDENTE'">
+             <ion-button shape="round" fill="outline" color="success" class="custom-button" routerLink="/finalizar-os">
+               Finalizar OS
+             </ion-button>
+           </div>
+         
+         </div>
+         <div>
+          <ion-button shape="round" fill="outline" color="primary" class="custom-button" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
             Voltar
           </ion-button>
+          </div>
         </ion-col>
+
+        <!-- <ion-col style="padding: 20px 10px;"> </ion-col> -->
+        
+        <!-- <ion-col style="padding: 20px 10px;"> </ion-col> -->
+        <!-- <ion-col style="padding: 20px 10px;"> </ion-col> -->
+      
       </ion-row>
     </ion-grid>
   </div>

@@ -14,11 +14,11 @@ export class AppComponent {
 
   public appPages = [
     { title: 'Home', url: '/hello', icon: 'home' },
-    { title: 'Alterar perfil', url: '/editar-cliente', icon: 'person' },
-    { title: 'Favoritos', url: '#', icon: 'heart' },
+    { title: 'Alterar perfil', url: '/editar', icon: 'person' },
+    //{ title: 'Favoritos', url: '#', icon: 'heart' },
     { title: 'Agendamentos', url: '/historico-agendamentos', icon: 'bag' },
-    { title: 'Ajuda', url: '#', icon: 'help-circle' },
-    { title: 'Sobre o app', url: '#', icon: 'warning' },
+    //{ title: 'Ajuda', url: '#', icon: 'help-circle' },
+    { title: 'Sobre o app', url: '/sobre-app', icon: 'warning' },
     { title: 'Sair', url: '/logout', icon: 'log-out' },
   ];
 

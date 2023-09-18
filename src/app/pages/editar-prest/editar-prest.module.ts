@@ -4,17 +4,16 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EditarClientePageRoutingModule } from './editar-cliente-routing.module';
+import { EditarPrestPageRoutingModule } from './editar-prest-routing.module';
 
-import { EditarClientePage } from './editar-cliente.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditarClientePageRoutingModule
+    EditarPrestPageRoutingModule
   ],
   declarations: []
 })
-export class EditarClientePageModule {}
+export class EditarPrestPageModule {}

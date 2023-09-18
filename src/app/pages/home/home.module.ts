@@ -37,10 +37,13 @@ import { AvaliacaoPage } from '../avaliacao/avaliacao.page';
 import { PerfilPrestadorPage } from '../perfil-prestador/perfil-prestador.page';
 import { AtualizarFotoComponent } from 'src/app/components/atualizar-foto/atualizar-foto.component';
 import { EsqueciSenhaPage } from '../esqueci-senha/esqueci-senha.page';
-import { EditarPrestadorPage } from '../editar-prestador/editar-prestador.page';
+import { EditarPrestPage } from '../editar-prest/editar-prest.page';
 import { GerenciarFotoPage } from '../gerenciar-foto/gerenciar-foto.page';
 import { CadastroPrestadorPage } from '../cadastro-prestador/cadastro-prestador.page';
-import { EditarClientePage } from '../editar-cliente/editar-cliente.page';
+import { EditarPage } from '../editar/editar.page';
+import { SobreAppPage } from '../sobre-app/sobre-app.page';
+import { EditarClienteComponent } from 'src/app/components/editar-cliente/editar-cliente.component';
+import { EditarPrestadorComponent } from 'src/app/components/editar-prestador/editar-prestador.component';
 
 
 @NgModule({
@@ -64,9 +67,11 @@ import { EditarClientePage } from '../editar-cliente/editar-cliente.page';
     CalendarioComponent,
     CadastroPage,
     CadastroPrestadorPage,
-    EditarPrestadorPage,
+    EditarPrestPage,
     EsqueciSenhaPage,
-    EditarClientePage,
+    EditarPage,
+    EditarClienteComponent,
+    EditarPrestadorComponent,
     GerenciarFotoPage,
     HelloPrestadorComponent,
     HelloAdministradorComponent,
@@ -87,12 +92,14 @@ import { EditarClientePage } from '../editar-cliente/editar-cliente.page';
     ReadPrestadorComponent,
     ReadUsuariosComponent,
     StarRatingComponent,
+    SobreAppPage
   ],
   exports: [
     LoginPage,
     HomePage,
     LoadingPage,
-    PaginacaoComponent
+    PaginacaoComponent,
+    EditarClienteComponent
 
   ]
 

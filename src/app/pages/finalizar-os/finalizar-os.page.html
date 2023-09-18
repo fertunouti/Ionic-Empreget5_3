@@ -10,17 +10,17 @@
 </ion-header>
 
 <ion-content>
-    
-    <div align="center" style= "padding-top:20px; font-size:small;"> Ordem de Serviço n<sup>o</sup> {{idPedido}} </div>
+    <br><br><br>
+    <div align="center" class="texto_titulo" > Ordem de Serviço n<sup>o</sup> {{idPedido}} </div>
   
-    
+    <br><br>
     <div>
       <ion-grid>
         <ion-row justify-content-center>
           
-          <ion-col  style="padding: 20px 10px;">
+          <ion-col  class="justify-content-center">
             
-            <ion-button (click)="onClickFinalizarOS()" shape=round color=danger>Finalizar OS</ion-button>
+            <ion-button (click)="onClickFinalizarOS()" shape=round fill="outline" color=danger class="custom-button">Finalizar OS</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

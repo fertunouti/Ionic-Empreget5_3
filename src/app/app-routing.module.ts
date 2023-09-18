@@ -17,10 +17,9 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-   /* canActivate: [AuthGuard] //NÃO FUNCIONOU PERDE A ROTA*/ 
+  
   },
   
-
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
@@ -74,17 +73,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/historico-agendamentos/historico-agendamentos.module').then( m => m.HistoricoAgendamentosPageModule)
   },
   {
-    path: 'editar-cliente',
-    loadChildren: () => import('./pages/editar-cliente/editar-cliente.module').then( m => m.EditarClientePageModule)
+    path: 'editar',
+    loadChildren: () => import('./pages/editar/editar.module').then( m => m.EditarPageModule)
   },
   {
-    path: 'editar-prestador',
-    loadChildren: () => import('./pages/editar-prestador/editar-prestador.module').then( m => m.EditarPrestadorPageModule)
+    path: 'editar-prest',
+    loadChildren: () => import('./pages/editar-prest/editar-prest.module').then( m => m.EditarPrestPageModule)
   },
   {
     path: 'pedido',
     loadChildren: () => import('./pages/pedido/pedido.module').then( m => m.PedidoPageModule)
-    /* canActivate: [AuthGuard] //NÃO FUNCIONOU PERDE A ROTA*/
+    
   },
   {
     path: 'tipo-user-home',
@@ -97,7 +96,8 @@ const routes: Routes = [
   {
     path: 'hello',
     loadChildren: () => import('./pages/hello/hello.module').then( m => m.HelloPageModule)
-  },  {
+  },
+  {
     path: 'pesquisa-prestador',
     loadChildren: () => import('./pages/pesquisa-prestador/pesquisa-prestador.module').then( m => m.PesquisaPrestadorPageModule)
   },
@@ -108,6 +108,10 @@ const routes: Routes = [
   {
     path: 'gerenciar-foto',
     loadChildren: () => import('./pages/gerenciar-foto/gerenciar-foto.module').then( m => m.GerenciarFotoPageModule)
+  },
+  {
+    path: 'sobre-app',
+    loadChildren: () => import('./pages/sobre-app/sobre-app.module').then( m => m.SobreAppPageModule)
   }
 
   
