@@ -17,7 +17,7 @@ export class LoadingPage implements OnInit {
     setTimeout(() => {
       this.router.navigateByUrl('/hello')
       
-    },3000);
+    },2000);
   }
  
 }

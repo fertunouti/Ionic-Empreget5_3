@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/apiService';
+import { EventService } from 'src/app/services/event.service';
 import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
 
 
@@ -12,7 +14,15 @@ import { prestadorFilter } from 'src/app/services/prestadorFilter.model';
 })
 
 export class HelloClienteComponent  implements OnInit {
-  constructor(private apiService: ApiService) { }
+  
+  private cadastroAtualizadoSubscription: Subscription;
+  constructor(
+    private apiService: ApiService,
+    private eventService : EventService) {
+    this.cadastroAtualizadoSubscription = this.eventService.cadastroAtualizado$.subscribe(() => {
+      this.readCliente()
+    });
+   }
 
   emailUserAtual: string = '';
   nomePrestadorProcurado!: any
@@ -24,6 +34,10 @@ export class HelloClienteComponent  implements OnInit {
     this.tipoUser = this.apiService.getUserRole()
     this.readCliente()
   }
+  ngOnDestroy() {
+    // Cancelar a inscrição no observável para evitar vazamentos de memória
+    this.cadastroAtualizadoSubscription.unsubscribe();
+  }
 
   readCliente(){
     this.apiService.getDataPerfisClientes().subscribe(
@@ -31,7 +45,7 @@ export class HelloClienteComponent  implements OnInit {
       this.clientes = data;
        },
     (error) => {
-       console.error('Erro ao obter dados dos prestadores:', error);
+       console.error('Erro ao obter dados:', error);
      })    
    }
 

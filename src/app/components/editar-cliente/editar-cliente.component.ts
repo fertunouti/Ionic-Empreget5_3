@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, Output ,EventEmitter} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/apiService';
+import * as moment from 'moment-timezone';
+
 
 import { EventService } from 'src/app/services/event.service';
 
@@ -19,16 +21,17 @@ export class EditarClienteComponent implements OnInit {
     private eventService: EventService,
     private http: HttpClient,
     private navCtrl: NavController,
-    private alertController: AlertController
+    private alertController: AlertController,
+
   ) { }
 
   tipoUser!: string
   isLoggedIn!: boolean;
   clientes: any = {}
-  dataAtualizacao!: string
-  @Input() cliente  : any;
+  dataAtualizacao: any
+  @Input() cliente: any;
   @Output() atualizarCliente = new EventEmitter();
-  
+
   ngOnInit() {
     console.log(this.apiService.readClienteId())
     this.tipoUser = this.apiService.getUserRole();
@@ -36,9 +39,11 @@ export class EditarClienteComponent implements OnInit {
     this.apiService.getDataPerfisClientes().subscribe(
       (data) => {
         this.cliente = data[0];
-        this.dataAtualizacao = data[0].dataDaAtualizacao
+        this.dataAtualizacao = this.apiService.converterDataAtualizacao(data[0].dataDaAtualizacao)
 
-        console.log(this.cliente)
+        console.log(this.dataAtualizacao);
+
+
       },
       (error) => {
         console.error('Erro ao obter perfil dos prestadores:', error);

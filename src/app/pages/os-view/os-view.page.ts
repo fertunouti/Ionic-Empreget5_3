@@ -54,12 +54,15 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   estrelas: number | null  = null
   comentarios: string = ""
   imagem: any
+  dataDaSolicitacao!: string
+  dataDaFinalizacao!: string
 
   ngOnInit() {
     this.tipoUser = this.apiService.getUserRole()
     this.idPedido = this.apiService.readId()
     this.getPedidosByIdAndRefresh()
     this.getAvaliacaoByIdOSAndRefresh()
+
     
     }
 
@@ -80,6 +83,7 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
   onClickVoltar(){
     this.apiService.addCurrentPage(0) // reinicializa pagina atual para 0
     this.getPedidosPageAndRefresh() //atualiza página
+    this.router.navigateByUrl('/historico-agendamentos');
   }
   //botão cancelarOS
   onClickCancelarOS() {
@@ -103,6 +107,9 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
       (data) => {
         this.getPedidosByIdAndRefresh()
         this.getPedidosPageAndRefresh();
+        this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+        this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
+
         //Emite sinal de cancelado
         this.eventService.emitOSCancelada();
       },
@@ -116,6 +123,8 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
       (data) => {
         this.getPedidosByIdAndRefresh();
         this.getPedidosPageAndRefresh();
+        this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+        this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
         //Emite sinal de aceito
         this.eventService.emitOSAceite();
       },
@@ -131,6 +140,8 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
       this.getPedidosPageAndRefresh();
       //Emite sinal de cancelado
       this.eventService.emitOSRecusada();
+      this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+      this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
 
       },
       
@@ -144,6 +155,8 @@ export class OsViewPage implements OnInit, OnDestroy , OnChanges {
     this.apiService.getByIdPedido().subscribe(
       (data) => {
         this.pedido = data;
+        this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+        this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -155,6 +168,8 @@ private getPedidosPageAndRefresh() {
     this.apiService.getPedidosPage().subscribe(
       (data) => {
         this.pedidos = data;
+        this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+        this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
       },
       (error) => {
         console.error('Erro ao obter dados dos pedidos:', error);
@@ -167,6 +182,8 @@ private getPedidosPageAndRefresh() {
         this.avaliacao = data;
         this.estrelas = this.avaliacao.conteudo[0].estrelas;
         this.comentarios = this.avaliacao.conteudo[0].comentario;
+        this.dataDaSolicitacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaSolicitacao)
+        this.dataDaFinalizacao=this.apiService.converterDataAtualizacao(this.pedido.dataDaFinalizacao)
       }
    
     );

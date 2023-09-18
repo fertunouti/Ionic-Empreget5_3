@@ -60,8 +60,8 @@
       <div *ngIf="estrelas!=null && pedido?.statusOrdemServico === 'FINALIZADO'" ><div class="texto">Nota:</div> {{estrelas| number: "1.1-2"}}</div>
       <div *ngIf="comentarios && pedido?.statusOrdemServico === 'FINALIZADO'" ><div class="texto">Comentários:</div> {{comentarios}}</div>
 
-      <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaFinalizacao}}</p>
-      <p *ngIf="!pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{pedido?.dataDaSolicitacao}}</p>
+      <p *ngIf="pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{dataDaFinalizacao}}</p>
+      <p *ngIf="!pedido?.dataDaFinalizacao" class="texto">Atualizado em: {{dataDaSolicitacao}}</p>
       
       
     </ion-label>
@@ -91,7 +91,7 @@
           </div>
         </ion-col>
         <ion-col style="padding: 20px 10px;">
-          <ion-button shape="round" fill="outline" custom="custom-button" (click)="onClickVoltar()" routerLink="/historico-agendamentos">
+          <ion-button shape="round" fill="outline" custom="custom-button" (click)="onClickVoltar()" >
             Voltar
           </ion-button>
         </ion-col>

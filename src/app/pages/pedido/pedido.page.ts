@@ -53,7 +53,7 @@ export class PedidoPage implements OnInit {
     this.apiService.postPedido(this.osPedido).subscribe(
       (response: any) => {
         this.getPedidosPageAndRefresh()
-        // Após cadastrar com sucesso, emita o evento
+        this.mostrarAlerta('Agendamento Realizado com Sucesso!');
         this.eventService.emitOSCadastrada();
       },
 
@@ -80,6 +80,16 @@ export class PedidoPage implements OnInit {
 
     await alert.present();
   }
+  async mostrarAlerta(mensagem: string) {
+    const alert = await this.alertController.create({
+      header: '',
+      message: mensagem,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
   //  // Método chamado ao clicar no ícone de calendário
   mostraCalendario() {
     this.mostraCalendarioOnClick = !this.mostraCalendarioOnClick;

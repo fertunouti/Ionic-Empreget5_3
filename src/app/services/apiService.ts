@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as moment from 'moment-timezone';
 
 @Injectable({
   providedIn: 'root'
@@ -184,6 +185,14 @@ export class ApiService {
       const headers = this.getAuthHeader()
       return this.http.delete<any>(`${this.baseUrl}/prestadores/${this.prestadorId}/foto`,{ headers });
     }
+
+  //MÉTODO CONVERTER DATA de atualização para formato DD-MM-YYYY HH:mm:ss
+  converterDataAtualizacao(dataAtualizacao:string){
+    const inputDateString = dataAtualizacao;
+    const brasiliaDate = moment(inputDateString).tz('America/Sao_Paulo');
+    const formattedDate = brasiliaDate.format('DD-MM-YYYY [às] HH:mm:ss');
+    return formattedDate
+  }
    
   //MÉTODOS SET AUXILIARES
   addEmail(valorEmail: string) {

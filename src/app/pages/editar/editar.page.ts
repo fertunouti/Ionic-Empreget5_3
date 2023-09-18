@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
+
 import { ApiService } from 'src/app/services/apiService';
 import { EventService } from 'src/app/services/event.service';
 
@@ -11,13 +12,18 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EditarPage implements OnInit {
 
+
+  
+  
   constructor(
     private apiService: ApiService,
     private eventService: EventService,
     private http: HttpClient,
     private navCtrl: NavController,
     private alertController: AlertController
-  ) { }
+  ) { 
+    
+  }
 
   tipoUser!: string
   isLoggedIn!: boolean;
@@ -53,6 +59,9 @@ prefixo!:string
 
 
   }
+
+ 
+
   onClickSalvar() {
     const clienteEditado = {
       nome: this.cliente.nome,
@@ -75,7 +84,7 @@ prefixo!:string
   
     this.apiService.putEditarCliente(clienteEditado).subscribe(
       (response: any) => {
-        console.log("Cadastro atualizado!");
+        this.eventService.emitCadastroAtualizado();//Emite sinal de cadastrado
         this.mostrarAlerta('Cadastro atualizado!');
         this.navCtrl.navigateBack('/hello');
 
@@ -123,6 +132,7 @@ prefixo!:string
     this.apiService.putEditarPrestador(prestadorEditado).subscribe(
        (response: any) => { 
         console.log("Cadastro atualizado!");
+        this.eventService.emitCadastroAtualizado();//Emite sinal de cadastrado
         this.mostrarAlerta('Cadastro atualizado!');
         this.navCtrl.navigateBack('/hello');
         
