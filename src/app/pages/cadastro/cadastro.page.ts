@@ -61,7 +61,10 @@ export class CadastroPage implements OnInit {
 
 
       this.apiService.postCadastrarCliente(this.cliente).subscribe(
-        (response: any) => { console.log("CLIENTE cadastrado com sucesso!!!") })
+        (response: any) => {
+           console.log("CLIENTE cadastrado com sucesso!!!")
+           this.mostrarAlerta('Cadastro concluído com sucesso.')
+       })
     }
   }
   async mostrarAlerta(mensagem: string) {
